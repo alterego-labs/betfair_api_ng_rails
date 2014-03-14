@@ -63,6 +63,8 @@ module BetfairApiNgRails
 
         def read_file(path)
           File.read path
+        rescue
+          ""
         end
 
       end
