@@ -1,20 +1,20 @@
-require './lib/api/base_requester'
+module BetfairApiNgRails
+  module Api
+    module Soccer
+      class Requester < BetfairApiNgRails::Api::BaseRequester
 
-module Api
-  module Soccer
-    class Requester < Api::BaseRequester
+        def initialize(provider)
+          @sport = :soccer
+          super provider
+        end
 
-      def initialize(provider)
-        @sport = :soccer
-        super provider
+      private
+
+        def make_fetch(parameters: {})
+          current_provider.fetch data: data, parameters: parameters, sport: sport
+        end
+
       end
-
-    private
-
-      def make_fetch(parameters: {})
-        current_provider.fetch data: data, parameters: parameters, sport: sport
-      end
-
     end
   end
 end

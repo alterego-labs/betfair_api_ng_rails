@@ -1,15 +1,14 @@
-require './lib/api/soccer/requester'
-require './lib/api/bf/provider'
+module BetfairApiNgRails
+  class Api::Soccer::CompetitionRequester < BetfairApiNgRails::Api::Soccer::Requester
 
-class Api::Soccer::CompetitionRequester < Api::Soccer::Requester
+    def initialize(provider: '')
+      @data = :competition
+      super provider
+    end
 
-  def initialize(provider: '')
-    @data = :competition
-    super provider
+    def load(parameters: {})
+      make_fetch parameters: parameters
+    end
+
   end
-
-  def load(parameters: {})
-    make_fetch parameters: parameters
-  end
-
 end
