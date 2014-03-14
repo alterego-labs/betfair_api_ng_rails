@@ -4,7 +4,7 @@ API-NG is Betfair's next generation API for developers looking to create automat
 
 ## WARNING!!!
 
-_Last version of gem supports only list* requests._
+__Last version of gem supports only list* requests.__
 
 ## Installation
 
@@ -24,7 +24,14 @@ After this run next rake command:
 
     $ bundle exec rake betfair_api_ng_rails:install
 
-After installation will appear two files _config/betfair_api_ng_rails.yml_ and _config/initializers/betfair_api_ng_rails.rb_. In this files you must specify credentials to API-NG. Also you should notice that this gem used non-interactive login and you must generate ssh keys for logining well. Most information about this you may find [there](https://api.developer.betfair.com/services/webapps/docs/display/1smk3cen4v3lu3yomq5qye0ni/Non-Interactive+%28bot%29+login).
+After installation will appear two files:
+
+```
+config/betfair_api_ng_rails.yml
+config/initializers/betfair_api_ng_rails.rb
+```
+
+In this files you must specify credentials to API-NG. Also you should notice that this gem used non-interactive login and you must generate ssh keys for logining well. More information about this you may find [there](https://api.developer.betfair.com/services/webapps/docs/display/1smk3cen4v3lu3yomq5qye0ni/Non-Interactive+%28bot%29+login).
 
 ## Usage
 
