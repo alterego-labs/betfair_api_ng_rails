@@ -5,13 +5,9 @@ module BetfairApiNgRails
         module Soccer
           class CompetitionParser < Api::BaseParser
 
-            def parse(response: {})
-              response['result'].map { |r| process_competition(r) }
-            end
-
           private
 
-            def process_competition(h)
+            def process_record(h)
               h.merge! h['competition']
               h.except! 'competition'
               h

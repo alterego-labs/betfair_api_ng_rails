@@ -8,6 +8,10 @@ module BetfairApiNgRails
           super provider
         end
 
+        def load(parameters: {})
+          make_fetch parameters: parameters
+        end
+
       private
 
         def make_fetch(parameters: {})

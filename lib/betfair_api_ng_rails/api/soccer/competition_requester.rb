@@ -2,12 +2,8 @@ module BetfairApiNgRails
   class Api::Soccer::CompetitionRequester < BetfairApiNgRails::Api::Soccer::Requester
 
     def initialize(provider: '')
-      @data = :competition
+      @data = :competitions
       super provider
-    end
-
-    def load(parameters: {})
-      make_fetch parameters: parameters
     end
 
   end

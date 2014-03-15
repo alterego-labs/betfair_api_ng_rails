@@ -4,8 +4,8 @@ module BetfairApiNgRails
   module Api
     class BaseParser
 
-      def parse(response: "")
-        raise "Must be reimplemented!"
+      def parse(response: {})
+        response.fetch('result', []).map { |r| process_record(r) }
       end
 
     private
@@ -14,6 +14,10 @@ module BetfairApiNgRails
         JSON.parse response
       rescue
         {}
+      end
+
+      def process_record(h)
+        h
       end
 
     end
