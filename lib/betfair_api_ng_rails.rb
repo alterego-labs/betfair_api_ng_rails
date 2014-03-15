@@ -26,6 +26,7 @@ module BetfairApiNgRails
           autoload :TimeRangeParser,   'betfair_api_ng_rails/api/bf/parsers/soccer/time_range_parser'
           autoload :EventParser,       'betfair_api_ng_rails/api/bf/parsers/soccer/event_parser'
           autoload :MarketTypeParser,  'betfair_api_ng_rails/api/bf/parsers/soccer/market_type_parser'
+          autoload :CountryParser,     'betfair_api_ng_rails/api/bf/parsers/soccer/country_parser'
 
         end
 
@@ -41,6 +42,7 @@ module BetfairApiNgRails
       autoload :TimeRangeRequester,   'betfair_api_ng_rails/api/soccer/time_range_requester'
       autoload :EventRequester,       'betfair_api_ng_rails/api/soccer/event_requester'
       autoload :MarketTypeRequester,  'betfair_api_ng_rails/api/soccer/market_type_requester'
+      autoload :CountryRequester,     'betfair_api_ng_rails/api/soccer/country_requester'
 
     end
 
