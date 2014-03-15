@@ -6,9 +6,5 @@ module BetfairApiNgRails
       super provider
     end
 
-    def load(parameters: {})
-      make_fetch parameters: parameters
-    end
-
   end
 end
