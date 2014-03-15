@@ -2,7 +2,7 @@ module BetfairApiNgRails
   class Api::Soccer::TimeRangeRequester < BetfairApiNgRails::Api::Soccer::Requester
 
     def initialize(provider: '')
-      @data = :time_range
+      @data = :time_ranges
       super provider
     end
 

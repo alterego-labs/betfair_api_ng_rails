@@ -2,7 +2,7 @@ module BetfairApiNgRails
   class Api::Soccer::CountryRequester < BetfairApiNgRails::Api::Soccer::Requester
 
     def initialize(provider: '')
-      @data = :country
+      @data = :countries
       super provider
     end
 

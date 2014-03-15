@@ -2,7 +2,7 @@ module BetfairApiNgRails
   class Api::Soccer::EventRequester < BetfairApiNgRails::Api::Soccer::Requester
 
     def initialize(provider: '')
-      @data = :event
+      @data = :events
       super provider
     end
 

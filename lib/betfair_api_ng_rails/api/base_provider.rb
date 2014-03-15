@@ -11,11 +11,11 @@ module BetfairApiNgRails
     private
 
       def build_function(method)
-        "list#{method.to_s.pluralize.camelize}"
+        "list#{method.to_s.camelize}"
       end
 
       def build_parser(data, sport)
-        "BetfairApiNgRails::Api::BF::Parsers::#{sport.to_s.camelize}::#{data.to_s.camelize}Parser".constantize.new
+        "BetfairApiNgRails::Api::BF::Parsers::#{sport.to_s.camelize}::#{data.to_s.singularize.camelize}Parser".constantize.new
       end
 
     end
