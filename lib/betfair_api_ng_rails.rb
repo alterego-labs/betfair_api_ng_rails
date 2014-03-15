@@ -30,6 +30,7 @@ module BetfairApiNgRails
           autoload :VenueParser,       'betfair_api_ng_rails/api/bf/parsers/soccer/venue_parser'
           autoload :MarketCatalogueParser,       'betfair_api_ng_rails/api/bf/parsers/soccer/market_catalogue_parser'
           autoload :MarketBookParser,       'betfair_api_ng_rails/api/bf/parsers/soccer/market_book_parser'
+          autoload :CurrentOrderParser,       'betfair_api_ng_rails/api/bf/parsers/soccer/current_order_parser'
 
         end
 
@@ -49,6 +50,7 @@ module BetfairApiNgRails
       autoload :VenueRequester,       'betfair_api_ng_rails/api/soccer/venue_requester'
       autoload :MarketCatalogueRequester,       'betfair_api_ng_rails/api/soccer/market_catalogue_requester'
       autoload :MarketBookRequester,       'betfair_api_ng_rails/api/soccer/market_book_requester'
+      autoload :CurrentOrderRequester,       'betfair_api_ng_rails/api/soccer/current_order_requester'
 
     end
 
