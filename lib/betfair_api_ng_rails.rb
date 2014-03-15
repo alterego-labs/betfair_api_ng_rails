@@ -28,6 +28,7 @@ module BetfairApiNgRails
           autoload :MarketTypeParser,  'betfair_api_ng_rails/api/bf/parsers/soccer/market_type_parser'
           autoload :CountryParser,     'betfair_api_ng_rails/api/bf/parsers/soccer/country_parser'
           autoload :VenueParser,       'betfair_api_ng_rails/api/bf/parsers/soccer/venue_parser'
+          autoload :MarketCatalogueParser,       'betfair_api_ng_rails/api/bf/parsers/soccer/market_catalogue_parser'
 
         end
 
@@ -45,6 +46,7 @@ module BetfairApiNgRails
       autoload :MarketTypeRequester,  'betfair_api_ng_rails/api/soccer/market_type_requester'
       autoload :CountryRequester,     'betfair_api_ng_rails/api/soccer/country_requester'
       autoload :VenueRequester,       'betfair_api_ng_rails/api/soccer/venue_requester'
+      autoload :MarketCatalogueRequester,       'betfair_api_ng_rails/api/soccer/market_catalogue_requester'
 
     end
 
