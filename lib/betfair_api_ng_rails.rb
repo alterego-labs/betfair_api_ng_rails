@@ -7,6 +7,7 @@ module BetfairApiNgRails
     autoload :BaseParser,    'betfair_api_ng_rails/api/base_parser'
     autoload :BaseProvider,  'betfair_api_ng_rails/api/base_provider'
     autoload :BaseRequester, 'betfair_api_ng_rails/api/base_requester'
+    autoload :BaseFormatter, 'betfair_api_ng_rails/api/base_formatter'
 
     module BF
 
