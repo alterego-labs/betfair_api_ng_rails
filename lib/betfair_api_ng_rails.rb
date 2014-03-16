@@ -19,6 +19,12 @@ module BetfairApiNgRails
       autoload :Parser,         'betfair_api_ng_rails/api/bf/parser'
       autoload :SessionManager, 'betfair_api_ng_rails/api/bf/session_manager'
 
+      module Formatters
+
+        autoload :JsTreeFromatter, 'betfair_api_ng_rails/api/bf/formatters/js_tree_formatter'
+
+      end
+
     end
 
     module Soccer

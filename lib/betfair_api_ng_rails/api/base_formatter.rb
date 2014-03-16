@@ -2,7 +2,7 @@ module BetfairApiNgRails
   module Api
     class BaseFormatter
 
-      def format(record: {})
+      def format(record: {}, resource: "")
         raise 'Must be reimplemented!'
       end
 

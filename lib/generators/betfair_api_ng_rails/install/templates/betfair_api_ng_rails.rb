@@ -11,4 +11,7 @@ BetfairApiNgRails.config do |config|
   config.username         = load_config['username']
   config.password         = load_config['password']
 
+  # Uncomment and set needed formatter or nil if you want plain response
+  # config.formatter        = :js_tree
+
 end

@@ -24,11 +24,16 @@ module BetfairApiNgRails
 
         def do_request(data, parameters, sport)
           @http_responser = @http_requester.do_request
-          process_response @http_responser.result, build_parser(data)
+          process_response data, @http_responser.result, build_parser(data)
         end
 
-        def process_response(response, parser)
-          parser.parse response: response
+        def process_response(data, response, parser)
+          format_response data, parser.parse(response: response)
+        end
+
+        def format_response(data, response)
+          return response unless Api::BF::Config.formatter
+          response.map { |r| Api::BF::Config.formatter.format(record: r, resource: data) }
         end
 
         def setup_http_requester(with_method: "")
