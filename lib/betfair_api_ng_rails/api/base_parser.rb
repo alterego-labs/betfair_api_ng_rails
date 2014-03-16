@@ -5,7 +5,7 @@ module BetfairApiNgRails
     class BaseParser
 
       def parse(response: {})
-        response.fetch('result', []).map { |r| process_record(r) }
+        raise 'Must be reimplemented!'
       end
 
     private

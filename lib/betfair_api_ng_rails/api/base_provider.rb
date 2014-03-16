@@ -4,6 +4,8 @@ module BetfairApiNgRails
   module Api
     class BaseProvider
 
+      attr_reader :provider_name
+
       def fetch(data: "", parameters: {}, sport: "")
         raise "Must be reimplemented!"
       end
@@ -14,8 +16,8 @@ module BetfairApiNgRails
         "list#{method.to_s.camelize}"
       end
 
-      def build_parser(data, sport)
-        "BetfairApiNgRails::Api::BF::Parsers::#{sport.to_s.camelize}::#{data.to_s.singularize.camelize}Parser".constantize.new
+      def build_parser(data)
+        "BetfairApiNgRails::Api::#{provider_name}::Parser".constantize.new data.to_s.singularize
       end
 
     end
