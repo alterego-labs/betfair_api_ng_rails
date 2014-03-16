@@ -11,6 +11,7 @@ module BetfairApiNgRails
 
         def initialize
           @session_manager = Api::BF::SessionManager.new
+          @provider_name = "BF"
         end
 
         def fetch(data: "", parameters: {}, sport: "")
