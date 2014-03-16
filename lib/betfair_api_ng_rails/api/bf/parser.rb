@@ -11,6 +11,10 @@ module BetfairApiNgRails
           @data = data
         end
 
+        def parse(response: {})
+          response.fetch('result', []).map { |r| process_record(r) }
+        end
+
       private
 
         def process_record(h)
