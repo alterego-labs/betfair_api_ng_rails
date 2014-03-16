@@ -23,7 +23,7 @@ module BetfairApiNgRails
 
         def do_request(data, parameters, sport)
           @http_responser = @http_requester.do_request
-          process_response @http_responser.result, build_parser(data, sport)
+          process_response @http_responser.result, build_parser(data)
         end
 
         def process_response(response, parser)

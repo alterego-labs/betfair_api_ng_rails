@@ -5,6 +5,8 @@ module BetfairApiNgRails
 
         SUCCESS_LOGIN = "SUCCESS"
 
+        PROVIDER_NAME = "BF"
+
         SESSION_REQUEST_HEADERS = {
           "Content-Type" => "application/x-www-form-urlencoded"
         }

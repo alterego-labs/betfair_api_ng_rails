@@ -15,28 +15,8 @@ module BetfairApiNgRails
       autoload :HttpRequester,  'betfair_api_ng_rails/api/bf/http_requester'
       autoload :HttpResponser,  'betfair_api_ng_rails/api/bf/http_responser'
       autoload :Provider,       'betfair_api_ng_rails/api/bf/provider'
+      autoload :Parser,         'betfair_api_ng_rails/api/bf/parser'
       autoload :SessionManager, 'betfair_api_ng_rails/api/bf/session_manager'
-
-      module Parsers
-
-        module Soccer
-
-          autoload :CompetitionParser,         'betfair_api_ng_rails/api/bf/parsers/soccer/competition_parser'
-          autoload :EventTypeParser,           'betfair_api_ng_rails/api/bf/parsers/soccer/event_type_parser'
-          autoload :TimeRangeParser,           'betfair_api_ng_rails/api/bf/parsers/soccer/time_range_parser'
-          autoload :EventParser,               'betfair_api_ng_rails/api/bf/parsers/soccer/event_parser'
-          autoload :MarketTypeParser,          'betfair_api_ng_rails/api/bf/parsers/soccer/market_type_parser'
-          autoload :CountryParser,             'betfair_api_ng_rails/api/bf/parsers/soccer/country_parser'
-          autoload :VenueParser,               'betfair_api_ng_rails/api/bf/parsers/soccer/venue_parser'
-          autoload :MarketCatalogueParser,     'betfair_api_ng_rails/api/bf/parsers/soccer/market_catalogue_parser'
-          autoload :MarketBookParser,          'betfair_api_ng_rails/api/bf/parsers/soccer/market_book_parser'
-          autoload :CurrentOrderParser,        'betfair_api_ng_rails/api/bf/parsers/soccer/current_order_parser'
-          autoload :ClearedOrderParser,        'betfair_api_ng_rails/api/bf/parsers/soccer/cleared_order_parser'
-          autoload :MarketProfitAndLossParser, 'betfair_api_ng_rails/api/bf/parsers/soccer/market_profit_and_loss_parser'
-
-        end
-
-      end
 
     end
 

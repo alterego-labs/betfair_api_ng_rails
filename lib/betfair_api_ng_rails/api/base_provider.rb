@@ -14,8 +14,8 @@ module BetfairApiNgRails
         "list#{method.to_s.camelize}"
       end
 
-      def build_parser(data, sport)
-        "BetfairApiNgRails::Api::BF::Parsers::#{sport.to_s.camelize}::#{data.to_s.singularize.camelize}Parser".constantize.new
+      def build_parser(data)
+        "BetfairApiNgRails::Api::#{PROVIDER_NAME}::Parser".constantize.new data.to_s.singularize
       end
 
     end
