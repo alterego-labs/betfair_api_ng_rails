@@ -17,7 +17,7 @@ module BetfairApiNgRails
         def fetch(data: "", parameters: {}, sport: "")
           return [] unless session_manager.request_ssoid
           raise "Not allowed method #{data.to_s} for sport #{sport.to_s}" unless is_method_allowed?(data, sport)
-          setup_http_requester with_method: data
+          setup_http_requester with_method: data, params: parameters
           do_request data, parameters, sport
         end
 
@@ -37,11 +37,11 @@ module BetfairApiNgRails
           response.map { |r| Api::BF::Config.formatter.format(record: r, resource: data) }
         end
 
-        def setup_http_requester(with_method: "")
+        def setup_http_requester(with_method: "", params: {})
           @http_requester = Api::BF::HttpRequester.new(Api::BF::Config.api_url).tap do |req|
             req.set_request_headers API_REQUEST_HEADERS
             req.set_auth_headers Api::BF::Config.application_key, session_manager.ssoid
-            req.set_api_req_body build_function(with_method)
+            req.set_api_req_body build_function(with_method), params
           end
         end
 

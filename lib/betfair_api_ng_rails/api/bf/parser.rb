@@ -17,8 +17,12 @@ module BetfairApiNgRails
 
       private
 
+        def resource_key
+          data.camelize :lower
+        end
+
         def process_record(h)
-          h.merge!(h[data]).except data
+          h.merge!(h[resource_key]).except resource_key
         end
 
       end
