@@ -19,7 +19,7 @@ module BetfairApiNgRails
             {
               id: record['id'],
               text: record['name'],
-              chldren: ALLOW_CHILDREN.include?(resource),
+              children: ALLOW_CHILDREN.include?(resource.to_sym),
               data:{
                 type: resource.to_s.singularize,
                 fields: record
