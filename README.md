@@ -20,6 +20,10 @@ Or install it yourself as:
 
     $ gem install betfair_api_ng_rails
 
+Or if you want to stay on the edge:
+
+    gem 'betfair_api_ng_rails', github: 'alterego-labs/betfair_api_ng_rails'
+
 After this run next rake command:
 
     $ bundle exec rake betfair_api_ng_rails:install
@@ -38,8 +42,8 @@ In this files you must specify credentials to API-NG. Also you should notice tha
 Sample code for fetching competitions list:
 
 ```ruby
-requester = BetfairApiNgRails::Api::Soccer::CompetitionRequester.new provider: :bf
-res = requester.load
+requester = BetfairApiNgRails::Api::Soccer::Requester.new provider: :bf
+res = requester.load resource: :competitions
 ```
 
 For all available methods see [there](https://api.developer.betfair.com/services/webapps/docs/display/1smk3cen4v3lu3yomq5qye0ni/Betting+Operations).
@@ -47,8 +51,8 @@ For all available methods see [there](https://api.developer.betfair.com/services
 Also you may passing filering params in _load_:
 
 ```ruby
-requester = BetfairApiNgRails::Api::Soccer::CompetitionRequester.new provider: :bf
-res = requester.load parameters: { event_ids: [1, 2] }
+requester = BetfairApiNgRails::Api::Soccer::Requester.new provider: :bf
+res = requester.load resource: :competitions, parameters: { event_ids: [1, 2] }
 ```
 
 ## Contributing

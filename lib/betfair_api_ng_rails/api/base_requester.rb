@@ -10,7 +10,7 @@ module BetfairApiNgRails
         @provider_name = provider
       end
 
-      def load(parameters: {})
+      def load(resource: "", parameters: {})
         raise "Must be reimplemented!"
       end
 

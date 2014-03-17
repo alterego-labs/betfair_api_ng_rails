@@ -3,12 +3,13 @@ module BetfairApiNgRails
     module Soccer
       class Requester < BetfairApiNgRails::Api::BaseRequester
 
-        def initialize(provider)
+        def initialize(provider: "")
           @sport = :soccer
           super provider
         end
 
-        def load(parameters: {})
+        def load(resource: "", parameters: {})
+          @data = resource
           make_fetch parameters: parameters
         end
 
