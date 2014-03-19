@@ -4,8 +4,8 @@ module BetfairApiNgRails
       module Data
         class CompetitionResult
 
-          attr_accessor :marketCount,
-                        :competitionRegion,
+          attr_accessor :market_count,
+                        :competition_region,
                         :competition
 
         end
