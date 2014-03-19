@@ -30,12 +30,7 @@ module BetfairApiNgRails
         end
 
         def process_response(data, response, parser)
-          format_response data, parser.parse(response: response)
-        end
-
-        def format_response(data, response)
-          return response unless Api::BF::Config.formatter
-          response.map { |r| Api::BF::Config.formatter.format(record: r, resource: data) }
+          parser.parse(response: response)
         end
 
         def setup_http_requester(with_method: "", params: {})

@@ -8,21 +8,20 @@ module BetfairApiNgRails
     autoload :BaseProvider,     'betfair_api_ng_rails/api/base_provider'
     autoload :BaseRequester,    'betfair_api_ng_rails/api/base_requester'
     autoload :BaseFormatter,    'betfair_api_ng_rails/api/base_formatter'
-    autoload :FormatterFactory, 'betfair_api_ng_rails/api/formatter_factory'
 
     module BF
 
       autoload :Config,         'betfair_api_ng_rails/api/bf/config'
       autoload :Constants,      'betfair_api_ng_rails/api/bf/constants'
-      autoload :HttpRequester,  'betfair_api_ng_rails/api/bf/http_requester'
-      autoload :HttpResponser,  'betfair_api_ng_rails/api/bf/http_responser'
       autoload :Provider,       'betfair_api_ng_rails/api/bf/provider'
       autoload :Parser,         'betfair_api_ng_rails/api/bf/parser'
       autoload :SessionManager, 'betfair_api_ng_rails/api/bf/session_manager'
 
-      module Formatters
+      module Http
 
-        autoload :JsTreeFromatter, 'betfair_api_ng_rails/api/bf/formatters/js_tree_formatter'
+        autoload :Requester,  'betfair_api_ng_rails/api/bf/http/requester'
+        autoload :Responser,  'betfair_api_ng_rails/api/bf/http/responser'
+        autoload :Factory,    'betfair_api_ng_rails/api/bf/http/factory'
 
       end
 
@@ -30,7 +29,7 @@ module BetfairApiNgRails
 
     module Soccer
 
-      autoload :Requester,                    'betfair_api_ng_rails/api/soccer/requester'
+      autoload :Requester, 'betfair_api_ng_rails/api/soccer/requester'
 
     end
 
