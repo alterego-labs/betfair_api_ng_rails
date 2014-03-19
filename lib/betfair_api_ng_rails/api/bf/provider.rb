@@ -7,11 +7,12 @@ module BetfairApiNgRails
         include Api::BF::Concerns::Errorable
         include Api::BF::Constants
 
-        attr_reader :session_manager
+        attr_reader :session_manager, :http_requester
 
         def initialize
           @session_manager = Api::BF::SessionManager.new
           @provider_name = "BF"
+          @http_requester = Api::BF::Http::Factory.provider_requester
         end
 
         def fetch(data: "", parameters: {}, sport: "")
@@ -38,11 +39,7 @@ module BetfairApiNgRails
         end
 
         def setup_http_requester(with_method: "", params: {})
-          @http_requester = Api::BF::HttpRequester.new(Api::BF::Config.api_url).tap do |req|
-            req.set_request_headers API_REQUEST_HEADERS
-            req.set_auth_headers Api::BF::Config.application_key, session_manager.ssoid
-            req.set_api_req_body build_function(with_method), params
-          end
+          http_requester.set_api_req_body build_method(with_method), params
         end
 
         def is_method_allowed?(data, sport)
