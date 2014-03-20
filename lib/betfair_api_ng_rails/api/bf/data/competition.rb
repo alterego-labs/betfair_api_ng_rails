@@ -7,17 +7,31 @@ module BetfairApiNgRails
           attr_accessor :id,
                         :name
 
-
-          def self.where(filter: Api::BF::Data::MarketFilter.new, params: {})
-            BetfairApiNgRails::Api::BF::ORM::Requester.load resource: :competitions, filter: filter, params: params
+          def initialize(args = {})
+            args.each { |attribute, value| self.send("#{attribute}=", value) }
           end
 
-          def self.all
-            where
-          end
+          class << self
 
-          def self.find(id)
-            where filter: Api::BF::Data::MarketFilter.new(competition_ids: [id])
+            def where(filter: Api::BF::Data::MarketFilter.new, params: {})
+              BetfairApiNgRails::Api::BF::ORM::Requester.load resource: :competitions, filter: filter, params: params
+            end
+
+            def all
+              where
+            end
+
+            def find(id)
+              where filter: Api::BF::Data::MarketFilter.new(competition_ids: [id])
+            end
+
+            def from_json(json_row)
+              new(
+                id: json_row['id'],
+                name: json_row['name']
+              )
+            end
+
           end
 
         end
