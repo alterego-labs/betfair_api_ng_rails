@@ -7,6 +7,7 @@ module BetfairApiNgRails
     module BF
       module Http
         class Requester
+          include BetfairApiNgRails::Api::BF::Helper
 
           attr_reader :http, :request, :uri
 
@@ -56,16 +57,8 @@ module BetfairApiNgRails
             request.body = body
           end
 
-          def set_api_req_body(method, filter = {})
-            set_request_body "{\"jsonrpc\": \"2.0\", \"method\": \"SportsAPING/v1.0/#{method}\", \"params\": {\"filter\": #{filter.to_json}}}"
-          end
-
-        private
-
-          def read_file(path)
-            File.read path
-          rescue
-            ""
+          def set_api_req_body(method, filter = {}, params = {})
+            set_request_body prepare_api_req_json(method, filter, params)
           end
 
         end

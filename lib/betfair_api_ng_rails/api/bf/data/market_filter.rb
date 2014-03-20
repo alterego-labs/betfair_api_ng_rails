@@ -3,21 +3,14 @@ module BetfairApiNgRails
     module BF
       module Data
         class MarketFilter
+          include BetfairApiNgRails::Api::BF::Data::Attributes
+          include BetfairApiNgRails::Api::BF::Data::Concerns::Hashable
 
-          attr_accessor :text_query,
-                        :exchange_ids,
-                        :event_type_ids,
-                        :evnt_ids,
-                        :competition_ids,
-                        :venues,
-                        :bspOnly,
-                        :turn_in_play_enabled,
-                        :in_play_only,
-                        :market_betting_types,
-                        :market_countries,
-                        :market_type_codes,
-                        :market_start_time,
-                        :with_orders
+          attr_accessor MARKET_FILTER_ATTRS
+
+          def to_hash_attrs
+            MARKET_FILTER_ATTRS
+          end
 
         end
       end
