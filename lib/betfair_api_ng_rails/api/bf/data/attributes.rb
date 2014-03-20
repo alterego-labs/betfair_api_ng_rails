@@ -21,6 +21,11 @@ module BetfairApiNgRails
             :with_orders
           ]
 
+          COMPETITION_ATTRS = [
+            :id,
+            :name
+          ]
+
         end
       end
     end

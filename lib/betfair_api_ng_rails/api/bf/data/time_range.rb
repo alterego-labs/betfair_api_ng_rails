@@ -2,7 +2,7 @@ module BetfairApiNgRails
   module Api
     module BF
       module Data
-        class TimeRange
+        class TimeRange < Api::BF::Data::Base
 
           attr_accessor :from,
                         :to

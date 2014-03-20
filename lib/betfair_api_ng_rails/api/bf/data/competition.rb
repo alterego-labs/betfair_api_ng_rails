@@ -2,14 +2,10 @@ module BetfairApiNgRails
   module Api
     module BF
       module Data
-        class Competition
+        class Competition < Api::BF::Data::Base
+          include BetfairApiNgRails::Api::BF::Data::Attributes
 
-          attr_accessor :id,
-                        :name
-
-          def initialize(args = {})
-            args.each { |attribute, value| self.send("#{attribute}=", value) }
-          end
+          attr_accessor *COMPETITION_ATTRS
 
           class << self
 
@@ -26,10 +22,7 @@ module BetfairApiNgRails
             end
 
             def from_json(json_row)
-              new(
-                id: json_row['id'],
-                name: json_row['name']
-              )
+              new COMPETITION_ATTRS.inject({}) { |h, a| h[a] = json_row[a.to_s]; h }
             end
 
           end

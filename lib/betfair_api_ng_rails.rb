@@ -18,6 +18,7 @@ module BetfairApiNgRails
 
         autoload :Attributes,         'betfair_api_ng_rails/api/bf/data/attributes'
         autoload :Constants,          'betfair_api_ng_rails/api/bf/data/constants'
+        autoload :Base,               'betfair_api_ng_rails/api/bf/data/base'
         autoload :Competition,        'betfair_api_ng_rails/api/bf/data/competition'
         autoload :CompetitionResult,  'betfair_api_ng_rails/api/bf/data/competition_result'
         autoload :MarketFilter,       'betfair_api_ng_rails/api/bf/data/market_filter'
@@ -26,7 +27,7 @@ module BetfairApiNgRails
 
         module Concerns
 
-          autoload :Hashable, 'betfair_api_ng_rails/api/bf/data/concerns/hashable'
+          autoload :Hashable,           'betfair_api_ng_rails/api/bf/data/concerns/hashable'
 
         end
 
