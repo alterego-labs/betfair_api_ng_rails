@@ -24,15 +24,27 @@ module BetfairApiNgRails
         private
 
           def http_error?
-            (response.code != '200').tap { |val| set_error_info(:HTTP, response.code) if val }
+            set_error_info(:HTTP, response.code) if check_response_code
           end
 
           def session_req_error?
-            (result.fetch('loginStatus', SUCCESS_LOGIN) != SUCCESS_LOGIN).tap { |val| set_error_info(:SESSION, result['loginStatus']) if val }
+            set_error_info(:SESSION, result['loginStatus']) if check_login_status
           end
 
           def api_req_error?
-            (result.has_key?('error')).tap { |val| set_error_info(:API, result['error']) if val }
+            set_error_info(:API, result['error']) if check_error_key
+          end
+
+          def check_response_code
+            response.code != '200'
+          end
+
+          def check_login_status
+            result.fetch('loginStatus', SUCCESS_LOGIN) != SUCCESS_LOGIN
+          end
+
+          def check_error_key
+            result.has_key?('error')
           end
 
           def set_error_info(type, info)
