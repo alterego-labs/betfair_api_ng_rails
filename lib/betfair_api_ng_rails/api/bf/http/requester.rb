@@ -1,6 +1,7 @@
 require "net/https"
 require "uri"
 require 'json'
+require 'betfair_api_ng_rails/api/bf/helper'
 
 module BetfairApiNgRails
   module Api

@@ -6,7 +6,7 @@ module BetfairApiNgRails
           include BetfairApiNgRails::Api::BF::Data::Attributes
           include BetfairApiNgRails::Api::BF::Data::Concerns::Hashable
 
-          attr_accessor MARKET_FILTER_ATTRS
+          attr_accessor *MARKET_FILTER_ATTRS
 
           def to_hash_attrs
             MARKET_FILTER_ATTRS

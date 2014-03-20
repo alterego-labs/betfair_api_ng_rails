@@ -25,7 +25,7 @@ module BetfairApiNgRails
 
           private
 
-            def create_http_requester(url: "")
+            def create_http_requester(url = "")
               Api::BF::Http::Requester.new url
             end
 

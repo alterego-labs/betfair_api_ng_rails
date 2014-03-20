@@ -1,5 +1,3 @@
-require 'betfair_api_ng_rails/api/bf/formatters/js_tree_formatter'
-
 module BetfairApiNgRails
   module Api
     module BF
@@ -13,12 +11,7 @@ module BetfairApiNgRails
                         :login_url,
                         :api_url,
                         :username,
-                        :password,
-                        :formatter
-
-          def formatter=(value)
-            @formatter = BetfairApiNgRails::Api::FormatterFactory.initialize_formatter value
-          end
+                        :password
 
         end
 
