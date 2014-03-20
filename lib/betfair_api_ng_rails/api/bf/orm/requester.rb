@@ -6,7 +6,8 @@ module BetfairApiNgRails
           class << self
 
             def load(resource: "", filter: Api::BF::Data::MarketFilter.new, params: {})
-              current_provider.fetch method: build_function(resource), filter: filter, params: params
+              res = current_provider.fetch method: build_function(resource), filter: filter, params: params
+              res.result
             end
 
           private

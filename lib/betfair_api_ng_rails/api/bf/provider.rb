@@ -16,7 +16,7 @@ module BetfairApiNgRails
         end
 
         def fetch(method: "", filter: {}, params: {})
-          return [] unless session_manager.request_ssoid
+          return [] unless BetfairApiNgRails::Api::BF::SessionManager.request_ssoid
           raise "Not allowed method #{method.to_s}" unless is_method_allowed?(method)
           do_request with_method: method, filter: filter, params: params
         end
@@ -29,7 +29,7 @@ module BetfairApiNgRails
         end
 
         def is_method_allowed?(method)
-          ALLOWED_RESOURCES.include? method.to_sym
+          ALLOWED_RESOURCES.include? method.to_s
         end
 
       end

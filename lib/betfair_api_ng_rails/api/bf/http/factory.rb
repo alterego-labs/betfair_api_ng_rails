@@ -9,7 +9,7 @@ module BetfairApiNgRails
             def provider_requester(with_method: "", params: {})
               create_http_requester(Api::BF::Config.api_url).tap do |req|
                 req.set_request_headers API_REQUEST_HEADERS
-                req.set_auth_headers Api::BF::Config.application_key, session_manager.ssoid
+                req.set_auth_headers Api::BF::Config.application_key, BetfairApiNgRails::Api::BF::SessionManager.ssoid
                 req.set_api_req_body with_method, params
               end
             end
