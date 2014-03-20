@@ -8,6 +8,10 @@ module BetfairApiNgRails
 
           attr_accessor *MARKET_FILTER_ATTRS
 
+          def initialize(args = {})
+            args.each { |attribute, value| self.send("#{attribute}=", value) }
+          end
+
           def to_hash_attrs
             MARKET_FILTER_ATTRS
           end
