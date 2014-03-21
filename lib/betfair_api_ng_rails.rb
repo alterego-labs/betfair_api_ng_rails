@@ -47,6 +47,7 @@ module BetfairApiNgRails
 
         module Parsers
 
+          autoload :Base,             'betfair_api_ng_rails/api/bf/orm/parsers/base'
           autoload :ListCompetitions, 'betfair_api_ng_rails/api/bf/orm/parsers/list_competitions'
 
         end
