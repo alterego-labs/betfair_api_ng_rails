@@ -15,8 +15,8 @@ module BetfairApiNgRails
             "method" => "SportsAPING/v1.0/#{method}",
             "params" => {
               "filter" => filter
-            }
-          }.merge(params).to_json
+            }.merge(params)
+          }.to_json
         end
 
       end

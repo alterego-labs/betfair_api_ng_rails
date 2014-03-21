@@ -11,7 +11,8 @@ module BetfairApiNgRails
                         :login_url,
                         :api_url,
                         :username,
-                        :password
+                        :password,
+                        :locale
 
         end
 

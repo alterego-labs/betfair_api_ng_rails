@@ -8,11 +8,15 @@ module BetfairApiNgRails
           class << self
 
             def load(resource: "", filter: Api::BF::Data::MarketFilter.new, params: {})
-              res = current_provider.fetch method: build_function(resource), filter: filter, params: params
+              res = current_provider.fetch method: build_function(resource), filter: filter, params: set_locale(params)
               build_parser(build_function(resource), res).process
             end
 
           private
+
+            def set_locale(params)
+              params.merge locale: BetfairApiNgRails.config.locale
+            end
 
             def build_function(method)
               "list#{method.to_s.camelize}"

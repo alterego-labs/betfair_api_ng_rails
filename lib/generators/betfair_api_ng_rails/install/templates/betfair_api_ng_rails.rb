@@ -10,8 +10,6 @@ BetfairApiNgRails.config do |config|
   config.api_url          = load_config['api_url']
   config.username         = load_config['username']
   config.password         = load_config['password']
-
-  # Uncomment and set needed formatter or nil if you want plain response
-  # config.formatter        = :js_tree
+  config.locale           = :ru
 
 end
