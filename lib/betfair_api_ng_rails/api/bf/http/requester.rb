@@ -24,11 +24,11 @@ module BetfairApiNgRails
           end
 
           def set_crt_file(path)
-            http.cert = OpenSSL::X509::Certificate.new(read_file(path))
+            http.cert = read_certificate_file(path)
           end
 
           def set_key_file(path)
-            http.key = OpenSSL::PKey::RSA.new(read_file(path))
+            http.key = read_rsa_file(path)
           end
 
           def set_verify_mode(value)

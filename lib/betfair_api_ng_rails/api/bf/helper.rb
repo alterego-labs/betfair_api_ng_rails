@@ -3,6 +3,14 @@ module BetfairApiNgRails
     module BF
       module Helper
 
+        def read_certificate_file(path)
+          OpenSSL::X509::Certificate.new read_file(path)
+        end
+
+        def read_rsa_file(path)
+          OpenSSL::PKey::RSA.new read_file(path)
+        end
+
         def read_file(path)
           File.read path
         rescue
