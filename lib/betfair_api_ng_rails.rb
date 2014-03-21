@@ -4,25 +4,60 @@ module BetfairApiNgRails
 
   module Api
 
-    autoload :BaseParser,       'betfair_api_ng_rails/api/base_parser'
     autoload :BaseProvider,     'betfair_api_ng_rails/api/base_provider'
     autoload :BaseRequester,    'betfair_api_ng_rails/api/base_requester'
-    autoload :BaseFormatter,    'betfair_api_ng_rails/api/base_formatter'
-    autoload :FormatterFactory, 'betfair_api_ng_rails/api/formatter_factory'
 
     module BF
 
       autoload :Config,         'betfair_api_ng_rails/api/bf/config'
       autoload :Constants,      'betfair_api_ng_rails/api/bf/constants'
-      autoload :HttpRequester,  'betfair_api_ng_rails/api/bf/http_requester'
-      autoload :HttpResponser,  'betfair_api_ng_rails/api/bf/http_responser'
       autoload :Provider,       'betfair_api_ng_rails/api/bf/provider'
-      autoload :Parser,         'betfair_api_ng_rails/api/bf/parser'
       autoload :SessionManager, 'betfair_api_ng_rails/api/bf/session_manager'
 
-      module Formatters
+      module Data
 
-        autoload :JsTreeFromatter, 'betfair_api_ng_rails/api/bf/formatters/js_tree_formatter'
+        autoload :Base,               'betfair_api_ng_rails/api/bf/data/base'
+        autoload :Attributes,         'betfair_api_ng_rails/api/bf/data/attributes'
+        autoload :Constants,          'betfair_api_ng_rails/api/bf/data/constants'
+        autoload :Competition,        'betfair_api_ng_rails/api/bf/data/competition'
+        autoload :CompetitionResult,  'betfair_api_ng_rails/api/bf/data/competition_result'
+        autoload :MarketFilter,       'betfair_api_ng_rails/api/bf/data/market_filter'
+        autoload :TimeRange,          'betfair_api_ng_rails/api/bf/data/time_range'
+        autoload :TimeRangeResult,    'betfair_api_ng_rails/api/bf/data/time_range_result'
+        autoload :EventType,          'betfair_api_ng_rails/api/bf/data/event_type'
+        autoload :EventTypeResult,    'betfair_api_ng_rails/api/bf/data/event_type_result'
+        autoload :Event,              'betfair_api_ng_rails/api/bf/data/event'
+        autoload :EventResult,        'betfair_api_ng_rails/api/bf/data/event_result'
+
+        module Concerns
+
+          autoload :Hashable,           'betfair_api_ng_rails/api/bf/data/concerns/hashable'
+          autoload :Querable,           'betfair_api_ng_rails/api/bf/data/concerns/querable'
+
+        end
+
+      end
+
+      module Http
+
+        autoload :Requester,  'betfair_api_ng_rails/api/bf/http/requester'
+        autoload :Responser,  'betfair_api_ng_rails/api/bf/http/responser'
+        autoload :Factory,    'betfair_api_ng_rails/api/bf/http/factory'
+
+      end
+
+      module ORM
+
+        autoload :Requester, 'betfair_api_ng_rails/api/bf/orm/requester'
+
+        module Parsers
+
+          autoload :Base,             'betfair_api_ng_rails/api/bf/orm/parsers/base'
+          autoload :ListCompetitions, 'betfair_api_ng_rails/api/bf/orm/parsers/list_competitions'
+          autoload :ListEventTypes,   'betfair_api_ng_rails/api/bf/orm/parsers/list_event_types'
+          autoload :ListEvents,       'betfair_api_ng_rails/api/bf/orm/parsers/list_events'
+
+        end
 
       end
 
@@ -30,7 +65,7 @@ module BetfairApiNgRails
 
     module Soccer
 
-      autoload :Requester,                    'betfair_api_ng_rails/api/soccer/requester'
+      autoload :Requester, 'betfair_api_ng_rails/api/soccer/requester'
 
     end
 
