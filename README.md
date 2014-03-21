@@ -2,9 +2,13 @@
 
 API-NG is Betfair's next generation API for developers looking to create automated betting systems or custom interfaces for themselves or for Betfair customers. Using this gem you may do calls to API-NG for fetching some interesting information about competitions, events and markets.
 
+## CHANGES IN 0.0.7!!!
+
+Now gem used Object model for doing requests and it's results that is based on [betfair's type definitions](https://api.developer.betfair.com/services/webapps/docs/display/1smk3cen4v3lu3yomq5qye0ni/Betting+Type+Definitions#BettingTypeDefinitions-UpdateInstruction).
+
 ## WARNING!!!
 
-__Last version of gem supports only list* requests.__
+__Last version of gem supports only listCompetitions, listEventTypes and listEvents requests.__ I will provide more powerful functional soon.
 
 ## Installation
 
@@ -39,20 +43,25 @@ In this files you must specify credentials to API-NG. Also you should notice tha
 
 ## Usage
 
-Sample code for fetching competitions list:
+Sample code for fetching all competitions:
 
 ```ruby
-requester = BetfairApiNgRails::Api::Soccer::Requester.new provider: :bf
-res = requester.load resource: :competitions
+result = BetfairApiNgRails::Api::BF::Data::Competition.all
 ```
 
 For all available methods see [there](https://api.developer.betfair.com/services/webapps/docs/display/1smk3cen4v3lu3yomq5qye0ni/Betting+Operations).
 
-Also you may passing filering params in _load_:
+Also you may passing filtering params:
 
 ```ruby
-requester = BetfairApiNgRails::Api::Soccer::Requester.new provider: :bf
-res = requester.load resource: :competitions, parameters: { event_ids: [1, 2] }
+filter = Api::BF::Data::MarketFilter.new text_query: 'World*'
+result = BetfairApiNgRails::Api::BF::Data::Competition.where filter: filter
+```
+
+Or fetching competition by identifier:
+
+```ruby
+result = BetfairApiNgRails::Api::BF::Data::Competition.find 1
 ```
 
 ## Contributing
