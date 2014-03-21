@@ -1,3 +1,5 @@
+require 'active_support/inflector'
+
 module BetfairApiNgRails
   module Api
     module BF

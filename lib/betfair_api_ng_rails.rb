@@ -26,6 +26,8 @@ module BetfairApiNgRails
         autoload :TimeRangeResult,    'betfair_api_ng_rails/api/bf/data/time_range_result'
         autoload :EventType,          'betfair_api_ng_rails/api/bf/data/event_type'
         autoload :EventTypeResult,    'betfair_api_ng_rails/api/bf/data/event_type_result'
+        autoload :Event,              'betfair_api_ng_rails/api/bf/data/event'
+        autoload :EventResult,        'betfair_api_ng_rails/api/bf/data/event_result'
 
         module Concerns
 
@@ -53,6 +55,7 @@ module BetfairApiNgRails
           autoload :Base,             'betfair_api_ng_rails/api/bf/orm/parsers/base'
           autoload :ListCompetitions, 'betfair_api_ng_rails/api/bf/orm/parsers/list_competitions'
           autoload :ListEventTypes,   'betfair_api_ng_rails/api/bf/orm/parsers/list_event_types'
+          autoload :ListEvents,       'betfair_api_ng_rails/api/bf/orm/parsers/list_events'
 
         end
 

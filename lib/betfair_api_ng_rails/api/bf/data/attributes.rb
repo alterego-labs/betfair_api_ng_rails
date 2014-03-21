@@ -31,6 +31,15 @@ module BetfairApiNgRails
             :name
           ]
 
+          EVENT_ATTRS = [
+            :id,
+            :name,
+            :timezone,
+            :country_code,
+            :venue,
+            :open_date
+          ]
+
         end
       end
     end

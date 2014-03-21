@@ -11,7 +11,7 @@ module BetfairApiNgRails
           querable :competitions, :competition_ids
 
           def self.from_json(json_row)
-            new COMPETITION_ATTRS.inject({}) { |h, a| h[a] = json_row[a.to_s]; h }
+            new COMPETITION_ATTRS.inject({}) { |h, a| h[a] = json_row[a.to_s.camelize(:lower)]; h }
           end
 
         end
