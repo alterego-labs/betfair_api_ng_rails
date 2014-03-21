@@ -26,6 +26,11 @@ module BetfairApiNgRails
             :name
           ]
 
+          EVENT_TYPE_ATTRS = [
+            :id,
+            :name
+          ]
+
         end
       end
     end
