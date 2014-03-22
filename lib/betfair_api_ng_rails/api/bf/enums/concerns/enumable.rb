@@ -1,7 +1,7 @@
 module BetfairApiNgRails
   module Api
     module BF
-      module Data
+      module Enums
         module Concerns
           module Enumable
 
