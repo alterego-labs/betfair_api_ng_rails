@@ -21,7 +21,7 @@ module BetfairApiNgRails
             end
 
             def need_to_hash?(val)
-              val.class != ATTRS_AS_IS
+              !ATTRS_AS_IS.include?(val.class)
             end
 
             def get_attr_value(attrib)
