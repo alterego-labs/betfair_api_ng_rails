@@ -96,13 +96,9 @@ module BetfairApiNgRails
 
     end
 
-    module Soccer
-
-      autoload :Requester, 'betfair_api_ng_rails/api/soccer/requester'
-
-    end
-
   end
+
+  include Api::BF::Data
 
   def self.config(&block)
     @_config ||= BetfairApiNgRails::Api::BF::Config
