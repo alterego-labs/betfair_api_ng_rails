@@ -40,6 +40,11 @@ module BetfairApiNgRails
             :open_date
           ]
 
+          TIME_RANGE_ATTRS = [
+            :from,
+            :to
+          ]
+
         end
       end
     end

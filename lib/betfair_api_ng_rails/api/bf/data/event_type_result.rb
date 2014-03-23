@@ -5,7 +5,7 @@ module BetfairApiNgRails
         class EventTypeResult < Api::BF::Data::Base
 
           attr_accessor :market_count,
-                        :competition
+                        :event_type
 
           def self.from_json(json_row)
             new(
