@@ -3,8 +3,8 @@ module BetfairApiNgRails
     module BF
       module Data
         class Competition < Api::BF::Data::Base
-          include Api::BF::Data::Attributes
-          extend Api::BF::Data::Concerns::Querable
+          include BetfairApiNgRails::Api::BF::Data::Attributes
+          extend BetfairApiNgRails::Api::BF::Data::Concerns::Querable
 
           attr_accessor *COMPETITION_ATTRS
 
