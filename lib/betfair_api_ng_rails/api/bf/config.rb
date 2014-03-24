@@ -12,7 +12,12 @@ module BetfairApiNgRails
                         :api_url,
                         :username,
                         :password,
-                        :locale
+                        :locale,
+                        :formatter
+
+          def formatter=(value)
+            @formatter = BetfairApiNgRails::Api::FormatterFactory.initialize_formatter value
+          end
 
         end
 

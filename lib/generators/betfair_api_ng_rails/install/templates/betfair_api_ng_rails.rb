@@ -11,5 +11,6 @@ BetfairApiNgRails.config do |config|
   config.username         = load_config['username']
   config.password         = load_config['password']
   config.locale           = :ru
+  config.formatter        = nil #out of box available formatter for JsTree
 
 end

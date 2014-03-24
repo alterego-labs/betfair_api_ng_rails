@@ -9,10 +9,24 @@ module BetfairApiNgRails
 
             def load(resource: "", filter: Api::BF::Data::MarketFilter.new, params: {})
               res = current_provider.fetch method: build_function(resource), filter: filter, params: set_locale(params)
-              build_parser(build_function(resource), res).process
+              process_response resource, res
             end
 
           private
+
+            def process_response(resource, res)
+              r = parse_response(build_function(resource), res)
+              format_response(resource, r)
+            end
+
+            def parse_response(function, res)
+              build_parser(function, res).process
+            end
+
+            def format_response(resource, res)
+              return res unless BetfairApiNgRails.config.formatter
+              res.map { |obj| BetfairApiNgRails.config.formatter.format(record: obj, resource: resource) }
+            end
 
             def set_locale(params)
               params.merge locale: BetfairApiNgRails.config.locale
