@@ -7,7 +7,7 @@ module BetfairApiNgRails
             include BetfairApiNgRails::Api::BF::Data::Constants
 
             def to_hash
-              to_hash_attrs.inject({}) do |h, attrib|
+              self.class.to_hash_attrs.inject({}) do |h, attrib|
                 val = get_attr_value(attrib)
                 h[hash_key(attrib)] = hash_value(val) unless val.nil?
                 h

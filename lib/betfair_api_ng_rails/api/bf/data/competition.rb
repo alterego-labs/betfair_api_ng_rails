@@ -3,8 +3,9 @@ module BetfairApiNgRails
     module BF
       module Data
         class Competition < Api::BF::Data::Base
-          include BetfairApiNgRails::Api::BF::Data::Attributes
-          extend BetfairApiNgRails::Api::BF::Data::Concerns::Querable
+          include Api::BF::Data::Attributes
+          extend Api::BF::Data::Concerns::Querable
+          include Api::BF::Data::Concerns::Hashable
 
           attr_accessor *COMPETITION_ATTRS
 
@@ -12,6 +13,10 @@ module BetfairApiNgRails
 
           def self.from_json(json_row)
             new COMPETITION_ATTRS.inject({}) { |h, a| h[a] = json_row[a.to_s.camelize(:lower)]; h }
+          end
+
+          def self.to_hash_attrs
+            COMPETITION_ATTRS
           end
 
         end
