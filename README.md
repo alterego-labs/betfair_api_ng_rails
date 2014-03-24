@@ -2,14 +2,6 @@
 
 API-NG is Betfair's next generation API for developers looking to create automated betting systems or custom interfaces for themselves or for Betfair customers. Using this gem you may do calls to API-NG for fetching some interesting information about competitions, events and markets.
 
-## CHANGES IN 0.0.7!!!
-
-Now gem used Object model for doing requests and it's results that is based on [betfair's type definitions](https://api.developer.betfair.com/services/webapps/docs/display/1smk3cen4v3lu3yomq5qye0ni/Betting+Type+Definitions#BettingTypeDefinitions-UpdateInstruction).
-
-## WARNING!!!
-
-__Last version of gem supports only listCompetitions, listEventTypes and listEvents requests.__ I will provide more powerful functional soon.
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -46,7 +38,7 @@ In this files you must specify credentials to API-NG. Also you should notice tha
 Sample code for fetching all competitions:
 
 ```ruby
-result = BetfairApiNgRails::Api::BF::Data::Competition.all
+result = BetfairApiNgRails::Competition.all
 ```
 
 For all available methods see [there](https://api.developer.betfair.com/services/webapps/docs/display/1smk3cen4v3lu3yomq5qye0ni/Betting+Operations).
@@ -54,15 +46,32 @@ For all available methods see [there](https://api.developer.betfair.com/services
 Also you may passing filtering params:
 
 ```ruby
-filter = Api::BF::Data::MarketFilter.new text_query: 'World*'
-result = BetfairApiNgRails::Api::BF::Data::Competition.where filter: filter
+filter = BetfairApiNgRails::MarketFilter.new text_query: 'World*'
+result = BetfairApiNgRails::Competition.where filter: filter
 ```
 
 Or fetching competition by identifier:
 
 ```ruby
-result = BetfairApiNgRails::Api::BF::Data::Competition.find 1
+result = BetfairApiNgRails::Competition.find 1
 ```
+
+## CHANGES IN 0.0.8
+
+1. Fixing more of bugs
+2. Came back formatters and out-of-box exists formatter for JsTree
+3. Added all enums
+4. Added shortcuts for models
+5. Refactoring
+
+## CHANGES IN 0.0.7!!!
+
+Now gem used Object model for doing requests and it's results that is based on [betfair's type definitions](https://api.developer.betfair.com/services/webapps/docs/display/1smk3cen4v3lu3yomq5qye0ni/Betting+Type+Definitions#BettingTypeDefinitions-UpdateInstruction).
+
+## WARNING!!!
+
+__Last version of gem supports only listCompetitions, listEventTypes and listEvents requests.__ I will provide more powerful functional soon.
+
 
 ## Contributing
 
