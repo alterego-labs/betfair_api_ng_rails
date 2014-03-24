@@ -6,6 +6,7 @@ module BetfairApiNgRails
 
     autoload :BaseProvider,     'betfair_api_ng_rails/api/base_provider'
     autoload :BaseRequester,    'betfair_api_ng_rails/api/base_requester'
+    autoload :FormatterFactory, 'betfair_api_ng_rails/api/formatter_factory'
 
     module BF
 
@@ -13,6 +14,12 @@ module BetfairApiNgRails
       autoload :Constants,      'betfair_api_ng_rails/api/bf/constants'
       autoload :Provider,       'betfair_api_ng_rails/api/bf/provider'
       autoload :SessionManager, 'betfair_api_ng_rails/api/bf/session_manager'
+
+      module Formatters
+
+        autoload :JsTreeFormatter, 'betfair_api_ng_rails/api/bf/formatters/js_tree_formatter'
+
+      end
 
       module Data
 
