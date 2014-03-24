@@ -5,6 +5,7 @@ module BetfairApiNgRails
         class Event < Api::BF::Data::Base
           include Api::BF::Data::Attributes
           extend Api::BF::Data::Concerns::Querable
+          include Api::BF::Data::Concerns::Hashable
 
           attr_accessor *EVENT_ATTRS
 
@@ -12,6 +13,10 @@ module BetfairApiNgRails
 
           def self.from_json(json_row)
             new EVENT_ATTRS.inject({}) { |h, a| h[a] = json_row[a.to_s.camelize(:lower)]; h }
+          end
+
+          def self.to_hash_attrs
+            EVENT_ATTRS
           end
 
         end

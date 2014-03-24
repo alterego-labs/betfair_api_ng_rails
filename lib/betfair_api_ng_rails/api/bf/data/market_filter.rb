@@ -3,12 +3,12 @@ module BetfairApiNgRails
     module BF
       module Data
         class MarketFilter < Api::BF::Data::Base
-          include BetfairApiNgRails::Api::BF::Data::Attributes
-          include BetfairApiNgRails::Api::BF::Data::Concerns::Hashable
+          include Api::BF::Data::Attributes
+          include Api::BF::Data::Concerns::Hashable
 
           attr_accessor *MARKET_FILTER_ATTRS
 
-          def to_hash_attrs
+          def self.to_hash_attrs
             MARKET_FILTER_ATTRS
           end
 
