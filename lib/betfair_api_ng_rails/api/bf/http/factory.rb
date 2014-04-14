@@ -23,6 +23,13 @@ module BetfairApiNgRails
               end
             end
 
+            def keep_alive_requester(ssoid)
+              create_http_requester(Api::BF::Config.keep_alive_url).tap do |req|
+                req.set_accept_header 'application/json'
+                req.set_auth_headers Api::BF::Config.application_key, ssoid
+              end
+            end
+
           private
 
             def create_http_requester(url = "")

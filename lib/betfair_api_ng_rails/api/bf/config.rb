@@ -13,7 +13,9 @@ module BetfairApiNgRails
                         :username,
                         :password,
                         :locale,
-                        :formatter
+                        :formatter,
+                        :keep_alive_session,
+                        :keep_alive_url
 
           def formatter=(value)
             @formatter = BetfairApiNgRails::Api::FormatterFactory.initialize_formatter value

@@ -24,7 +24,7 @@ module BetfairApiNgRails
         private
 
           def fetch_ssoid
-            process_response get_login_response
+            process_response(get_login_response).tap { |sid| send_keep_alive(sid) }
           end
 
           def process_response(response)
@@ -35,8 +35,17 @@ module BetfairApiNgRails
             http_requester.do_request.result
           end
 
+          def send_keep_alive(sid)
+            return unless Api::BF::Config.keep_alive_session
+            keep_alive_requester(sid).do_request
+          end
+
           def http_requester
             @_http_requester ||= Api::BF::Http::Factory.session_requester
+          end
+
+          def keep_alive_requester(sid)
+            Api::BF::Http::Factory.keep_alive_requester sid
           end
 
         end
