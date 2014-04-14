@@ -8,6 +8,7 @@ BetfairApiNgRails.config do |config|
   config.ssl_crt_filepath   = "#{Rails.root}/public/client-2048.crt"
   config.login_url          = load_config['login_url']
   config.api_url            = load_config['api_url']
+  config.keep_alive_url     = load_config['keep_alive_url']
   config.username           = load_config['username']
   config.password           = load_config['password']
   config.locale             = :ru

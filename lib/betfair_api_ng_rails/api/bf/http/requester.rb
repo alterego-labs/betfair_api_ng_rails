@@ -42,8 +42,12 @@ module BetfairApiNgRails
           end
 
           def set_auth_headers(app_key, session_key = nil)
-            request["X-Application"] = app_key
-            request["X-Authentication"] = session_key if session_key
+            set_header "X-Application", app_key
+            set_header "X-Authentication", session_key if session_key
+          end
+
+          def set_accept_header(value)
+            set_header 'Accept', value
           end
 
           def set_request_headers(headers)
@@ -60,6 +64,10 @@ module BetfairApiNgRails
 
           def set_api_req_body(method, filter = {}, params = {})
             set_request_body prepare_api_req_json(method, filter, params)
+          end
+
+          def set_header(name, value)
+            request[name] = value
           end
 
         end
