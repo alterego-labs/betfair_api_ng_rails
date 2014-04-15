@@ -12,7 +12,7 @@ module BetfairApiNgRails
       private
 
         def initialize_formatter_by(name: "")
-          "BetfairApiNgRails::Api::BF::Formatters::#{name.to_s.camelize}Formatter".constantize.new
+          "BetfairApiNgRails::Api::Formatters::#{name.to_s.camelize}Formatter".constantize.new
         end
 
       end
