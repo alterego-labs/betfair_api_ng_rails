@@ -1,4 +1,6 @@
 require "betfair_api_ng_rails/version"
+require "betfair_api_ng_rails/errors"
+require "betfair_api_ng_rails/railtie" if defined?(Rails)
 
 module BetfairApiNgRails
 
@@ -12,6 +14,8 @@ module BetfairApiNgRails
     autoload :Constants,      'betfair_api_ng_rails/api/constants'
     autoload :Provider,       'betfair_api_ng_rails/api/provider'
     autoload :SessionManager, 'betfair_api_ng_rails/api/session_manager'
+
+    autoload :Connection,         'betfair_api_ng_rails/api/connection'
 
     module Formatters
 
@@ -106,6 +110,15 @@ module BetfairApiNgRails
   def self.config(&block)
     @_config ||= BetfairApiNgRails::Api::Config
     block_given? ? yield(@_config) : @_config
+  end
+
+  def self.connection
+    raise BetfairApiNgRails::NoConnectionError unless @connection
+    @connection
+  end
+
+  def self.connection=(value)
+    @connection = value
   end
 
 end
