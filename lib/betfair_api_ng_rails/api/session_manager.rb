@@ -23,15 +23,11 @@ module BetfairApiNgRails
       private
 
         def fetch_ssoid
-          process_response(get_login_response).tap { |sid| send_keep_alive(sid) }
-        end
-
-        def process_response(response)
-          response['sessionToken']
+          get_login_response.session_token.tap { |sid| send_keep_alive(sid) }
         end
 
         def get_login_response
-          http_requester.do_request.result
+          http_requester.do_request
         end
 
         def send_keep_alive(sid)
