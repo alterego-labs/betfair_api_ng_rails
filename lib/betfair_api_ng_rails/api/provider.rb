@@ -6,15 +6,14 @@ module BetfairApiNgRails
       include Api::Concerns::Errorable
       include Api::Constants
 
-      attr_reader :http_requester
+      attr_reader :http_requester, :ssoid
 
-      def initialize
-        @provider_name = "BF"
-        @http_requester = Api::Http::Factory.provider_requester
+      def initialize(ssoid)
+        @http_requester = Api::Http::Factory.provider_requester ssoid
+        @ssoid = ssoid
       end
 
       def fetch(method: "", filter: {}, params: {})
-        # return [] unless BetfairApiNgRails::Api::SessionManager.request_ssoid
         raise "Not allowed method #{method.to_s}" unless is_method_allowed?(method)
         do_request with_method: method, filter: filter, params: params
       end

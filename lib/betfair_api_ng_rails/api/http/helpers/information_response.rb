@@ -14,6 +14,10 @@ module BetfairApiNgRails
             CODE
           end
 
+          def api_result
+            result['result']
+          end
+
         protected
 
           def info_response_error?
