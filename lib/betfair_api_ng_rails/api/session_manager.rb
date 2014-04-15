@@ -4,8 +4,8 @@ module BetfairApiNgRails
   module Api
     class SessionManager
       class << self
-        include Apieq(false)::Concerns::Errorable
-        include Apieq(false)::Constants
+        include Api::Concerns::Errorable
+        include Api::Constants
 
         def ssoid
           @ssoid ||= fetch_ssoid
@@ -35,16 +35,16 @@ module BetfairApiNgRails
         end
 
         def send_keep_alive(sid)
-          return unless Apieq(false)::Config.keep_alive_session
+          return unless Api::Config.keep_alive_session
           keep_alive_requester(sid).do_request
         end
 
         def http_requester
-          @_http_requester ||= Apieq(false)::Http::Factory.session_requester
+          @_http_requester ||= Api::Http::Factory.session_requester
         end
 
         def keep_alive_requester(sid)
-          Apieq(false)::Http::Factory.keep_alive_requester sid
+          Api::Http::Factory.keep_alive_requester sid
         end
 
       end
