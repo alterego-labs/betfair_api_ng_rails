@@ -1,8 +1,9 @@
+require 'active_support/inflector'
 require 'betfair_api_ng_rails/api/concerns/errorable'
 
 module BetfairApiNgRails
   module Api
-    class Provider < Api::BaseProvider
+    class Provider
       include Api::Concerns::Errorable
       include Api::Constants
 
