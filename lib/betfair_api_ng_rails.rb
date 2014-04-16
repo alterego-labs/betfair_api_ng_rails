@@ -1,5 +1,6 @@
 require "betfair_api_ng_rails/version"
 require "betfair_api_ng_rails/errors"
+require "betfair_api_ng_rails/request_methods"
 require "betfair_api_ng_rails/railtie" if defined?(Rails)
 
 module BetfairApiNgRails
@@ -100,6 +101,7 @@ module BetfairApiNgRails
   end
 
   include Api::Data
+  extend  Api::RequestMethods
 
   def self.config(&block)
     @_config ||= BetfairApiNgRails::Api::Config

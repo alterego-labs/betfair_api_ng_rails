@@ -9,7 +9,7 @@ module BetfairApiNgRails
         request_ssoid
       end
 
-      def request(method, params, data)
+      def request(method, params = {}, data = {})
         # provider.fetch method, pa
       end
 
