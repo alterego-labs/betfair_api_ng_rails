@@ -13,14 +13,14 @@ module BetfairApiNgRails
         @ssoid = ssoid
       end
 
-      def fetch(method: "", filter: {}, params: {})
+      def fetch(method: "", params: {}, data: {})
         raise "Not allowed method #{method.to_s}" unless is_method_allowed?(method)
-        do_request with_method: method, filter: filter, params: params
+        run_request with_method: method, filter: filter, params: params
       end
 
     private
 
-      def do_request(with_method: "", filter: {}, params: {})
+      def run_request(with_method: "", filter: {}, params: {})
         http_requester.set_api_req_body with_method, filter, params
         http_requester.do_request
       end

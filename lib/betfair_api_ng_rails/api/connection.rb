@@ -2,15 +2,14 @@ module BetfairApiNgRails
   module Api
     class Connection
       
-      attr_reader :config, :ssoid
+      attr_reader :ssoid
 
-      def inilialize(config)
-        @config = config
+      def initialize
         request_ssoid
       end
 
       def request(method, params = {}, data = {})
-        # provider.fetch method, pa
+        provider.fetch method: method, params: params, data: data
       end
 
     protected
@@ -20,8 +19,7 @@ module BetfairApiNgRails
       end
 
       def request_ssoid
-        BetfairApiNgRails::Api::SessionManager.expire_ssoid
-        @ssoid = BetfairApiNgRails::Api::SessionManager.ssoid
+        @ssoid = BetfairApiNgRails::Api::SessionManager.new_ssoid
       end
 
     end

@@ -1,6 +1,6 @@
 require "betfair_api_ng_rails/version"
 require "betfair_api_ng_rails/errors"
-require "betfair_api_ng_rails/request_methods"
+require "betfair_api_ng_rails/api/request_methods"
 require "betfair_api_ng_rails/railtie" if defined?(Rails)
 
 module BetfairApiNgRails

@@ -20,6 +20,11 @@ module BetfairApiNgRails
           @ssoid = nil
         end
 
+        def new_ssoid
+          expire_ssoid
+          ssoid
+        end
+
       private
 
         def fetch_ssoid
