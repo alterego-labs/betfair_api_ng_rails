@@ -6,10 +6,9 @@ module BetfairApiNgRails
       include Api::Concerns::Errorable
       include Api::Constants
 
-      attr_reader :http_requester, :ssoid
+      attr_reader :ssoid
 
       def initialize(ssoid)
-        @http_requester = Api::Http::Factory.provider_requester ssoid
         @ssoid = ssoid
       end
 
@@ -27,6 +26,10 @@ module BetfairApiNgRails
 
       def is_method_allowed?(method)
         ALLOWED_RESOURCES.include? method.to_s
+      end
+
+      def http_requester
+        @_http_requester ||= Api::Http::Factory.provider_requester ssoid
       end
 
     end
