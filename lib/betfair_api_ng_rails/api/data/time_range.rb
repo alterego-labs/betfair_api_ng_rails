@@ -2,7 +2,6 @@ module BetfairApiNgRails
   module Api
     module Data
       class TimeRange < Api::Data::Base
-        include Api::Data::Attributes
         include Api::Data::Concerns::Hashable
 
         attr_accessor *TIME_RANGE_ATTRS

@@ -42,7 +42,6 @@ module BetfairApiNgRails
       module Concerns
 
         autoload :Hashable,           'betfair_api_ng_rails/api/data/concerns/hashable'
-        autoload :Querable,           'betfair_api_ng_rails/api/data/concerns/querable'
 
       end
 
