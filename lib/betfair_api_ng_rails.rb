@@ -17,6 +17,7 @@ module BetfairApiNgRails
     autoload :SessionManager, 'betfair_api_ng_rails/api/session_manager'
 
     autoload :Connection,         'betfair_api_ng_rails/api/connection'
+    autoload :Hashalator,         'betfair_api_ng_rails/api/hashalator'
 
     module Formatters
 
