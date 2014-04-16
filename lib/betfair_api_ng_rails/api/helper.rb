@@ -16,13 +16,11 @@ module BetfairApiNgRails
         ""
       end
 
-      def prepare_api_req_json(method, filter, params)
+      def prepare_api_req_json(method, params)
         {
           "jsonrpc" => "2.0",
           "method" => "SportsAPING/v1.0/#{method}",
-          "params" => {
-            "filter" => filter
-          }.merge(params)
+          "params" => params
         }.to_json
       end
 

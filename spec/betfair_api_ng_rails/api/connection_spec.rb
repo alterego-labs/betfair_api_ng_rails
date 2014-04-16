@@ -21,7 +21,7 @@ describe BetfairApiNgRails::Api::Connection do
 
     it "calls provider's fetch method" do
       expect(subject).to receive(:provider).and_return provider
-      expect(provider).to receive(:fetch).with(method: 'method', params: {}, data: {})
+      expect(provider).to receive(:fetch).with(method: 'method', params: {})
       subject.request 'method'
     end
 

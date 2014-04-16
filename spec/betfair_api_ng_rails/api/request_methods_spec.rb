@@ -45,7 +45,7 @@ describe BetfairApiNgRails::Api::RequestMethods do
       after(:each) { TestModule.send(:run_request, 'some_method', params, data) }
 
       it "calls request method with proper params" do
-        expect(connection).to receive(:request).with('someMethod', params, data)
+        expect(connection).to receive(:request).with('someMethod', params.merge(data))
       end
 
     end
