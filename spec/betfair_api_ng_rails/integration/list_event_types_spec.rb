@@ -8,18 +8,16 @@ describe "listEventTypes request method" do
   
   let(:ssoid)              { 'vnboeirubvyebvuekrybobvuiberlvbre' }
   let(:connection)         { BetfairApiNgRails::Api::Connection.new }
-  let(:api_http_requester) { double(:api_http_requester) }
   let(:result_hash)        { "{\"result\": [{\"marketCount\": 1, \"eventType\": { \"id\": 1, \"name\": \"Soccer\" }}]}" }
   let(:http_response)      { double(:http_response, code: '200', body: result_hash) }
   let(:result)             { BetfairApiNgRails::Api::Http::Responser.new(http_response) }
   let(:filter)             { BetfairApiNgRails::MarketFilter.new }
+  let(:api_http_requester) { double(:api_http_requester, do_request: result, set_api_req_body: true) }
   let(:method_name)        { "listEventTypes" }
 
   before(:each) do
     expect(BetfairApiNgRails::Api::SessionManager).to receive(:new_ssoid).and_return ssoid
     expect(BetfairApiNgRails::Api::Http::Factory).to receive(:provider_requester).with(ssoid).and_return api_http_requester
-    expect(api_http_requester).to receive(:set_api_req_body)
-    expect(api_http_requester).to receive(:do_request).and_return result
     BetfairApiNgRails.connection = connection
   end
 
