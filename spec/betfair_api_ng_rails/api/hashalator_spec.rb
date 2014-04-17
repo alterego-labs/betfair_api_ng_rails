@@ -110,4 +110,37 @@ describe BetfairApiNgRails::Api::Hashalator do
 
   end
 
+  context 'integration tests' do
+    
+    subject { described_class.new(hashable).to_hash }
+
+    context 'when only simple values passed' do
+      
+      let(:hashable) { { some_key: :some_value } }
+
+      it { is_expected.to eq({'someKey' => :some_value}) }
+
+    end
+
+    context 'when array with simple values passes' do
+      
+      let(:hashable) { {some_key: [1, 2, 3]} }
+
+      it { is_expected.to eq({'someKey' => [1, 2, 3]}) }
+
+    end
+
+    context 'when array with at least one complex value passes' do
+      
+      let(:el) { double(:el) }
+      let(:hashable) { {some_key: [el]} }
+
+      before { expect(el).to receive(:to_hash).and_return(el) }
+
+      it { is_expected.to eq({'someKey' => [el]}) }
+
+    end
+
+  end
+
 end
