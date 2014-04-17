@@ -22,12 +22,13 @@ describe BetfairApiNgRails::Api::Connection do
     it "calls provider's fetch method" do
       expect(subject).to receive(:provider).and_return provider
       expect(provider).to receive(:fetch).with(method: 'method', params: {})
+      expect(subject).to receive(:hashing).with({}).and_return({})
       subject.request 'method'
     end
 
   end
 
-  describe "private methods" do
+  describe "private method" do
 
     describe "#provider" do
       
@@ -45,6 +46,21 @@ describe BetfairApiNgRails::Api::Connection do
       it "requests new ssoid for new connection" do
         expect(BetfairApiNgRails::Api::SessionManager).to receive(:new_ssoid).at_least(:once)
         subject.send(:request_ssoid)
+      end
+
+    end
+
+    describe "#hashing" do
+      
+      let(:hashalator) { double(:hashalator) }
+      let(:params) { double(:params) }
+
+      before(:each) { expect_any_instance_of(described_class).to receive(:request_ssoid) }
+
+      it "hashalators params" do
+        expect(BetfairApiNgRails::Api::Hashalator).to receive(:new).with(params).and_return hashalator
+        expect(hashalator).to receive(:to_hash)
+        subject.send :hashing, params
       end
 
     end

@@ -9,7 +9,7 @@ module BetfairApiNgRails
       end
 
       def request(method, params = {})
-        provider.fetch method: method, params: params
+        provider.fetch method: method, params: hashing(params)
       end
 
     protected
@@ -20,6 +20,10 @@ module BetfairApiNgRails
 
       def request_ssoid
         @ssoid = BetfairApiNgRails::Api::SessionManager.new_ssoid
+      end
+
+      def hashing(params)
+        BetfairApiNgRails::Api::Hashalator.new(params).to_hash
       end
 
     end
