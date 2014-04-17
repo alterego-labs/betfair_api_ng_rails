@@ -1,3 +1,5 @@
+require 'pry-nav'
+
 module BetfairApiNgRails
   module Api
     module Parsers
@@ -16,7 +18,7 @@ module BetfairApiNgRails
       private
 
         def fetch_result_json
-          responser.has_error? ? [] : responser.result["result"]
+          responser.has_error? ? [] : responser.api_result
         end
 
         def process_row(json_row)

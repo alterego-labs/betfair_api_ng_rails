@@ -9,7 +9,9 @@ describe "listEventTypes request method" do
   let(:ssoid)              { 'vnboeirubvyebvuekrybobvuiberlvbre' }
   let(:connection)         { BetfairApiNgRails::Api::Connection.new }
   let(:api_http_requester) { double(:api_http_requester) }
-  let(:result)             { double(:result) }
+  let(:result_hash)        { "{\"result\": [{\"marketCount\": 1, \"eventType\": { \"id\": 1, \"name\": \"Soccer\" }}]}" }
+  let(:http_response)      { double(:http_response, code: '200', body: result_hash) }
+  let(:result)             { BetfairApiNgRails::Api::Http::Responser.new(http_response) }
   let(:filter)             { BetfairApiNgRails::MarketFilter.new }
   let(:method_name)        { "listEventTypes" }
 
@@ -21,10 +23,8 @@ describe "listEventTypes request method" do
     BetfairApiNgRails.connection = connection
   end
 
-  it "should return result of http request" do
-    expect(connection).to receive(:request).with(method_name, {filter: filter, locale: :en}).and_call_original
-    expect_any_instance_of(BetfairApiNgRails::Api::Provider).to receive(:fetch).with(method: method_name, params: {'filter' => {}, 'locale' => :en}).and_call_original
-    expect(TestModule.list_event_types(filter: filter)).to eq result
+  it "should return proper collection" do
+    expect(TestModule.list_event_types(filter: filter)).not_to be_empty
   end
 
 end

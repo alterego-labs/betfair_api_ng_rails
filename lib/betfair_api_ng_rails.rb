@@ -91,10 +91,16 @@ module BetfairApiNgRails
 
     module Parsers
 
-      autoload :Base,             'betfair_api_ng_rails/api/orm/parsers/base'
-      autoload :ListCompetitions, 'betfair_api_ng_rails/api/orm/parsers/list_competitions'
-      autoload :ListEventTypes,   'betfair_api_ng_rails/api/orm/parsers/list_event_types'
-      autoload :ListEvents,       'betfair_api_ng_rails/api/orm/parsers/list_events'
+      autoload :Base,             'betfair_api_ng_rails/api/parsers/base'
+      autoload :ListCompetitions, 'betfair_api_ng_rails/api/parsers/list_competitions'
+      autoload :ListEventTypes,   'betfair_api_ng_rails/api/parsers/list_event_types'
+      autoload :ListEvents,       'betfair_api_ng_rails/api/parsers/list_events'
+
+    end
+
+    module ConnectionExt
+      
+      autoload :Parsing,         'betfair_api_ng_rails/api/connection_ext/parsing'
 
     end
 

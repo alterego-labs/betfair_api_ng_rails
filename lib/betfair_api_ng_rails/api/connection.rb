@@ -12,6 +12,8 @@ module BetfairApiNgRails
         provider.fetch method: method, params: hashing(params)
       end
 
+      include Api::ConnectionExt::Parsing
+
     protected
 
       def provider

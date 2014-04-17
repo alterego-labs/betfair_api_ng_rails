@@ -1,7 +1,7 @@
 module BetfairApiNgRails
   module Api
     module Parsers
-      class ListEventTypes < Api::ORM::Parsers::Base
+      class ListEventTypes < Api::Parsers::Base
 
       private
 

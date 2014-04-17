@@ -3,6 +3,7 @@ module BetfairApiNgRails
     module Http
       module Helpers
         module SessionResponse
+          include BetfairApiNgRails::Api::Constants
           
           def self.included(base)
             base.send :class_eval,  <<-CODE
