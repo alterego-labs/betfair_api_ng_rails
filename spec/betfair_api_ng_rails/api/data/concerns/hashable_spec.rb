@@ -63,6 +63,19 @@ describe BetfairApiNgRails::Api::Data::Concerns::Hashable do
 
     end
 
+    context 'dont include nil attributes in resulting hash' do
+      
+      before(:each) do
+        subject.class.send :instance_eval, <<-CODE
+          attr_accessor :second_name
+          def self.to_hash_attrs; [:name, :second_name]; end
+        CODE
+      end
+
+      its(:to_hash) { is_expected.to eq({'name' => 'Walli'}) }
+
+    end
+
   end
 
 end

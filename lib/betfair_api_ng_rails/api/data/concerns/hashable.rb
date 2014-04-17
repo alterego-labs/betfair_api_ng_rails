@@ -12,7 +12,10 @@ module BetfairApiNgRails
         private
 
           def attributes_hash
-            self.class.to_hash_attrs.each_with_object({}) { |a, h| h[a] = get_attr_value(a) }
+            self.class.to_hash_attrs.each_with_object({}) do |a, h|
+              val = get_attr_value(a)
+              h[a] = val unless val.nil?
+            end
           end
 
           def get_attr_value(attrib)
