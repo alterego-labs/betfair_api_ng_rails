@@ -15,6 +15,15 @@ describe BetfairApiNgRails::Api::RequestMethods do
 
   end
 
+  describe "#list_competitions" do
+    
+    it "calls run_request with proper params" do
+      expect(TestModule).to receive(:run_request).with(:list_competitions, {filter: :filter}, {locale: :en})
+      TestModule.list_competitions filter: :filter
+    end
+
+  end
+
   describe "#place_orders" do
     
     it "calls run_request with proper params" do

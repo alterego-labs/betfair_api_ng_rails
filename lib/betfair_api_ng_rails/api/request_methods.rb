@@ -8,6 +8,10 @@ module BetfairApiNgRails
         run_request __method__, { filter: filter }, { locale: locale }
       end
 
+      def list_competitions(filter: Api::Data::MarketFilter.new, locale: :en)
+        run_request __method__, { filter: filter }, { locale: locale }
+      end
+
       def place_orders(market_id: "", instructions: [], customer_ref: "")
         run_request __method__, { market_id: market_id, instructions: instructions, customer_ref: customer_ref }
       end
