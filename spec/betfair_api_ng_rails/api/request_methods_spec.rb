@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'betfair_api_ng_rails/api/constants'
 
 module TestModule
   extend BetfairApiNgRails::Api::RequestMethods
@@ -6,20 +7,15 @@ end
 
 describe BetfairApiNgRails::Api::RequestMethods do
   
-  describe "#list_event_types" do
-    
-    it "calls run_request with proper params" do
-      expect(TestModule).to receive(:run_request).with(:list_event_types, {filter: :filter}, {locale: :en})
-      TestModule.list_event_types filter: :filter
-    end
+  BetfairApiNgRails::Api::Constants::SIMPLE_LISTING_FILTERED.each do |method|
 
-  end
-
-  describe "#list_competitions" do
+    describe "##{method}" do
     
-    it "calls run_request with proper params" do
-      expect(TestModule).to receive(:run_request).with(:list_competitions, {filter: :filter}, {locale: :en})
-      TestModule.list_competitions filter: :filter
+      it "calls run_request with proper params" do
+        expect(TestModule).to receive(:run_request).with(method.underscore.to_sym, {filter: :filter}, {locale: :en})
+        TestModule.send method.underscore.to_sym, filter: :filter
+      end
+
     end
 
   end

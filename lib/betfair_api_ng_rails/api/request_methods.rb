@@ -1,15 +1,17 @@
 require 'active_support/inflector'
+require 'betfair_api_ng_rails/api/constants'
 
 module BetfairApiNgRails
   module Api
     module RequestMethods
-      
-      def list_event_types(filter: Api::Data::MarketFilter.new, locale: :en)
-        run_request __method__, { filter: filter }, { locale: locale }
-      end
+      include Api::Constants
 
-      def list_competitions(filter: Api::Data::MarketFilter.new, locale: :en)
-        run_request __method__, { filter: filter }, { locale: locale }
+      SIMPLE_LISTING_FILTERED.each do |method|
+        eval <<-CODE
+          def #{method.underscore}(filter: Api::Data::MarketFilter.new, locale: :en)
+            run_request __method__, { filter: filter }, { locale: locale }
+          end
+        CODE
       end
 
       def place_orders(market_id: "", instructions: [], customer_ref: "")
