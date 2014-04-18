@@ -6,7 +6,7 @@ end
 
 describe "listEventTypes request method" do
 
-  it_behaves_like 'simple list filtering request' do
+  it_behaves_like 'simple list filtering request', 'listEventTypes' do
 
     let(:method_name)  { "list_event_types" }
     let(:result_class) { BetfairApiNgRails::EventTypeResult }

@@ -95,6 +95,7 @@ module BetfairApiNgRails
       autoload :ListCompetitions, 'betfair_api_ng_rails/api/parsers/list_competitions'
       autoload :ListEventTypes,   'betfair_api_ng_rails/api/parsers/list_event_types'
       autoload :ListEvents,       'betfair_api_ng_rails/api/parsers/list_events'
+      autoload :ListTimeRanges,   'betfair_api_ng_rails/api/parsers/list_time_ranges'
 
     end
 

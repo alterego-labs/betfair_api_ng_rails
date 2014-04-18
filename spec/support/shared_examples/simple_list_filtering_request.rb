@@ -1,4 +1,4 @@
-shared_examples 'simple list filtering request' do
+shared_examples 'simple list filtering request' do |method|
 
   let(:parameters)   { {filter: filter} }
 
@@ -28,17 +28,21 @@ shared_examples 'simple list filtering request' do
 
   end
 
-  context 'when enabled formatting' do
-    
-    before(:each) { BetfairApiNgRails.config.formatter = :js_tree }
+  if BetfairApiNgRails::Api::Constants::ALLOWED_FORMATTING.include?(method)
 
-    it_behaves_like 'request method' do
+    context 'when enabled formatting' do
 
-      it { is_expected.not_to be_empty }
+      before(:each) { BetfairApiNgRails.config.formatter = :js_tree }
 
-      its(:first) { is_expected.to be_kind_of Hash }
+      it_behaves_like 'request method' do
 
-      its('first.keys') { is_expected.to include(:id, :text, :children, :data) }
+        it { is_expected.not_to be_empty }
+
+        its(:first) { is_expected.to be_kind_of Hash }
+
+        its('first.keys') { is_expected.to include(:id, :text, :children, :data) }
+
+      end
 
     end
 
