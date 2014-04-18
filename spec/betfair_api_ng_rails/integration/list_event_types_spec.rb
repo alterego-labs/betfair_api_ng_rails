@@ -6,9 +6,10 @@ end
 
 describe "listEventTypes request method" do
 
-  let(:method_name) { "list_event_types" }
-  let(:parameters)  { {filter: filter} }
-  let(:result_hash) { "{\"result\": [{\"marketCount\": 1, \"eventType\": { \"id\": 1, \"name\": \"Soccer\" }}]}" }
+  let(:result_class) { BetfairApiNgRails::EventTypeResult }
+  let(:method_name)  { "list_event_types" }
+  let(:parameters)   { {filter: filter} }
+  let(:result_hash)  { "{\"result\": [{\"marketCount\": 1, \"eventType\": { \"id\": 1, \"name\": \"Soccer\" }}]}" }
 
   before(:each) { BetfairApiNgRails.config.formatter = nil }
 
@@ -18,7 +19,7 @@ describe "listEventTypes request method" do
 
       it { is_expected.not_to be_empty }
 
-      its(:first) { is_expected.to be_kind_of BetfairApiNgRails::EventTypeResult }
+      its(:first) { is_expected.to be_kind_of result_class }
 
     end
 

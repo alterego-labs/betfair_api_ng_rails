@@ -6,9 +6,10 @@ end
 
 describe "listCompetitions request method" do
 
-  let(:method_name) { "list_competitions" }
-  let(:parameters)  { {filter: filter} }
-  let(:result_hash) { "{\"result\": [{\"marketCount\": 1, \"competition\": { \"id\": 1, \"name\": \"World Cup 2014\" }, \"competitionRegion\": \"BR\"}]}" }
+  let(:result_class) { BetfairApiNgRails::CompetitionResult }
+  let(:method_name)  { "list_competitions" }
+  let(:parameters)   { {filter: filter} }
+  let(:result_hash)  { "{\"result\": [{\"marketCount\": 1, \"competition\": { \"id\": 1, \"name\": \"World Cup 2014\" }, \"competitionRegion\": \"BR\"}]}" }
 
   before(:each) { BetfairApiNgRails.config.formatter = nil }
 
@@ -18,7 +19,7 @@ describe "listCompetitions request method" do
 
       it { is_expected.not_to be_empty }
 
-      its(:first) { is_expected.to be_kind_of BetfairApiNgRails::CompetitionResult }
+      its(:first) { is_expected.to be_kind_of result_class }
 
     end
 
