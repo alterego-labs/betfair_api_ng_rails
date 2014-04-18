@@ -100,7 +100,8 @@ module BetfairApiNgRails
 
     module ConnectionExt
       
-      autoload :Parsing,         'betfair_api_ng_rails/api/connection_ext/parsing'
+      autoload :Parsing,    'betfair_api_ng_rails/api/connection_ext/parsing'
+      autoload :Formatting, 'betfair_api_ng_rails/api/connection_ext/formatting'
 
     end
 

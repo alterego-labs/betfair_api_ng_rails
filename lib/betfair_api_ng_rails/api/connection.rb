@@ -13,6 +13,7 @@ module BetfairApiNgRails
       end
 
       include Api::ConnectionExt::Parsing
+      include Api::ConnectionExt::Formatting
 
     protected
 
