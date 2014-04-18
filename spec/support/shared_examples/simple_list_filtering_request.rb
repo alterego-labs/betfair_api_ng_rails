@@ -1,15 +1,6 @@
-require 'spec_helper'
+shared_examples 'simple list filtering request' do
 
-module TestModule
-  extend BetfairApiNgRails::Api::RequestMethods
-end
-
-describe "listCompetitions request method" do
-
-  let(:result_class) { BetfairApiNgRails::CompetitionResult }
-  let(:method_name)  { "list_competitions" }
   let(:parameters)   { {filter: filter} }
-  let(:result_hash)  { "{\"result\": [{\"marketCount\": 1, \"competition\": { \"id\": 1, \"name\": \"World Cup 2014\" }, \"competitionRegion\": \"BR\"}]}" }
 
   before(:each) { BetfairApiNgRails.config.formatter = nil }
 
@@ -54,4 +45,3 @@ describe "listCompetitions request method" do
   end
 
 end
-
