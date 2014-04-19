@@ -41,6 +41,7 @@ module BetfairApiNgRails
       autoload :EventResult,        'betfair_api_ng_rails/api/data/event_result'
       autoload :CountryCodeResult,  'betfair_api_ng_rails/api/data/country_code_result'
       autoload :VenueResult,        'betfair_api_ng_rails/api/data/venue_result'
+      autoload :MarketTypeResult,   'betfair_api_ng_rails/api/data/market_type_result'
 
       module Concerns
 
@@ -100,6 +101,7 @@ module BetfairApiNgRails
       autoload :ListTimeRanges,   'betfair_api_ng_rails/api/parsers/list_time_ranges'
       autoload :ListCountries,    'betfair_api_ng_rails/api/parsers/list_countries'
       autoload :ListVenues,       'betfair_api_ng_rails/api/parsers/list_venues'
+      autoload :ListMarketTypes,  'betfair_api_ng_rails/api/parsers/list_market_types'
 
     end
 
