@@ -8,7 +8,17 @@ module BetfairApiNgRails
 
         ALLOW_CHILDREN = [:event_types, :competitions]
 
-        def format(record: nil, resource: "")
+        def process(result, as: '')
+          result.map { |r| format_record(r, resource_from_method(as)) }
+        end
+
+      private
+
+        def resource_from_method(method)
+          method.underscore.gsub(/^list_/, '').to_sym
+        end
+
+        def format_record(record, resource)
           return {} unless record
           obj = record.send resource.to_s.singularize
           {

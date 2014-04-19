@@ -61,8 +61,8 @@ module BetfairApiNgRails
           request.body = body
         end
 
-        def set_api_req_body(method, filter = {}, params = {})
-          set_request_body prepare_api_req_json(method, filter, params)
+        def set_api_req_body(method, params = {})
+          set_request_body prepare_api_req_json(method, params)
         end
 
         def set_header(name, value)

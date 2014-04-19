@@ -1,34 +1,36 @@
+require 'active_support/inflector'
 require 'betfair_api_ng_rails/api/concerns/errorable'
 
 module BetfairApiNgRails
   module Api
-    class Provider < Api::BaseProvider
+    class Provider
       include Api::Concerns::Errorable
       include Api::Constants
 
-      attr_reader :session_manager, :http_requester
+      attr_reader :ssoid
 
-      def initialize
-        @session_manager = Api::SessionManager.new
-        @provider_name = "BF"
-        @http_requester = Api::Http::Factory.provider_requester
+      def initialize(ssoid)
+        @ssoid = ssoid
       end
 
-      def fetch(method: "", filter: {}, params: {})
-        return [] unless BetfairApiNgRails::Api::SessionManager.request_ssoid
+      def fetch(method: "", params: {})
         raise "Not allowed method #{method.to_s}" unless is_method_allowed?(method)
-        do_request with_method: method, filter: filter, params: params
+        run_request for_method: method, params: params
       end
 
     private
 
-      def do_request(with_method: "", filter: {}, params: {})
-        http_requester.set_api_req_body with_method, filter, params
+      def run_request(for_method: "", params: {})
+        http_requester.set_api_req_body for_method, params
         http_requester.do_request
       end
 
       def is_method_allowed?(method)
         ALLOWED_RESOURCES.include? method.to_s
+      end
+
+      def http_requester
+        @_http_requester ||= Api::Http::Factory.provider_requester ssoid
       end
 
     end

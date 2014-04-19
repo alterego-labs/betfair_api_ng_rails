@@ -1,14 +1,14 @@
 module BetfairApiNgRails
   module Api
     module Data
-      class EventTypeResult < Api::Data::Base
+      class CountryCodeResult < Api::Data::Base
 
         attr_accessor :market_count,
-                      :event_type
+                      :country_code
 
         def self.from_json(json_row)
           new(
-            event_type: Api::Data::EventType.from_json(json_row['eventType']),
+            country_code: json_row['countryCode'],
             market_count: json_row['marketCount']
           )
         end

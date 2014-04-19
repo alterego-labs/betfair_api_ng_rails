@@ -3,7 +3,7 @@ module BetfairApiNgRails
     module Data
       module Constants
 
-        ATTRS_AS_IS = [Array, Hash, String, Symbol, Fixnum]
+        ATTRS_AS_IS = [Hash, String, Symbol, Fixnum]
 
       end
     end

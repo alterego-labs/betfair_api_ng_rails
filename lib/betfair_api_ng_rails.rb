@@ -1,4 +1,7 @@
 require "betfair_api_ng_rails/version"
+require "betfair_api_ng_rails/errors"
+require "betfair_api_ng_rails/api/request_methods"
+require "betfair_api_ng_rails/railtie" if defined?(Rails)
 
 module BetfairApiNgRails
 
@@ -12,6 +15,9 @@ module BetfairApiNgRails
     autoload :Constants,      'betfair_api_ng_rails/api/constants'
     autoload :Provider,       'betfair_api_ng_rails/api/provider'
     autoload :SessionManager, 'betfair_api_ng_rails/api/session_manager'
+
+    autoload :Connection,         'betfair_api_ng_rails/api/connection'
+    autoload :Hashalator,         'betfair_api_ng_rails/api/hashalator'
 
     module Formatters
 
@@ -33,11 +39,13 @@ module BetfairApiNgRails
       autoload :EventTypeResult,    'betfair_api_ng_rails/api/data/event_type_result'
       autoload :Event,              'betfair_api_ng_rails/api/data/event'
       autoload :EventResult,        'betfair_api_ng_rails/api/data/event_result'
+      autoload :CountryCodeResult,  'betfair_api_ng_rails/api/data/country_code_result'
+      autoload :VenueResult,        'betfair_api_ng_rails/api/data/venue_result'
+      autoload :MarketTypeResult,   'betfair_api_ng_rails/api/data/market_type_result'
 
       module Concerns
 
         autoload :Hashable,           'betfair_api_ng_rails/api/data/concerns/hashable'
-        autoload :Querable,           'betfair_api_ng_rails/api/data/concerns/querable'
 
       end
 
@@ -84,28 +92,43 @@ module BetfairApiNgRails
 
     end
 
-    module ORM
+    module Parsers
 
-      autoload :Requester, 'betfair_api_ng_rails/api/orm/requester'
+      autoload :Base,             'betfair_api_ng_rails/api/parsers/base'
+      autoload :ListCompetitions, 'betfair_api_ng_rails/api/parsers/list_competitions'
+      autoload :ListEventTypes,   'betfair_api_ng_rails/api/parsers/list_event_types'
+      autoload :ListEvents,       'betfair_api_ng_rails/api/parsers/list_events'
+      autoload :ListTimeRanges,   'betfair_api_ng_rails/api/parsers/list_time_ranges'
+      autoload :ListCountries,    'betfair_api_ng_rails/api/parsers/list_countries'
+      autoload :ListVenues,       'betfair_api_ng_rails/api/parsers/list_venues'
+      autoload :ListMarketTypes,  'betfair_api_ng_rails/api/parsers/list_market_types'
 
-      module Parsers
+    end
 
-        autoload :Base,             'betfair_api_ng_rails/api/orm/parsers/base'
-        autoload :ListCompetitions, 'betfair_api_ng_rails/api/orm/parsers/list_competitions'
-        autoload :ListEventTypes,   'betfair_api_ng_rails/api/orm/parsers/list_event_types'
-        autoload :ListEvents,       'betfair_api_ng_rails/api/orm/parsers/list_events'
-
-      end
+    module ConnectionExt
+      
+      autoload :Parsing,    'betfair_api_ng_rails/api/connection_ext/parsing'
+      autoload :Formatting, 'betfair_api_ng_rails/api/connection_ext/formatting'
 
     end
 
   end
 
   include Api::Data
+  extend  Api::RequestMethods
 
   def self.config(&block)
     @_config ||= BetfairApiNgRails::Api::Config
     block_given? ? yield(@_config) : @_config
+  end
+
+  def self.connection
+    raise BetfairApiNgRails::NoConnectionError unless @connection
+    @connection
+  end
+
+  def self.connection=(value)
+    @connection = value
   end
 
 end

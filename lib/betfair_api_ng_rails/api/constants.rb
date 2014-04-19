@@ -30,6 +30,22 @@ module BetfairApiNgRails
         "listMarketProfitAndLoss"
       ]
 
+      ALLOWED_FORMATTING = [
+        "listEventTypes",
+        "listCompetitions",
+        "listEvents"
+      ]
+
+      SIMPLE_LISTING_FILTERED = [
+        "listEventTypes",
+        "listCompetitions",
+        "listTimeRanges",
+        "listEvents",
+        "listMarketTypes",
+        "listCountries",
+        "listVenues"
+      ]
+
     end
   end
 end
