@@ -6,7 +6,7 @@ API-NG is Betfair's next generation API for developers looking to create automat
 
 Add this line to your application's Gemfile:
 
-    gem 'betfair_api_ng_rails'
+    gem 'betfair_api_ng_rails', '1.0.0'
 
 And then execute:
 
@@ -35,26 +35,13 @@ In this files you must specify credentials to API-NG. Also you should notice tha
 
 ## Usage
 
-Sample code for fetching all competitions:
+Please check [wiki pages](https://github.com/alterego-labs/betfair_api_ng_rails/wiki). It will be available soon...
 
-```ruby
-result = BetfairApiNgRails::Competition.all
-```
+## CHANGES IN 1.0.0
 
-For all available methods see [there](https://api.developer.betfair.com/services/webapps/docs/display/1smk3cen4v3lu3yomq5qye0ni/Betting+Operations).
-
-Also you may passing filtering params:
-
-```ruby
-filter = BetfairApiNgRails::MarketFilter.new text_query: 'World*'
-result = BetfairApiNgRails::Competition.where filter: filter
-```
-
-Or fetching competition by identifier:
-
-```ruby
-result = BetfairApiNgRails::Competition.find 1
-```
+1. Replaced ActiveRecord style querying by more similar structure to API-NG
+2. Starting to testing
+3. Refactoring
 
 ## CHANGES IN 0.0.8
 
@@ -63,15 +50,6 @@ result = BetfairApiNgRails::Competition.find 1
 3. Added all enums
 4. Added shortcuts for models
 5. Refactoring
-
-## CHANGES IN 0.0.7!!!
-
-Now gem used Object model for doing requests and it's results that is based on [betfair's type definitions](https://api.developer.betfair.com/services/webapps/docs/display/1smk3cen4v3lu3yomq5qye0ni/Betting+Type+Definitions#BettingTypeDefinitions-UpdateInstruction).
-
-## WARNING!!!
-
-__Last version of gem supports only listCompetitions, listEventTypes and listEvents requests.__ I will provide more powerful functional soon.
-
 
 ## Contributing
 
