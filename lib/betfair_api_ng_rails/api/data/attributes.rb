@@ -44,6 +44,18 @@ module BetfairApiNgRails
           :to
         ]
 
+        MARKET_CATALOGUE_ATTRS = [
+          :market_id,
+          :market_name,
+          :market_start_time,
+          :description,
+          :total_matched,
+          :runners,
+          :event_type,
+          :competition,
+          :event
+        ]
+
       end
     end
   end

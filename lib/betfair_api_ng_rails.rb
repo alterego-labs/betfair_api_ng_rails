@@ -42,6 +42,7 @@ module BetfairApiNgRails
       autoload :CountryCodeResult,  'betfair_api_ng_rails/api/data/country_code_result'
       autoload :VenueResult,        'betfair_api_ng_rails/api/data/venue_result'
       autoload :MarketTypeResult,   'betfair_api_ng_rails/api/data/market_type_result'
+      autoload :MarketCatalogue,    'betfair_api_ng_rails/api/data/market_catalogue'
 
       module Concerns
 
