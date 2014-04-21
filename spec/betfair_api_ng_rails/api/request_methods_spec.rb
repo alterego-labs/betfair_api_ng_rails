@@ -20,6 +20,15 @@ describe BetfairApiNgRails::Api::RequestMethods do
 
   end
 
+  describe "#list_market_catalogue" do
+
+    it "calls run_request with proper params" do
+      expect(TestModule).to receive(:run_request).with(:list_market_catalogue, {filter: :filter, market_projection: [], sort: "", max_results: 1}, {locale: :en})
+      TestModule.list_market_catalogue filter: :filter
+    end
+
+  end
+
   describe "#place_orders" do
     
     it "calls run_request with proper params" do
