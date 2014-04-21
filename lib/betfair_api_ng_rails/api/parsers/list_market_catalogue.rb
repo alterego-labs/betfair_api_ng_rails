@@ -6,7 +6,7 @@ module BetfairApiNgRails
       private
 
         def process_row(json_row)
-          Api::Data::MarketCatalogue.from_json json_row
+          BetfairApiNgRails::MarketCatalogue.from_json json_row
         end
 
       end

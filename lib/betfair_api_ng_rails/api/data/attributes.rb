@@ -56,6 +56,32 @@ module BetfairApiNgRails
           :event
         ]
 
+        RUNNER_CATALOG_ATTRS = [
+          :selection_id,
+          :runner_name,
+          :handicap,
+          :sort_priority,
+          :metadata
+        ]
+
+        MARKET_DESCRIPTION_ATTRS = [
+          :persistence_enabled,
+          :bsp_market,
+          :market_time,
+          :suspend_time,
+          :settle_time,
+          :betting_type,
+          :turn_in_play_enabled,
+          :market_type,
+          :regulator,
+          :market_base_rate,
+          :discount_allowed,
+          :wallet,
+          :rules,
+          :rules_has_date,
+          :clarifications
+        ]
+
       end
     end
   end
