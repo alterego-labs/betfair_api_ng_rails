@@ -25,6 +25,7 @@ describe BetfairApiNgRails::Api::Data::Concerns::Attributable do
     describe ".define_class_attrs" do
       
       before do
+        expect(TestClass).to receive(:process_attributes).and_return [:some_attr]
         TestClass.send :define_class_attrs, [:some_attr]
       end
 
@@ -58,23 +59,78 @@ describe BetfairApiNgRails::Api::Data::Concerns::Attributable do
 
     end
 
+    describe ".fetch_attr_options" do
+      
+      subject { TestClass.send :fetch_attr_options, attrib }
+
+      context 'when passed hash' do
+        
+        let(:attrib) { {some_attr: {type: String}} }
+
+        context "returns default options merged with setted one" do
+          it { is_expected.to eq({type: String, array: false}) }
+        end
+
+      end
+
+      context 'when passed simple string' do
+        
+        let(:attrib) { :some_attr1 }
+
+        context 'returns default options' do
+          it { is_expected.to eq({type: String, array: false}) }
+        end
+
+      end
+
+    end
+
     describe ".define_attr_accessors" do
 
-      before { expect(TestClass).to receive(:class_attrs).and_return([:some_attr]) }
+      before { expect(TestClass).to receive(:class_attrs).and_return({some_attr: {type: String, array: false}}) }
 
       it "defines attr accessors for instance" do
-        expect(TestClass).to receive(:fetch_attr_name).with(:some_attr).and_return :some_attr
         expect(TestClass).to receive(:class_eval).with("attr_accessor :some_attr")
         TestClass.send :define_attr_accessors
       end
       
     end
 
+    describe ".process_attributes" do
+      
+      subject { TestClass.send :process_attributes, attributes }
+
+      context 'when simple value passed' do
+        
+        let(:attributes) { [:some_attr] }
+
+        context "returns attributes with default settings" do
+          
+          it { is_expected.to eq({some_attr: BetfairApiNgRails::Api::Data::Concerns::Attributable::DEFAULT_OPTIONS}) }
+
+        end
+
+      end
+
+      context 'when attribute with params passed' do
+        
+        let(:attributes) { [{some_attr: {type: Integer}}] }
+
+        context "returns attributes with merged setting" do
+          
+          it { is_expected.to eq({some_attr: {type: Integer, array: false}}) }
+
+        end
+
+      end
+
+    end
+
   end
 
   describe "integration tests" do
     
-    let(:attrib) { [:some_attr, {some_attr1: {type: String}}] }
+    let(:attrib) { [:some_attr, {some_attr1: {type: Integer}}] }
 
     before { TestClass.attributes attrib }
 
@@ -91,7 +147,7 @@ describe BetfairApiNgRails::Api::Data::Concerns::Attributable do
       
       subject { TestClass }
 
-      its(:class_attrs) { attrib }
+      its('class_attrs.keys') { is_expected.to include(:some_attr) }
 
     end
 

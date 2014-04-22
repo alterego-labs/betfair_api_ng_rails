@@ -48,6 +48,7 @@ module BetfairApiNgRails
 
         autoload :Hashable,           'betfair_api_ng_rails/api/data/concerns/hashable'
         autoload :Attributable,       'betfair_api_ng_rails/api/data/concerns/attributable'
+        autoload :Jsonable,           'betfair_api_ng_rails/api/data/concerns/jsonable'
 
       end
 
