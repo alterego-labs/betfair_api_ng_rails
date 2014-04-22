@@ -3,21 +3,19 @@ module BetfairApiNgRails
     module Data
       class MarketCatalogue < Api::Data::Base
 
-        attr_accessor *MARKET_CATALOGUE_ATTRS
+        MARKET_CATALOGUE_ATTRS = [
+          :market_id,
+          :market_name,
+          :market_start_time,
+          :total_matched,
+          {description: { type: BetfairApiNgRails::MarketDescription          }},
+          {runners:     { type: BetfairApiNgRails::RunnerCatalog, array: true }},
+          {event_type:  { type: BetfairApiNgRails::EventType                  }},
+          {competition: { type: BetfairApiNgRails::Competition                }},
+          {event:       { type: BetfairApiNgRails::Event                      }}
+        ]
 
-        def self.from_json(json_row)
-          new(
-            market_id:         json_row['marketId'],
-            market_name:       json_row['marketName'],
-            market_start_time: json_row['marketStartTime'],
-            total_matched:     json_row['totalMatched']
-          ).tap do |mc|
-            mc.event_type  = BetfairApiNgRails::EventType.from_json(json_row['eventType'])     if json_row.has_key?('eventType')
-            mc.competition = BetfairApiNgRails::Competition.from_json(json_row['competition']) if json_row.has_key?('competition')
-            mc.event       = BetfairApiNgRails::Event.from_json(json_row['event'])             if json_row.has_key?('event')
-            mc.runners     = json_row.fetch('runners', []).map {|r| BetfairApiNgRails::RunnerCatalog.from_json(r) }
-          end
-        end
+        attributes MARKET_CATALOGUE_ATTRS
 
       end
     end

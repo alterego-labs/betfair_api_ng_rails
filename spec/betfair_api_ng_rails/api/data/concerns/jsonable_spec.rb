@@ -62,17 +62,18 @@ describe BetfairApiNgRails::Api::Data::Concerns::Jsonable do
     end
 
     describe ".get_attr_value" do
+
+      let(:type) { String }
       
-      subject { TestJsonable.send(:get_attr_value, attribs, :some_attr, {type: type, array: is_array}) }
+      subject { TestJsonable.send(:get_attr_value, attribs, key, {type: type, array: is_array}) }
 
       context 'when fetching data for single valued attr' do
         
+        let(:key)      { :some_attr }
         let(:attribs)  { {'someAttr' => :value} }
         let(:is_array) { false }
 
         context 'and its type is String ' do
-          
-          let(:type) { String }
 
           it { is_expected.to eq :value }
 
@@ -93,6 +94,7 @@ describe BetfairApiNgRails::Api::Data::Concerns::Jsonable do
 
       context 'when fetching data for array attr' do
 
+        let(:key)      { :some_attr }
         let(:attribs)  { {'someAttr' => [:value]} }
         let(:is_array) { false }
         
@@ -106,6 +108,16 @@ describe BetfairApiNgRails::Api::Data::Concerns::Jsonable do
           end
 
         end
+
+      end
+
+      context 'when trying fetch value for not existed key' do
+        
+        let(:key) { :some_attr_1 }
+        let(:attribs)  { {'someAttr' => :value} }
+        let(:is_array) { false }
+
+        it { is_expected.to be_nil }
 
       end
 

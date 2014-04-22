@@ -3,15 +3,12 @@ module BetfairApiNgRails
     module Data
       class EventTypeResult < Api::Data::Base
 
-        attr_accessor :market_count,
-                      :event_type
+        EVENT_TYPE_RESULT_ATTRS = [
+          :market_count,
+          {event_type: {type: BetfairApiNgRails::EventType}}
+        ]
 
-        def self.from_json(json_row)
-          new(
-            event_type: Api::Data::EventType.from_json(json_row['eventType']),
-            market_count: json_row['marketCount']
-          )
-        end
+        attributes EVENT_TYPE_RESULT_ATTRS
 
       end
     end

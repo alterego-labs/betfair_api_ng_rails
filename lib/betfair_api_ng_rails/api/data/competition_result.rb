@@ -3,17 +3,13 @@ module BetfairApiNgRails
     module Data
       class CompetitionResult < Api::Data::Base
 
-        attr_accessor :market_count,
-                      :competition_region,
-                      :competition
+        COMPETITION_RESULT_ATTRS = [
+          :market_count,
+          :competition_region,
+          {competition: {type: BetfairApiNgRails::Competition} }
+        ]
 
-        def self.from_json(json_row)
-          new(
-            competition: Api::Data::Competition.from_json(json_row['competition']),
-            market_count: json_row['marketCount'],
-            competition_region: json_row['competitionRegion']
-          )
-        end
+        attributes COMPETITION_RESULT_ATTRS
 
       end
     end

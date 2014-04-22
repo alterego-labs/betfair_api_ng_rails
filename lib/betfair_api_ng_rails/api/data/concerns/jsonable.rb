@@ -29,6 +29,7 @@ module BetfairApiNgRails
 
             def get_attr_value(data, name, options)
               j_data = data[json_key(name)]
+              return nil unless j_data
               options[:array] ? j_data.map { |r| prepare_value(options[:type], r) } : prepare_value(options[:type], j_data)
             end
 
