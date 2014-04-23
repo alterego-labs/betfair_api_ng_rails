@@ -4,11 +4,16 @@ module BetfairApiNgRails
       class Event < Api::Data::Base
         include Api::Data::Concerns::Hashable
 
-        attr_accessor *EVENT_ATTRS
+        EVENT_ATTRS = [
+          :id,
+          :name,
+          :timezone,
+          :country_code,
+          :venue,
+          :open_date
+        ]
 
-        def self.from_json(json_row)
-          new EVENT_ATTRS.inject({}) { |h, a| h[a] = json_row[a.to_s.camelize(:lower)]; h }
-        end
+        attributes EVENT_ATTRS
 
         def self.to_hash_attrs
           EVENT_ATTRS

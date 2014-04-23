@@ -3,11 +3,15 @@ module BetfairApiNgRails
     module Data
       class RunnerCatalog < Api::Data::Base
 
-        attr_accessor *RUNNER_CATALOG_ATTRS
+        RUNNER_CATALOG_ATTRS = [
+          :selection_id,
+          :runner_name,
+          :handicap,
+          :sort_priority,
+          :metadata
+        ]
 
-        def self.from_json(json_row)
-          new RUNNER_CATALOG_ATTRS.inject({}) { |h, a| h[a] = json_row[a.to_s.camelize(:lower)]; h }
-        end
+        attributes RUNNER_CATALOG_ATTRS
 
       end
     end

@@ -3,11 +3,25 @@ module BetfairApiNgRails
     module Data
       class MarketDescription < Api::Data::Base
 
-        attr_accessor *MARKET_DESCRIPTION_ATTRS
+        MARKET_DESCRIPTION_ATTRS = [
+          :persistence_enabled,
+          :bsp_market,
+          :market_time,
+          :suspend_time,
+          :settle_time,
+          :betting_type,
+          :turn_in_play_enabled,
+          :market_type,
+          :regulator,
+          :market_base_rate,
+          :discount_allowed,
+          :wallet,
+          :rules,
+          :rules_has_date,
+          :clarifications
+        ]
 
-        def self.from_json(json_row)
-          new MARKET_DESCRIPTION_ATTRS.inject({}) { |h, a| h[a] = json_row[a.to_s.camelize(:lower)]; h }
-        end
+        attributes MARKET_DESCRIPTION_ATTRS
 
       end
     end
