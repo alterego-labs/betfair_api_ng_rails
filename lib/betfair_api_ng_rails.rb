@@ -116,6 +116,7 @@ module BetfairApiNgRails
       autoload :ListVenues,          'betfair_api_ng_rails/api/parsers/list_venues'
       autoload :ListMarketTypes,     'betfair_api_ng_rails/api/parsers/list_market_types'
       autoload :ListMarketCatalogue, 'betfair_api_ng_rails/api/parsers/list_market_catalogue'
+      autoload :ListMarketBook,      'betfair_api_ng_rails/api/parsers/list_market_book'
 
     end
 
