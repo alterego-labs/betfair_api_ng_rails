@@ -29,6 +29,15 @@ describe BetfairApiNgRails::Api::RequestMethods do
 
   end
 
+  describe "#list_market_book" do
+    
+    it "calls run_request with proper params" do
+      expect(TestModule).to receive(:run_request).with(:list_market_book, {market_ids: ['1'], price_projection: :priceProjection, order_projection: '', match_projection: ''}, {currency_code: 'USD', locale: :en})
+      TestModule.list_market_book market_ids: ['1'], price_projection: :priceProjection
+    end
+
+  end
+
   describe "#place_orders" do
     
     it "calls run_request with proper params" do
