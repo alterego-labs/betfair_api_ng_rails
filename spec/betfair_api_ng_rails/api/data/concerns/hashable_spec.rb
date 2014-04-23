@@ -53,6 +53,36 @@ describe BetfairApiNgRails::Api::Data::Concerns::Hashable do
 
     end
 
+    describe "#get_attr_key" do
+      
+      subject { TestClass.new.send :get_attr_key, attrib }
+
+      context 'when passed Hash' do
+      
+        let(:attrib) { {some_attr: { type: String }} }
+
+        context 'returns first key' do
+          
+          it { is_expected.to eq :some_attr }
+
+        end
+
+      end 
+
+      context 'when passed single value' do
+        
+        let(:attrib) { :some_attr }
+
+        context 'returns it' do
+          
+          it { is_expected.to eq :some_attr }
+
+        end
+
+      end
+
+    end
+
   end
 
   describe "integration tests" do
@@ -73,6 +103,20 @@ describe BetfairApiNgRails::Api::Data::Concerns::Hashable do
       end
 
       its(:to_hash) { is_expected.to eq({'name' => 'Walli'}) }
+
+    end
+
+    context 'when exists attr with additional options' do
+      
+      before(:each) do
+        subject.class.send :instance_eval, <<-CODE
+          attr_accessor :second_name
+          def self.to_hash_attrs; [:name, {second_name: {type: String, array: false}}]; end
+        CODE
+        subject.second_name = "Black"
+      end
+
+      its(:to_hash) { is_expected.to eq({'name' => 'Walli', 'secondName' => 'Black'}) }
 
     end
 

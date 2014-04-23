@@ -13,13 +13,18 @@ module BetfairApiNgRails
 
           def attributes_hash
             self.class.to_hash_attrs.each_with_object({}) do |a, h|
-              val = get_attr_value(a)
-              h[a] = val unless val.nil?
+              key = get_attr_key(a)
+              val = get_attr_value(key)
+              h[get_attr_key(key)] = val unless val.nil?
             end
           end
 
           def get_attr_value(attrib)
             self.send attrib
+          end
+
+          def get_attr_key(attrib)
+            attrib.is_a?(Hash) ? attrib.keys.first : attrib
           end
 
         end
