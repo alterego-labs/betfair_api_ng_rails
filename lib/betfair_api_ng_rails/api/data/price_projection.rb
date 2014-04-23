@@ -2,6 +2,7 @@ module BetfairApiNgRails
   module Api
     module Data
       class PriceProjection < Api::Data::Base
+        include Api::Data::Concerns::Hashable
 
         PRICE_PROJECTION_ATTRS = [
           :price_data,

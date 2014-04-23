@@ -2,6 +2,7 @@ module BetfairApiNgRails
   module Api
     module Data
       class ExBestOffersOverrides < Api::Data::Base
+        include Api::Data::Concerns::Hashable
 
         EX_BEST_OFFERS_OVERRIDES_ATTRS = [
           :best_prices_depth,
