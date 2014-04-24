@@ -1,5 +1,3 @@
-require 'pry-nav'
-
 module BetfairApiNgRails
   module Api
     module Parsers

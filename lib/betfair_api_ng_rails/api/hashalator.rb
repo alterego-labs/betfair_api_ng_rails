@@ -11,7 +11,8 @@ module BetfairApiNgRails
 
       def to_hash
         hashable.inject({}) do |h, (k, v)|
-          h[hash_key(k)] = hash_value(v)
+          value = hash_value(v)
+          h[hash_key(k)] = value if !value.nil? && value != ""
           h
         end
       end

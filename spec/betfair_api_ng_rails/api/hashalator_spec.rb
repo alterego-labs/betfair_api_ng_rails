@@ -9,11 +9,25 @@ describe BetfairApiNgRails::Api::Hashalator do
   its(:hashable) { is_expected.to eq hashable }
 
   describe "#to_hash" do
+
+    context 'when value isn\'t blank or nil' do
     
-    it "iterates though elements and process they" do
-      expect(subject).to receive(:hash_key).at_least(:once)
-      expect(subject).to receive(:hash_value).at_least(:once)
-      subject.to_hash
+      it "iterates though elements and process they" do
+        expect(subject).to receive(:hash_key).at_least(:once)
+        expect(subject).to receive(:hash_value).at_least(:once).and_return double
+        subject.to_hash
+      end
+
+    end
+    
+    context 'when else' do
+
+      it "does include it result hash" do
+        expect(subject).to receive(:hash_key).exactly(0).times
+        expect(subject).to receive(:hash_value).at_least(:once)
+        subject.to_hash
+      end
+      
     end
 
   end
@@ -138,6 +152,22 @@ describe BetfairApiNgRails::Api::Hashalator do
       before { expect(el).to receive(:to_hash).and_return(el) }
 
       it { is_expected.to eq({'someKey' => [el]}) }
+
+    end
+
+    context 'when one of values is blank' do
+      
+      let(:hashable) { {some_key: ""} }
+
+      it { is_expected.to eq({}) }
+
+    end
+
+    context 'when one of values is nil' do
+      
+      let(:hashable) { {some_key: nil} }
+
+      it { is_expected.to eq({}) }
 
     end
 
