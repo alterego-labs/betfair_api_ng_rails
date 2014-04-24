@@ -12,10 +12,31 @@ countryCodeResult:
   marketCount: '1'
   countryCode: 'UA'
 
-event:
+event: &event
   id: '1'
   name: 'Chelse - PSG'
   timezone: 'TZ'
   countryCode: 'UA'
   venue: 'Madrid'
   openDate: '24-04-2014'
+
+eventResult:
+  marketCount: 1
+  event:
+    <<: *event
+
+eventType: &eventType
+  id: 1
+  name: 'Soccer'
+
+eventTypeResult:
+  marketCount: 1
+  eventType:
+    <<: *eventType
+
+exBestOffersOverrides:
+  bestPricesDepth: 'depth'
+  rollupModel: 'model'
+  rollupLimit: 'limit'
+  rollupLiabilityThreshold: 'threshold'
+  rollupLiabilityFactor: 'factor'
