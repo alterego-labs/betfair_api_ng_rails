@@ -1,5 +1,4 @@
 require 'active_support/inflector'
-require 'pry-nav'
 
 module BetfairApiNgRails
   module Api
