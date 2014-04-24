@@ -1,0 +1,21 @@
+competition: &competition
+  id: '1'
+  name: World Cup 2014
+
+competitionResult:
+  marketCount: '1'
+  competitionRegion: UA
+  competition:
+    <<: *competition
+
+countryCodeResult:
+  marketCount: '1'
+  countryCode: 'UA'
+
+event:
+  id: '1'
+  name: 'Chelse - PSG'
+  timezone: 'TZ'
+  countryCode: 'UA'
+  venue: 'Madrid'
+  openDate: '24-04-2014'
