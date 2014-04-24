@@ -7,3 +7,7 @@ competitionResult:
   competitionRegion: UA
   competition:
     <<: *competition
+
+countryCodeResult:
+  marketCount: '1'
+  countryCode: 'UA'
