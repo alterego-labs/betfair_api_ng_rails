@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe BetfairApiNgRails::CompetitionResult do
   
-  let(:json) { {'marketCount' => '1', 'competitionRegion' => 'UA', 'competition' => {'id' => 1, 'name' => 'World Cup 2014'}} }
+  let(:json) { DataModelsYamlLoader.new.fetch('competitionResult') }
   let(:data) { described_class.from_json(json) }
 
   describe "loading from json" do

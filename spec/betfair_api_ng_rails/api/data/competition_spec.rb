@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe BetfairApiNgRails::Competition do
   
-  let(:json) { {'id' => 1, 'name' => 'World Cup 2014'} }
+  let(:json) { DataModelsYamlLoader.new.fetch('competition') }
   let(:data) { described_class.from_json(json) }
 
   describe "loading from json" do
@@ -11,7 +11,7 @@ describe BetfairApiNgRails::Competition do
 
     it { is_expected.to be_kind_of described_class }
 
-    its(:id)   { is_expected.to eq 1 }
+    its(:id)   { is_expected.to eq '1' }
     its(:name) { is_expected.to eq 'World Cup 2014' }
 
   end

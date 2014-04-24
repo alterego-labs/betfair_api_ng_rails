@@ -1,0 +1,9 @@
+competition: &competition
+  id: '1'
+  name: World Cup 2014
+
+competitionResult:
+  marketCount: '1'
+  competitionRegion: UA
+  competition:
+    <<: *competition
