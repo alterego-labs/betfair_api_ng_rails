@@ -7,9 +7,6 @@ module BetfairApiNgRails
         include Api::Data::Concerns::Attributable
         include Api::Data::Concerns::Jsonable
 
-        # include Api::Data::Attributes
-        # extend  Api::Data::Attributes
-
         def initialize(args = {})
           args.each { |attribute, value| self.send("#{attribute}=", value) }
         end
