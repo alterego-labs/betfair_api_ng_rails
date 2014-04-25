@@ -1,3 +1,5 @@
+require "betfair_api_ng_rails/errors"
+
 module BetfairApiNgRails
   module Api
     class Connection
@@ -12,6 +14,7 @@ module BetfairApiNgRails
         provider.fetch method: method, params: hashing(params)
       end
 
+      include Api::ConnectionExt::ErrorHandling
       include Api::ConnectionExt::Parsing
       include Api::ConnectionExt::Formatting
 

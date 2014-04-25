@@ -22,7 +22,9 @@ shared_examples 'simple list filtering request' do |method|
 
       let(:result_hash) { "{\"error\":{\"code\":-32700,\"message\":\"DSC-3000\"}}" }
 
-      it { is_expected.to be_empty }
+      it "raise APINGException" do
+        expect{ subject }.to raise_error
+      end
 
     end
 
