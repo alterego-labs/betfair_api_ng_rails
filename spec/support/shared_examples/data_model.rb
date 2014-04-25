@@ -12,7 +12,7 @@ shared_examples 'data model' do |resourceHash|
     resourceHash.each do |k, v|
       next unless v.is_a?(String)
       
-      its(k.underscore)   { is_expected.to eq v }
+      its(Helper.key_to_attribute(k))   { is_expected.to eq v }
 
     end
 

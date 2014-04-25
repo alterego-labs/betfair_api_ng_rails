@@ -34,9 +34,172 @@ eventTypeResult:
   eventType:
     <<: *eventType
 
-exBestOffersOverrides:
+exBestOffersOverrides: &exBestOffersOverrides
   bestPricesDepth: 'depth'
   rollupModel: 'model'
   rollupLimit: 'limit'
   rollupLiabilityThreshold: 'threshold'
   rollupLiabilityFactor: 'factor'
+
+priceSize: &priceSize
+  price: '2'
+  size: '3'
+
+exchangePrices: &exchangePrices
+  availableToBack:
+    - <<: *priceSize
+  availableToLay:
+    - <<: *priceSize
+  tradedVolume:
+    - <<: *priceSize
+
+timeRange: &timeRange
+  from: '23-04-2014'
+  to: '24-04-2014'
+
+timeRangeResult:
+  marketCount: '1'
+  timeRange:
+    <<: *timeRange
+
+venueResult:
+  marketCount: '1'
+  venue: 'Madrid'
+
+startingPrices: &startingPrices
+  nearPrice: '1'
+  farPrice: '2'
+  backStakeTaken:
+    - <<: *priceSize
+  layLiabilityTaken:
+    - <<: *priceSize
+  actualSP: '123'
+
+runnerCatalog: &runnerCatalog
+  selectionId: '123'
+  runnerName: 'name'
+  handicap: '1'
+  sortPriority: '2'
+  metadata: '3'
+
+priceProjection:
+  priceData: '1'
+  exBestOffersOverrides:
+    <<: *exBestOffersOverrides
+  virtualise: '2'
+  rolloverStakes: '3'
+
+marketTypeResult:
+  marketCount: '1'
+  marketType: 'MATCH'
+
+match: &match
+  betId: '1' 
+  matchId: '2'
+  side: '3'
+  price: '3'
+  size: '4'
+  matchDate: '121' 
+
+order: &order
+  betId: '1'
+  orderType: '2'
+  status: '12'
+  persistenceType: '3'
+  side: '2'
+  price: '4'
+  size: '3'
+  bspLiability: '12'
+  placedDate: '121'
+  avgPriceMatched: 'some'
+  sizeMatched: 'some'
+  sizeRemaining: 'some'
+  sizeLapsed: 'some'
+  sizeCancelled: 'some'
+  sizeVoided: 'some'
+
+marketFilter:
+  textQuery: 'some'
+  exchangeIds: 'some'
+  eventTypeIds: 'some'
+  eventIds: 'some'
+  competitionIds: 'some'
+  venues: 'some'
+  bspOnly: 'some'
+  turnInPlayEnabled: 'some'
+  inPlayOnly: 'some'
+  marketBettingTypes: 'some'
+  marketCountries: 'some'
+  marketTypeCodes: 'some'
+  marketStartTime: 'some'
+  withOrders: 'some'
+
+marketDescription: &marketDescription
+  persistenceEnabled: 'dqwdqw'
+  bspMarket: 'qwdqwd'
+  marketTime: 'adqwd'
+  suspendTime: 'adqwd'
+  settleTime: 'adqwd'
+  bettingType: 'afqwfw'
+  turnInPlayEnabled: 'qdqwd'
+  marketType: 'MATCH_ODDS'
+  regulator: 'qwdqwd'
+  marketBaseRate: 'dqwd'
+  discountAllowed: 'adqwdw'
+  wallet: 'adqwdw'
+  rules: 'wefewfwe'
+  rulesHasDate: '34'
+  clarifications: '123'
+
+runner: &runner
+  selectionId: '123'
+  handicap: '3'
+  status: 'active'
+  adjustmentFactor: '1.2'
+  lastPriceTraded: '125.4'
+  totalMatched: '1235.34'
+  removalDate: '23-04-2014'
+  sp:
+    <<: *startingPrices
+  ex:
+    <<: *exchangePrices
+  orders:
+    - <<: *order
+  matches:
+    - <<: *match
+
+marketBook:
+  marketId: '123'
+  isMarketDataDelayed: 'adwqd'
+  status: 'dqwdqw'
+  betDelay: 'dqwd'
+  bspReconciled: 'dqwd'
+  complete: 'adqwd'
+  inplay: 'dqwdqw'
+  numberOfRunners: 'qdqw'
+  numberOfWinners: 'qdqwd'
+  numberOfActiveRunners: 'dwqwd'
+  lastMatchTime: 'qdqw'
+  totalMatched: 'qwdwq'
+  totalAvailable: 'adqwd'
+  crossMatching: 'wdqwdqw'
+  runnersVoidable: 'adqwdw'
+  version: '123'
+  runners:
+    - <<: *runner
+
+marketCatalogue:
+  marketId: '123'
+  marketName: 'name'
+  marketStartTime: '23-04-2014'
+  totalMatched: '123.4'
+  description:
+    <<: *marketDescription
+  runners:
+    - <<: *runnerCatalog
+  eventType:
+    <<: *eventType
+  competition:
+    <<: *competition
+  event:
+    <<: *event
