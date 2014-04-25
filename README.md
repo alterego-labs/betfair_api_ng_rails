@@ -51,6 +51,10 @@ Please check [wiki pages](https://github.com/alterego-labs/betfair_api_ng_rails/
 4. Added shortcuts for models
 5. Refactoring
 
+## Specs
+
+You may running all specs by `rspec spec --color` to be sure that all is alright.
+
 ## Contributing
 
 1. Fork it

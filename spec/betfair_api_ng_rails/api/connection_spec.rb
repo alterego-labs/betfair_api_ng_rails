@@ -17,6 +17,7 @@ describe BetfairApiNgRails::Api::Connection do
     
     let(:provider) { double(:provider) }
     let(:parser)   { double(:parser, process: true) }
+    let(:response) { double(:response) }
 
     before(:each) do 
       expect_any_instance_of(described_class).to receive(:request_ssoid) 
@@ -25,7 +26,8 @@ describe BetfairApiNgRails::Api::Connection do
 
     it "calls provider's fetch method" do
       expect(subject).to receive(:provider).and_return provider
-      expect(provider).to receive(:fetch).with(method: 'method', params: {})
+      expect(provider).to receive(:fetch).with(method: 'method', params: {}).and_return response
+      expect(response).to receive(:has_error?).and_return false
       expect(subject).to receive(:hashing).with({}).and_return({})
       subject.request 'method'
     end
