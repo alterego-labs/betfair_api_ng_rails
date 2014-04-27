@@ -6,6 +6,8 @@ module TestModule
 end
 
 describe BetfairApiNgRails::Api::RequestMethods do
+
+  before { BetfairApiNgRails.config.locale = :en }
   
   BetfairApiNgRails::Api::Constants::SIMPLE_LISTING_FILTERED.each do |method|
 
