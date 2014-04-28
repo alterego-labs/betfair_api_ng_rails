@@ -19,6 +19,13 @@ module BetfairApiNgRails
     autoload :Connection,         'betfair_api_ng_rails/api/connection'
     autoload :Hashalator,         'betfair_api_ng_rails/api/hashalator'
 
+    module Logs
+    
+      autoload :FileLogger,         'betfair_api_ng_rails/api/logs/file_logger'
+      autoload :ConsoleLogger,      'betfair_api_ng_rails/api/logs/console_logger'
+
+    end
+
     module Formatters
 
       autoload :JsTreeFormatter, 'betfair_api_ng_rails/api/formatters/js_tree_formatter'
@@ -132,6 +139,10 @@ module BetfairApiNgRails
 
   include Api::Data
   extend  Api::RequestMethods
+
+  class << self
+    attr_accessor :log
+  end
 
   def self.config(&block)
     @_config ||= BetfairApiNgRails::Api::Config
