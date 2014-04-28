@@ -35,7 +35,14 @@ In this files you must specify credentials to API-NG. Also you should notice tha
 
 ## Usage
 
-Please check [wiki pages](https://github.com/alterego-labs/betfair_api_ng_rails/wiki). It will be available soon...
+Please check [wiki pages](https://github.com/alterego-labs/betfair_api_ng_rails/wiki).
+
+## CHANGES IN 1.1.0
+
+1. Supporting all [Simple listing filtered requests](https://github.com/alterego-labs/betfair_api_ng_rails/wiki/Simple-listing-filtered-requests)
+2. Supporting **listMarketCatalogue** and **listMarketBook** methods
+3. Raising APINGException if error occurred similar official API-NG
+4. Refactoring and testing
 
 ## CHANGES IN 1.0.0
 
