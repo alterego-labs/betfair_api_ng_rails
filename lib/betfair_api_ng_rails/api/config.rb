@@ -20,6 +20,12 @@ module BetfairApiNgRails
           @formatter = BetfairApiNgRails::Api::FormatterFactory.initialize_formatter value
         end
 
+        def load_for_environment(file_path, env)
+          require 'yaml'
+          load_config = YAML.load_file(file_path)[env]
+          Api::Constants::LOADABLE_CONFIG_OPTIONS.each { |opt| self.send("#{opt}=", load_config[opt.to_s]) }
+        end
+
       end
 
     end

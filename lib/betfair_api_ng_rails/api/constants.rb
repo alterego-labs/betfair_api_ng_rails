@@ -46,6 +46,15 @@ module BetfairApiNgRails
         "listVenues"
       ]
 
+      LOADABLE_CONFIG_OPTIONS = [
+        :application_key,
+        :login_url,
+        :api_url,
+        :keep_alive_url,
+        :username,
+        :password
+      ]
+
     end
   end
 end
