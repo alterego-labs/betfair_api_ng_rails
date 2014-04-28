@@ -1,8 +1,13 @@
 shared_examples 'simple list filtering request' do |method|
 
   let(:parameters)   { {filter: filter} }
+  let(:logger)       { double(:logger) }
 
-  before(:each) { BetfairApiNgRails.config.formatter = nil }
+  before(:each) do 
+    BetfairApiNgRails.config.formatter = nil
+    BetfairApiNgRails.log = logger
+    allow(logger).to receive(:write)
+  end
 
   context 'when no error occured' do
 
