@@ -10,7 +10,7 @@ module BetfairApiNgRails
         end
 
         def write(content)
-          File.open(file_path, 'w') { |file| file.write(content) }
+          File.open(file_path, 'a') { |file| file.puts(content) }
         end
 
       private
