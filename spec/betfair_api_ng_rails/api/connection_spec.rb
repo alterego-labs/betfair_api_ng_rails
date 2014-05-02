@@ -4,15 +4,6 @@ describe BetfairApiNgRails::Api::Connection do
   
   subject { described_class.new }
 
-  describe "#initialize" do
-    
-    it "requests session identifier" do
-      expect_any_instance_of(described_class).to receive(:request_ssoid)
-      described_class.new
-    end
-
-  end
-
   describe "#request" do
     
     let(:provider) { double(:provider) }
@@ -21,7 +12,6 @@ describe BetfairApiNgRails::Api::Connection do
     let(:logger)   { double(:logger) }
 
     before(:each) do 
-      expect_any_instance_of(described_class).to receive(:request_ssoid) 
       expect(subject).to receive(:init_parser).and_return parser
       BetfairApiNgRails.log = logger
       allow(logger).to receive(:write)
@@ -41,10 +31,11 @@ describe BetfairApiNgRails::Api::Connection do
 
     describe "#provider" do
       
-      before(:each) { expect_any_instance_of(described_class).to receive(:request_ssoid) }
+      let(:ssoid) { double(:ssoid) }
 
       it "inits new provider" do
-        expect(BetfairApiNgRails::Api::Provider).to receive(:new)
+        expect(BetfairApiNgRails::Api::Provider).to receive(:new).with ssoid
+        expect(subject).to receive(:request_ssoid).and_return ssoid
         subject.send(:provider)
       end
 
@@ -63,8 +54,6 @@ describe BetfairApiNgRails::Api::Connection do
       
       let(:hashalator) { double(:hashalator) }
       let(:params) { double(:params) }
-
-      before(:each) { expect_any_instance_of(described_class).to receive(:request_ssoid) }
 
       it "hashalators params" do
         expect(BetfairApiNgRails::Api::Hashalator).to receive(:new).with(params).and_return hashalator

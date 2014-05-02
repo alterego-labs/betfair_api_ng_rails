@@ -3,12 +3,6 @@ require "betfair_api_ng_rails/errors"
 module BetfairApiNgRails
   module Api
     class Connection
-      
-      attr_reader :ssoid
-
-      def initialize
-        request_ssoid
-      end
 
       def request(method, params = {})
         provider.fetch method: method, params: hashing(params)
@@ -22,11 +16,11 @@ module BetfairApiNgRails
     protected
 
       def provider
-        @_provider ||= BetfairApiNgRails::Api::Provider.new ssoid
+        @_provider ||= BetfairApiNgRails::Api::Provider.new request_ssoid
       end
 
       def request_ssoid
-        @ssoid = BetfairApiNgRails::Api::SessionManager.new_ssoid
+        @_ssoid ||= BetfairApiNgRails::Api::SessionManager.new_ssoid
       end
 
       def hashing(params)

@@ -14,7 +14,7 @@ describe BetfairApiNgRails::Api::Logs::FileLogger do
 
     it "writes passed string to log file" do
       expect(File).to receive(:open).and_yield file
-      expect(file).to receive(:write).with(string)
+      expect(file).to receive(:puts).with(string)
       object.write string
     end
 
