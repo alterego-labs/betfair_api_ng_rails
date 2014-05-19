@@ -10,8 +10,14 @@ module BetfairApiNgRails
 
       include Api::ConnectionExt::Logging
       include Api::ConnectionExt::ErrorHandling
+      include Api::ConnectionExt::SsoidRefreshing
       include Api::ConnectionExt::Parsing
       include Api::ConnectionExt::Formatting
+
+      def expire_ssoid
+        @_provider = nil
+        BetfairApiNgRails::Api::SessionManager.expire_ssoid
+      end
 
     protected
 

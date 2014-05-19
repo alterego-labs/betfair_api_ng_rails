@@ -129,10 +129,11 @@ module BetfairApiNgRails
 
     module ConnectionExt
       
-      autoload :ErrorHandling, 'betfair_api_ng_rails/api/connection_ext/error_handling'
-      autoload :Parsing,       'betfair_api_ng_rails/api/connection_ext/parsing'
-      autoload :Formatting,    'betfair_api_ng_rails/api/connection_ext/formatting'
-      autoload :Logging,       'betfair_api_ng_rails/api/connection_ext/logging'
+      autoload :ErrorHandling,   'betfair_api_ng_rails/api/connection_ext/error_handling'
+      autoload :SsoidRefreshing, 'betfair_api_ng_rails/api/connection_ext/ssoid_refreshing'
+      autoload :Parsing,         'betfair_api_ng_rails/api/connection_ext/parsing'
+      autoload :Formatting,      'betfair_api_ng_rails/api/connection_ext/formatting'
+      autoload :Logging,         'betfair_api_ng_rails/api/connection_ext/logging'
 
     end
 
