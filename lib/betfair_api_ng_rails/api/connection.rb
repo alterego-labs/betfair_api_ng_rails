@@ -14,9 +14,8 @@ module BetfairApiNgRails
       include Api::ConnectionExt::Parsing
       include Api::ConnectionExt::Formatting
 
-      def expire_ssoid
+      def expire_provider
         @_provider = nil
-        BetfairApiNgRails::Api::SessionManager.expire_ssoid
       end
 
     protected
@@ -26,7 +25,7 @@ module BetfairApiNgRails
       end
 
       def request_ssoid
-        @_ssoid ||= BetfairApiNgRails::Api::SessionManager.new_ssoid
+        BetfairApiNgRails::Api::SessionManager.new_ssoid
       end
 
       def hashing(params)

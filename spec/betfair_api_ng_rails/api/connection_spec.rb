@@ -27,11 +27,10 @@ describe BetfairApiNgRails::Api::Connection do
 
   end
 
-  describe "#expire_ssoid" do
+  describe "#expire_provider" do
     
     it "resets provider and ssoid" do
-      expect(BetfairApiNgRails::Api::SessionManager).to receive(:expire_ssoid)
-      connection.expire_ssoid
+      connection.expire_provider
       expect(connection.instance_variable_get(:@_provider)).to be_nil
     end
 

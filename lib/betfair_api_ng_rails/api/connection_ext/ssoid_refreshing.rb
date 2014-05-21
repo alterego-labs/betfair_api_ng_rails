@@ -27,11 +27,11 @@ module BetfairApiNgRails
       private
 
         def is_ssoid_problem?(e)
-          e.info[:info]["code"] == -32099
+          e.info[:info]["code"].to_i == -32099
         end
 
         def try_request(method, params)
-          expire_ssoid
+          expire_provider
           request_without_ssoid_refreshing(method, params)
         end
 
