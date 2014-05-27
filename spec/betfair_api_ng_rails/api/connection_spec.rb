@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe BetfairApiNgRails::Api::Connection do
   
-  subject { described_class.new }
+  subject(:connection) { described_class.new }
 
   describe "#request" do
     
@@ -23,6 +23,15 @@ describe BetfairApiNgRails::Api::Connection do
       expect(response).to receive(:has_error?).and_return false
       allow(subject).to receive(:hashing).with({}).and_return({})
       subject.request 'method'
+    end
+
+  end
+
+  describe "#expire_provider" do
+    
+    it "resets provider and ssoid" do
+      connection.expire_provider
+      expect(connection.instance_variable_get(:@_provider)).to be_nil
     end
 
   end

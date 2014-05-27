@@ -10,8 +10,13 @@ module BetfairApiNgRails
 
       include Api::ConnectionExt::Logging
       include Api::ConnectionExt::ErrorHandling
+      include Api::ConnectionExt::SsoidRefreshing
       include Api::ConnectionExt::Parsing
       include Api::ConnectionExt::Formatting
+
+      def expire_provider
+        @_provider = nil
+      end
 
     protected
 
@@ -20,7 +25,7 @@ module BetfairApiNgRails
       end
 
       def request_ssoid
-        @_ssoid ||= BetfairApiNgRails::Api::SessionManager.new_ssoid
+        BetfairApiNgRails::Api::SessionManager.new_ssoid
       end
 
       def hashing(params)
