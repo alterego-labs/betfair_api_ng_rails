@@ -2,6 +2,7 @@ require "betfair_api_ng_rails/version"
 require "betfair_api_ng_rails/errors"
 require "betfair_api_ng_rails/api/request_methods"
 require "betfair_api_ng_rails/railtie" if defined?(Rails)
+require 'active_redis'
 
 module BetfairApiNgRails
 
@@ -18,6 +19,19 @@ module BetfairApiNgRails
 
     autoload :Connection,         'betfair_api_ng_rails/api/connection'
     autoload :Hashalator,         'betfair_api_ng_rails/api/hashalator'
+
+    module Caching
+      
+      autoload :Helper,         'betfair_api_ng_rails/api/caching/helper'
+      autoload :ResponseCache,  'betfair_api_ng_rails/api/caching/response_cache'
+
+      module Models
+        
+        autoload :BetfairCache,  'betfair_api_ng_rails/api/caching/models/betfair_cache'        
+
+      end
+
+    end
 
     module Logs
     
@@ -134,6 +148,7 @@ module BetfairApiNgRails
       autoload :Parsing,         'betfair_api_ng_rails/api/connection_ext/parsing'
       autoload :Formatting,      'betfair_api_ng_rails/api/connection_ext/formatting'
       autoload :Logging,         'betfair_api_ng_rails/api/connection_ext/logging'
+      autoload :Caching,         'betfair_api_ng_rails/api/connection_ext/caching'
 
     end
 
