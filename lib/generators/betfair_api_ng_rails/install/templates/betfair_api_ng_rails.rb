@@ -9,4 +9,8 @@ BetfairApiNgRails.config do |config|
   config.formatter          = nil
   config.keep_alive_session = true
 
+  # Caching settings
+  config.use_cache          = false
+  config.cache_expire       = 5     # in seconds
+
 end
