@@ -10,7 +10,9 @@ module BetfairApiNgRails
           base.send :class_eval,  <<-CODE
             def request_with_logging(method, params = {})
               write_income_request method, params
-              request_without_logging(method, params).tap { |res| write_result(res) }
+              res = request_without_logging(method, params)
+              write_result(res)
+              res
             end
             alias_method :request_without_logging, :request
             alias_method :request, :request_with_logging

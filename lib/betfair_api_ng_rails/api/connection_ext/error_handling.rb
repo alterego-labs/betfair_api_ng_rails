@@ -11,7 +11,7 @@ module BetfairApiNgRails
           base.send :class_eval,  <<-CODE
             def request_with_error_handling(method, params = {})
               res = request_without_error_handling(method, params)
-              raise_exception(res.error_info) if res.has_error?
+              raise_exception(res.try(:error_info) || default_error_info) if res.nil? || res.has_error?
               res
             end
             alias_method :request_without_error_handling, :request
@@ -23,6 +23,10 @@ module BetfairApiNgRails
 
         def raise_exception(error)
           raise BetfairApiNgRails::APINGException.new(error), "Error in #{error[:type]} section"
+        end
+
+        def default_error_info
+          {type: :SESSION, info: { 'code' => -32099 }}
         end
 
       end
