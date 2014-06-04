@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency             "colorize",      ">= 0.7.2"
-  spec.add_dependency             "active_redis",  "0.0.9.1"
+  spec.add_dependency             "redis",         '3.0.7'
   spec.add_dependency             "activesupport", '>= 3.0.0'
 
   spec.add_development_dependency "bundler",       "~> 1.3"

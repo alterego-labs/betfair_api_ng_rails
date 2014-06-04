@@ -2,7 +2,7 @@ require "betfair_api_ng_rails/version"
 require "betfair_api_ng_rails/errors"
 require "betfair_api_ng_rails/api/request_methods"
 require "betfair_api_ng_rails/railtie" if defined?(Rails)
-require 'active_redis'
+require 'redis'
 
 module BetfairApiNgRails
 
@@ -24,12 +24,6 @@ module BetfairApiNgRails
       
       autoload :Helper,         'betfair_api_ng_rails/api/caching/helper'
       autoload :ResponseCache,  'betfair_api_ng_rails/api/caching/response_cache'
-
-      module Models
-        
-        autoload :BetfairCache,  'betfair_api_ng_rails/api/caching/models/betfair_cache'        
-
-      end
 
     end
 

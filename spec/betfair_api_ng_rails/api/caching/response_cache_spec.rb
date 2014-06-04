@@ -9,13 +9,22 @@ describe BetfairApiNgRails::Api::Caching::ResponseCache do
 
   before { allow_any_instance_of(described_class).to receive(:createsig).with(:params).and_return :sig_params }
 
+  describe ".redis_connection" do
+    
+    it "initializes connection to redis" do
+      expect(Redis).to receive :new
+      described_class.redis_connection
+    end
+
+  end
+
   describe "#is_cached?" do
     
     before { expect(cache).to receive(:cache_result).and_return(cache_result) }
 
     context 'when cache result returns item' do
       
-      let(:cache_result) { [double] }
+      let(:cache_result) { double }
 
       its(:is_cached?) { is_expected.to be_truthy }
 
@@ -23,7 +32,7 @@ describe BetfairApiNgRails::Api::Caching::ResponseCache do
 
     context 'when cache result returns no item' do
       
-      let(:cache_result) { [] }
+      let(:cache_result) { nil }
 
       its(:is_cached?) { is_expected.to be_falsey }
 
@@ -45,16 +54,16 @@ describe BetfairApiNgRails::Api::Caching::ResponseCache do
   describe "#cache!" do
     
     let(:response) { { some: :key } }
-    let(:record)   { double(:record) }
+    let(:cache_adapter) { double(:cache_adapter) }
 
-    before do 
-      expect(cache).to receive(:create_params).with(response).and_return :create_params
-      expect(cache).to receive(:expire_time).and_return :expire_time
+    before do
+      allow(cache).to receive(:cache_adapter).and_return cache_adapter
+      expect(cache).to receive(:expire_time).and_return 5
     end
 
     it "saves response in cache" do
-      expect(BetfairApiNgRails::Api::Caching::Models::BetfairCache).to receive(:create).with(:create_params).and_return record
-      expect(record).to receive(:expire).with :expire_time
+      expect(cache_adapter).to receive(:set).with("betfair_api_ng_rails:method:sig_params", "{\"some\":\"key\"}")
+      expect(cache_adapter).to receive(:expire).with("betfair_api_ng_rails:method:sig_params", 5)
       cache.cache! response
     end
 
@@ -63,9 +72,13 @@ describe BetfairApiNgRails::Api::Caching::ResponseCache do
   context 'private method' do
     
     describe "#cache_result" do
-      
+
+      let(:cache_adapter) { double(:cache_adapter) }
+
+      before { expect(cache).to receive(:cache_adapter).and_return cache_adapter }
+
       it "returns result from cache" do
-        expect(BetfairApiNgRails::Api::Caching::Models::BetfairCache).to receive(:where).with(method: :method, params: :sig_params)
+        expect(cache_adapter).to receive(:get).with("betfair_api_ng_rails:method:sig_params")
         cache.send :cache_result
       end
 
@@ -73,9 +86,7 @@ describe BetfairApiNgRails::Api::Caching::ResponseCache do
 
     describe "#prepare_response" do
       
-      let(:cache_result) { double(:cache_result, response: 'some response text') }
-
-      before { allow(cache).to receive(:cache_result).and_return [cache_result] }
+      before { allow(cache).to receive(:cache_result).and_return :result }
 
       subject(:response) { cache.send(:prepare_response) }
 
@@ -83,7 +94,7 @@ describe BetfairApiNgRails::Api::Caching::ResponseCache do
 
       it { is_expected.to respond_to(:code) }
 
-      its(:body) { is_expected.to eq 'some response text' }
+      its(:body) { is_expected.to eq :result }
 
       its(:code) { is_expected.to eq '200' }
 
@@ -98,10 +109,19 @@ describe BetfairApiNgRails::Api::Caching::ResponseCache do
 
     end
 
-    describe "#create_params" do
+    describe "#cache_adapter" do
       
-      it "returns params for saving cache" do
-        expect(cache.send(:create_params, {some: :key})).to eq(method: :method, params: :sig_params, response: "{\"some\":\"key\"}")
+      it "returns redis connection" do
+        expect(cache).to receive_message_chain(:class, :redis_connection)
+        cache.send :cache_adapter
+      end
+
+    end
+
+    describe "#cache_key" do
+      
+      it "returns proper key for cache" do
+        expect(cache.send(:cache_key)).to eq "betfair_api_ng_rails:method:sig_params"
       end
 
     end

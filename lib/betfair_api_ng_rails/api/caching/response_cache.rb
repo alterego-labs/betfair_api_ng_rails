@@ -6,7 +6,6 @@ module BetfairApiNgRails
     module Caching
       class ResponseCache
         include Api::Caching::Helper
-        include Api::Caching::Models
         
         attr_reader :method, :sig_params
 
@@ -15,8 +14,12 @@ module BetfairApiNgRails
           @sig_params = createsig(params)
         end
 
+        def self.redis_connection
+          @_redis_connection ||= Redis.new
+        end
+
         def is_cached?
-          cache_result.count > 0
+          !cache_result.nil?
         end
 
         def responser
@@ -24,25 +27,30 @@ module BetfairApiNgRails
         end
 
         def cache!(response)
-          BetfairCache.create(create_params(response)).expire expire_time
+          cache_adapter.set cache_key, JSON.dump(response)
+          cache_adapter.expire cache_key, expire_time
         end
 
       private
 
         def cache_result
-          BetfairCache.where(method: method, params: sig_params)
+          @_cache_result ||= cache_adapter.get cache_key
         end
 
         def prepare_response
-          OpenStruct.new body: cache_result.first.response, code: '200'
+          OpenStruct.new body: cache_result, code: '200'
         end
 
         def expire_time
           BetfairApiNgRails.config.cache_expire
         end
 
-        def create_params(response)
-          { method: method, params: sig_params, response: JSON.dump(response) }
+        def cache_adapter
+          self.class.redis_connection
+        end
+
+        def cache_key
+          "betfair_api_ng_rails:#{method}:#{sig_params}"
         end
 
       end

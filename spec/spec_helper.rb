@@ -1,12 +1,6 @@
 $TESTING=true
 $:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 
-module ActiveRedis
-  class Base
-    def self.attributes(*args); end
-  end
-end
-
 require 'rspec/its'
 require 'betfair_api_ng_rails'
 
