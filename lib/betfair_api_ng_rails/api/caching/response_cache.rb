@@ -16,7 +16,7 @@ module BetfairApiNgRails
         end
 
         def is_cached?
-          !cache_result.nil?
+          cache_result.count > 0
         end
 
         def responser
@@ -30,11 +30,11 @@ module BetfairApiNgRails
       private
 
         def cache_result
-          @_cache_result ||= BetfairCache.where(method: method, params: sig_params).first
+          BetfairCache.where(method: method, params: sig_params)
         end
 
         def prepare_response
-          OpenStruct.new body: cache_result.response, code: '200'
+          OpenStruct.new body: cache_result.first.response, code: '200'
         end
 
         def expire_time

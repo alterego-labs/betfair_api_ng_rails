@@ -15,7 +15,7 @@ describe BetfairApiNgRails::Api::Caching::ResponseCache do
 
     context 'when cache result returns item' do
       
-      let(:cache_result) { double }
+      let(:cache_result) { [double] }
 
       its(:is_cached?) { is_expected.to be_truthy }
 
@@ -23,7 +23,7 @@ describe BetfairApiNgRails::Api::Caching::ResponseCache do
 
     context 'when cache result returns no item' do
       
-      let(:cache_result) { nil }
+      let(:cache_result) { [] }
 
       its(:is_cached?) { is_expected.to be_falsey }
 
@@ -65,7 +65,7 @@ describe BetfairApiNgRails::Api::Caching::ResponseCache do
     describe "#cache_result" do
       
       it "returns result from cache" do
-        expect(BetfairApiNgRails::Api::Caching::Models::BetfairCache).to receive(:where).with(method: :method, params: :sig_params).and_return []
+        expect(BetfairApiNgRails::Api::Caching::Models::BetfairCache).to receive(:where).with(method: :method, params: :sig_params)
         cache.send :cache_result
       end
 
@@ -75,7 +75,7 @@ describe BetfairApiNgRails::Api::Caching::ResponseCache do
       
       let(:cache_result) { double(:cache_result, response: 'some response text') }
 
-      before { allow(cache).to receive(:cache_result).and_return cache_result }
+      before { allow(cache).to receive(:cache_result).and_return [cache_result] }
 
       subject(:response) { cache.send(:prepare_response) }
 
