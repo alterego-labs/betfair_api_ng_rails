@@ -8,6 +8,7 @@ module BetfairApiNgRails
         provider.fetch method: method, params: hashing(params)
       end
 
+      include Api::ConnectionExt::Caching
       include Api::ConnectionExt::Logging
       include Api::ConnectionExt::ErrorHandling
       include Api::ConnectionExt::SsoidRefreshing
