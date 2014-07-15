@@ -18,7 +18,7 @@ module BetfairApiNgRails
                       :use_cache,
                       :cache_expire,
                       :go_url,
-                      :go_enable
+                      :go_enable,
                       :go_localuser,
                       :go_filename
 

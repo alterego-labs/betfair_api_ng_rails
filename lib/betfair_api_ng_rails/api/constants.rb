@@ -52,7 +52,9 @@ module BetfairApiNgRails
         :api_url,
         :keep_alive_url,
         :username,
-        :password
+        :password,
+        :go_localuser,
+        :go_filename
       ]
 
     end

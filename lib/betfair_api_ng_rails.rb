@@ -114,9 +114,10 @@ module BetfairApiNgRails
 
     module Http
 
-      autoload :Requester,  'betfair_api_ng_rails/api/http/requester'
-      autoload :Responser,  'betfair_api_ng_rails/api/http/responser'
-      autoload :Factory,    'betfair_api_ng_rails/api/http/factory'
+      autoload :Requester,   'betfair_api_ng_rails/api/http/requester'
+      autoload :Responser,   'betfair_api_ng_rails/api/http/responser'
+      autoload :Factory,     'betfair_api_ng_rails/api/http/factory'
+      autoload :GoRequester, 'betfair_api_ng_rails/api/http/go_requester'
 
     end
 

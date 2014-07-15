@@ -63,15 +63,15 @@ module BetfairApiNgRails
         end
 
         def prepare_url
-          provider ? prepare_api_url : prepare_auth_url
+          is_provider ? prepare_api_url : prepare_auth_url
         end
 
         def prepare_auth_url
-          "#{Api::Config.go_url}/en/#{username}/#{password}/#{app_key}/#{Api::Config.go_localuser}/#{Api::Config.go_filename}"
+          "#{Api::Config.go_url}/auth/en/#{username}/#{password}/#{app_key}/#{Api::Config.go_localuser}/#{Api::Config.go_filename}"
         end
 
         def prepare_api_url
-          "#{Api::Config.go_url}/api/#{app_key}/#{session_key}"
+          "#{Api::Config.go_url}/api/#{app_key}/#{CGI::escape(session_key)}"
         end
 
       end
