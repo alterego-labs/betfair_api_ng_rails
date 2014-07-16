@@ -18,7 +18,7 @@ module BetfairApiNgRails
 
         def do_request
           create_http
-          request.body = body
+          prepare_body
           Api::Http::Responser.new http.request(request)
         end
 
@@ -71,7 +71,16 @@ module BetfairApiNgRails
         end
 
         def prepare_api_url
-          "#{Api::Config.go_url}/api/#{app_key}/#{CGI::escape(session_key)}"
+          "#{Api::Config.go_url}/api"
+        end
+
+        def prepare_body
+          return if !is_provider
+          request.body = {
+              appKey: app_key,
+              sessionToken: session_key,
+              body: body
+            }.to_json
         end
 
       end
