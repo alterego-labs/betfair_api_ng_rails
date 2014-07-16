@@ -13,4 +13,9 @@ BetfairApiNgRails.config do |config|
   config.use_cache          = false
   config.cache_expire       = 5     # in seconds
 
+  # Go layer settings
+  config.go_enable          = false
+  # Uncomment next line if you will use go layer and go_enable is set to true
+  #config.go_url            = "http://127.0.0.1/"
+
 end

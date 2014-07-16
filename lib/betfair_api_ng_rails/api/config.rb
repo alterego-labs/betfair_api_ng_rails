@@ -16,7 +16,11 @@ module BetfairApiNgRails
                       :keep_alive_session,
                       :keep_alive_url,
                       :use_cache,
-                      :cache_expire
+                      :cache_expire,
+                      :go_url,
+                      :go_enable,
+                      :go_localuser,
+                      :go_filename
 
         def formatter=(value)
           @formatter = BetfairApiNgRails::Api::FormatterFactory.initialize_formatter value

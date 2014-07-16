@@ -5,6 +5,8 @@ development:
   keep_alive_url: https://identitysso.betfair.com/api/keepAlive
   username: YOUR_ACCOUNT_USERNAME
   password: YOUR_ACCOUNT_PASSWORD
+  go_localuser: YOURUSERNAME
+  go_filename: betfair
 
 production:
   application_key: YOUR_APP_KEY
@@ -13,3 +15,5 @@ production:
   keep_alive_url: https://identitysso.betfair.com/api/keepAlive
   username: YOUR_ACCOUNT_USERNAME
   password: YOUR_ACCOUNT_PASSWORD
+  go_localuser: YOURUSERNAME
+  go_filename: betfair
