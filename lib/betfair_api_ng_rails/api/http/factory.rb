@@ -30,14 +30,13 @@ module BetfairApiNgRails
 
         private
 
-          def create_http_requester(url = "", provider = true)
-            if !Api::Config.go_enable
+          def create_http_requester(url = '', provider = true)
+            if !Api::Config.proxy_enable
               Api::Http::Requester.new url
             else
-              Api::Http::GoRequester.new url, provider
+              Api::Http::ProxyRequester.new url, provider
             end
           end
-
         end
       end
     end

@@ -6,11 +6,12 @@ require 'betfair_api_ng_rails/api/helper'
 module BetfairApiNgRails
   module Api
     module Http
-      class GoRequester
+      class ProxyRequester
         include BetfairApiNgRails::Api::Helper
 
-        attr_reader :http, :request, :uri
-        attr_reader :app_key, :session_key, :username, :password, :body, :is_provider
+        attr_reader :http, :request, :uri,
+                    :app_key, :session_key, :username,
+                    :password, :body, :is_provider
 
         def initialize(url, provider = true, use_ssl = true)
           @is_provider = provider
@@ -18,7 +19,7 @@ module BetfairApiNgRails
 
         def do_request
           create_http
-          prepare_body
+          prepare_form_data
           Api::Http::Responser.new http.request(request)
         end
 
@@ -28,8 +29,8 @@ module BetfairApiNgRails
         end
 
         def set_form_data(values)
-          @username = values["username"]
-          @password = values["password"]
+          @username = values['username']
+          @password = values['password']
         end
 
         def set_request_body(body)
@@ -40,21 +41,15 @@ module BetfairApiNgRails
           set_request_body prepare_api_req_json(method, params)
         end
 
-        def set_crt_file(path); end
+        def set_crt_file(_path); end
+        def set_key_file(_path); end
+        def set_verify_mode(_value); end
+        def set_ssl_files(_crt_path, _key_path, _verify = OpenSSL::SSL::VERIFY_PEER); end
+        def set_accept_header(_value); end
+        def set_request_headers(_headers); end
+        def set_header(_name, _value); end
 
-        def set_key_file(path); end
-
-        def set_verify_mode(value); end
-
-        def set_ssl_files(crt_path, key_path, verify = OpenSSL::SSL::VERIFY_PEER); end
-
-        def set_accept_header(value); end
-
-        def set_request_headers(headers); end
-
-        def set_header(name, value); end
-
-      private
+        private
 
         def create_http
           @uri = URI.parse prepare_url
@@ -67,22 +62,21 @@ module BetfairApiNgRails
         end
 
         def prepare_auth_url
-          "#{Api::Config.go_url}/auth/en/#{username}/#{password}/#{app_key}/#{Api::Config.go_localuser}/#{Api::Config.go_filename}"
+          "#{Api::Config.proxy_url}/auth/en/#{username}/#{password}/#{app_key}/#{Api::Config.go_localuser}/#{Api::Config.go_filename}"
         end
 
         def prepare_api_url
-          "#{Api::Config.go_url}/api"
+          "#{Api::Config.proxy_url}/api"
         end
 
-        def prepare_body
-          return if !is_provider
-          request.body = {
-              appKey: app_key,
-              sessionToken: session_key,
-              body: body
-            }.to_json
+        def prepare_form_data
+          return unless is_provider
+          request.set_form_data({
+            app_key: app_key,
+            session_token: session_key,
+            body: body
+          })          
         end
-
       end
     end
   end
