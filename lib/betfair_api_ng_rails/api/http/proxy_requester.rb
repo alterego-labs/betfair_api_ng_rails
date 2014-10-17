@@ -19,7 +19,7 @@ module BetfairApiNgRails
 
         def do_request
           create_http
-          prepare_form_data
+          prepare_body
           Api::Http::Responser.new http.request(request)
         end
 
@@ -69,15 +69,15 @@ module BetfairApiNgRails
           "#{Api::Config.proxy_url}/api"
         end
 
-        def prepare_form_data
-          return unless is_provider
-          request.set_form_data({
-            app_key: app_key,
-            session_token: session_key,
+        def prepare_body
+          return if !is_provider
+          request.body = {
+            appKey: app_key,
+            sessionToken: session_key,
             body: body
-          })          
+            }.to_json
+          end
         end
-      end
     end
   end
 end
