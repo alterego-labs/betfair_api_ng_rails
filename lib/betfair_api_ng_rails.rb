@@ -105,6 +105,8 @@ module BetfairApiNgRails
 
     module Parsers
       autoload :Base,                'betfair_api_ng_rails/api/parsers/base'
+      autoload :ListBase,            'betfair_api_ng_rails/api/parsers/list_base'
+      autoload :SingleBase,          'betfair_api_ng_rails/api/parsers/single_base'
       autoload :ListCompetitions,    'betfair_api_ng_rails/api/parsers/list_competitions'
       autoload :ListEventTypes,      'betfair_api_ng_rails/api/parsers/list_event_types'
       autoload :ListEvents,          'betfair_api_ng_rails/api/parsers/list_events'

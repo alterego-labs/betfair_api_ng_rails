@@ -1,14 +1,12 @@
 module BetfairApiNgRails
   module Api
     module Parsers
-      class ListMarketTypes < Api::Parsers::Base
+      class ListMarketTypes < Api::Parsers::ListBase
+        private
 
-      private
-
-        def process_row(json_row)
-          Api::Data::MarketTypeResult.from_json json_row
+        def data_class
+          Api::Data::MarketTypeResult
         end
-
       end
     end
   end

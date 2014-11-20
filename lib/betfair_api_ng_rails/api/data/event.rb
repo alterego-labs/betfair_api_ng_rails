@@ -18,7 +18,6 @@ module BetfairApiNgRails
         def self.to_hash_attrs
           EVENT_ATTRS
         end
-
       end
     end
   end

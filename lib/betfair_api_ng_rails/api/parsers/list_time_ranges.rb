@@ -1,14 +1,12 @@
 module BetfairApiNgRails
   module Api
     module Parsers
-      class ListTimeRanges < Api::Parsers::Base
+      class ListTimeRanges < Api::Parsers::ListBase
+        private
 
-      private
-
-        def process_row(json_row)
-          Api::Data::TimeRangeResult.from_json json_row
+        def data_class
+          Api::Data::TimeRangeResult
         end
-
       end
     end
   end
