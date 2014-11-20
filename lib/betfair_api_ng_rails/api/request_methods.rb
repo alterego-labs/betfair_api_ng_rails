@@ -26,7 +26,7 @@ module BetfairApiNgRails
         run_request __method__, { market_id: market_id, instructions: instructions, customer_ref: customer_ref }
       end
 
-    private
+      private
 
       def run_request(method, params, data)
         BetfairApiNgRails.connection.request build_request_type(method), params.merge(data)
@@ -35,7 +35,6 @@ module BetfairApiNgRails
       def build_request_type(name)
         name.to_s.camelize(:lower)
       end
-
     end
   end
 end
