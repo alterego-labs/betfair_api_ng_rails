@@ -6,7 +6,7 @@ API-NG is Betfair's next generation API for developers looking to create automat
 
 Add this line to your application's Gemfile:
 
-    gem 'betfair_api_ng_rails', '1.0.0'
+    gem 'betfair_api_ng_rails', '1.5.0'
 
 And then execute:
 
@@ -36,6 +36,10 @@ In this files you must specify credentials to API-NG. Also you should notice tha
 ## Usage
 
 Please check [wiki pages](https://github.com/alterego-labs/betfair_api_ng_rails/wiki).
+
+## CHANGES IN 1.5.0
+
+1. Add supporting **placeOrders** method
 
 ## CHANGES IN 1.1.0
 
