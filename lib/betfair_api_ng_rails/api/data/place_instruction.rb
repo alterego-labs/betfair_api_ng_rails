@@ -23,6 +23,3 @@ module BetfairApiNgRails
     end
   end
 end
-
-
-

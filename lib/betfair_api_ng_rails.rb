@@ -59,6 +59,12 @@ module BetfairApiNgRails
       autoload :PriceSize,             'betfair_api_ng_rails/api/data/price_size'
       autoload :PriceProjection,       'betfair_api_ng_rails/api/data/price_projection'
       autoload :ExBestOffersOverrides, 'betfair_api_ng_rails/api/data/ex_best_offers_overrides'
+      autoload :PlaceExecutionReport,  'betfair_api_ng_rails/api/data/place_execution_report'
+      autoload :PlaceInstructionReport,'betfair_api_ng_rails/api/data/place_instruction_report'
+      autoload :PlaceInstruction,      'betfair_api_ng_rails/api/data/place_instruction'
+      autoload :LimitOrder,            'betfair_api_ng_rails/api/data/limit_order'
+      autoload :LimitOnCloseOrder,     'betfair_api_ng_rails/api/data/limit_on_close_order'
+      autoload :MarketOnCloseOrder,    'betfair_api_ng_rails/api/data/market_on_close_order'
 
       module Concerns
         autoload :Hashable,           'betfair_api_ng_rails/api/data/concerns/hashable'
@@ -116,6 +122,7 @@ module BetfairApiNgRails
       autoload :ListMarketTypes,     'betfair_api_ng_rails/api/parsers/list_market_types'
       autoload :ListMarketCatalogue, 'betfair_api_ng_rails/api/parsers/list_market_catalogue'
       autoload :ListMarketBook,      'betfair_api_ng_rails/api/parsers/list_market_book'
+      autoload :PlaceOrders,         'betfair_api_ng_rails/api/parsers/place_orders'
     end
 
     module ConnectionExt

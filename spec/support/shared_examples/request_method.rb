@@ -1,5 +1,4 @@
 shared_examples 'request method' do
-  
   let(:ssoid)              { 'vnboeirubvyebvuekrybobvuiberlvbre' }
   let(:connection)         { BetfairApiNgRails::Api::Connection.new }
   let(:http_response)      { double(:http_response, code: '200', body: result_hash) }
@@ -14,5 +13,4 @@ shared_examples 'request method' do
   end
 
   subject { TestModule.send(method_name, parameters) }
-
 end

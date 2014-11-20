@@ -3,7 +3,6 @@ module BetfairApiNgRails
     module Data
       module Concerns
         module Attributable
-
           DEFAULT_OPTIONS = { type: String, array: false }
 
           def self.included(base)
@@ -11,13 +10,12 @@ module BetfairApiNgRails
           end
 
           module ClassMethods
-            
             def attributes(attrs)
               define_class_attrs attrs
               define_attr_accessors
             end
 
-          private
+            private
 
             def define_class_attrs(attrs)
               class << self; attr_accessor :class_attrs; end
@@ -41,9 +39,7 @@ module BetfairApiNgRails
             def fetch_attr_options(attrib)
               attrib.is_a?(Hash) ? DEFAULT_OPTIONS.merge(attrib.values.first) : DEFAULT_OPTIONS
             end
-
           end
-
         end
       end
     end

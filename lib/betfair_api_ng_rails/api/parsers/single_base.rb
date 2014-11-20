@@ -1,7 +1,7 @@
 module BetfairApiNgRails
   module Api
     module Parsers
-      class SingleBase
+      class SingleBase < Api::Parsers::Base
         def process
           process_row fetch_result_json
         end

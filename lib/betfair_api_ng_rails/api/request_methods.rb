@@ -28,7 +28,7 @@ module BetfairApiNgRails
 
       private
 
-      def run_request(method, params, data)
+      def run_request(method, params, data = {})
         BetfairApiNgRails.connection.request build_request_type(method), params.merge(data)
       end
 
