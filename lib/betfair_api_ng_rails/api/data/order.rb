@@ -2,7 +2,6 @@ module BetfairApiNgRails
   module Api
     module Data
       class Order < Api::Data::Base
-
         ORDER_ATTRS = [
           :bet_id,
           :order_type,
@@ -22,7 +21,6 @@ module BetfairApiNgRails
         ]
 
         attributes ORDER_ATTRS
-        
       end
     end
   end

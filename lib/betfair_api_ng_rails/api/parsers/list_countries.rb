@@ -1,14 +1,12 @@
 module BetfairApiNgRails
   module Api
     module Parsers
-      class ListCountries < Api::Parsers::Base
+      class ListCountries < Api::Parsers::ListBase
+        private
 
-      private
-
-        def process_row(json_row)
-          Api::Data::CountryCodeResult.from_json json_row
+        def data_class
+          Api::Data::CountryCodeResult
         end
-
       end
     end
   end

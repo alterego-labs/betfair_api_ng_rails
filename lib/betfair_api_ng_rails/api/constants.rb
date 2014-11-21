@@ -27,7 +27,8 @@ module BetfairApiNgRails
         "listMarketBook",
         "listCurrentOrders",
         "listClearedOrders",
-        "listMarketProfitAndLoss"
+        "listMarketProfitAndLoss",
+        "placeOrders"
       ]
 
       ALLOWED_FORMATTING = [

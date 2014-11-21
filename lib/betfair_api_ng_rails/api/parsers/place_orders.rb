@@ -1,13 +1,14 @@
 module BetfairApiNgRails
   module Api
     module Parsers
-      class ListTimeRanges < Api::Parsers::ListBase
+      class PlaceOrders < Api::Parsers::SingleBase
         private
 
         def data_class
-          Api::Data::TimeRangeResult
+          Api::Data::PlaceExecutionReport
         end
       end
     end
   end
 end
+

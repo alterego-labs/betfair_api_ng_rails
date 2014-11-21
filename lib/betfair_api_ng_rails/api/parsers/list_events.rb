@@ -1,14 +1,12 @@
 module BetfairApiNgRails
   module Api
     module Parsers
-      class ListEvents < Api::Parsers::Base
+      class ListEvents < Api::Parsers::ListBase
+        private
 
-      private
-
-        def process_row(json_row)
-          Api::Data::EventResult.from_json json_row
+        def data_class
+          Api::Data::EventResult
         end
-
       end
     end
   end

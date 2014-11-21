@@ -8,13 +8,12 @@ module BetfairApiNgRails
           :id,
           :name
         ]
-        
+
         attributes COMPETITION_ATTRS
-        
+
         def self.to_hash_attrs
           COMPETITION_ATTRS
         end
-
       end
     end
   end

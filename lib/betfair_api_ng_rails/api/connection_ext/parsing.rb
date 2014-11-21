@@ -4,7 +4,6 @@ module BetfairApiNgRails
   module Api
     module ConnectionExt
       module Parsing
-
         def self.included(base)
           base.send :class_eval,  <<-CODE
             def request_with_parsing(method, params = {})
@@ -16,12 +15,11 @@ module BetfairApiNgRails
           CODE
         end
 
-      private
+        private
 
         def init_parser(method, responser)
           "BetfairApiNgRails::Api::Parsers::#{method.camelize}".constantize.new responser
         end
-
       end
     end
   end
