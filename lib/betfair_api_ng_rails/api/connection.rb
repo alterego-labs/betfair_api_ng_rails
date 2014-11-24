@@ -3,9 +3,8 @@ require "betfair_api_ng_rails/errors"
 module BetfairApiNgRails
   module Api
     class Connection
-
       def request(method, params = {})
-        provider.fetch method: method, params: hashing(params)
+        provider.fetch method: Api::RequestMethod.new(method), params: hashing(params)
       end
 
       include Api::ConnectionExt::Caching
@@ -19,7 +18,7 @@ module BetfairApiNgRails
         @_provider = nil
       end
 
-    protected
+      protected
 
       def provider
         @_provider ||= BetfairApiNgRails::Api::Provider.new request_ssoid
@@ -32,7 +31,6 @@ module BetfairApiNgRails
       def hashing(params)
         BetfairApiNgRails::Api::Hashalator.new(params).to_hash
       end
-
     end
   end
 end

@@ -25,7 +25,7 @@ module BetfairApiNgRails
           ssoid
         end
 
-      private
+        private
 
         def fetch_ssoid
           get_login_response.session_token.tap { |sid| send_keep_alive(sid) }
@@ -47,7 +47,6 @@ module BetfairApiNgRails
         def keep_alive_requester(sid)
           Api::Http::Factory.keep_alive_requester sid
         end
-
       end
     end
   end

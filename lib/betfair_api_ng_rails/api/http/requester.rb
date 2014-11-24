@@ -1,5 +1,5 @@
 require "net/https"
-require "uri"
+require 'uri'
 require 'json'
 require 'betfair_api_ng_rails/api/helper'
 
@@ -68,7 +68,6 @@ module BetfairApiNgRails
         def set_header(name, value)
           request[name] = value
         end
-
       end
     end
   end

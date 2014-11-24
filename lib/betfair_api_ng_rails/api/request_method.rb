@@ -23,6 +23,11 @@ module BetfairApiNgRails
         API_URL[type]
       end
 
+      def json_method
+        return :no_method unless allowed?
+        JSON_METHOD[type]
+      end
+
       private
 
       def allow_data

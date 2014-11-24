@@ -19,7 +19,7 @@ module BetfairApiNgRails
           CODE
         end
 
-      private
+        private
 
         def write_income_request(method, params)
           BetfairApiNgRails.log.write("--->Income request for #{method} with parameters #{hashing(params)}")
@@ -28,7 +28,6 @@ module BetfairApiNgRails
         def write_result(res)
           BetfairApiNgRails.log.write("    Result of request: #{res.result}")
         end
-
       end
     end
   end

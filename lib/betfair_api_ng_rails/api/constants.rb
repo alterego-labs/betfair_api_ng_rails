@@ -58,6 +58,11 @@ module BetfairApiNgRails
         :go_filename
       ]
 
+      JSON_METHOD = {
+        betting: 'SportsAPING',
+        account: 'AccountAPING'
+      }
+
       # URLs
 
       LOGIN_URL = "https://identitysso.betfair.com/api/certlogin"
