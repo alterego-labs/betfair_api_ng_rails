@@ -15,8 +15,10 @@ module BetfairApiNgRails
     autoload :Provider,       'betfair_api_ng_rails/api/provider'
     autoload :SessionManager, 'betfair_api_ng_rails/api/session_manager'
 
-    autoload :Connection,         'betfair_api_ng_rails/api/connection'
-    autoload :Hashalator,         'betfair_api_ng_rails/api/hashalator'
+    autoload :Connection,       'betfair_api_ng_rails/api/connection'
+    autoload :Hashalator,       'betfair_api_ng_rails/api/hashalator'
+
+    autoload :RequestMethod,    'betfair_api_ng_rails/api/request_method'
 
     module Caching
       autoload :Helper,         'betfair_api_ng_rails/api/caching/helper'
