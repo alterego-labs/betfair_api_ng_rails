@@ -68,6 +68,7 @@ module BetfairApiNgRails
       autoload :LimitOnCloseOrder,     'betfair_api_ng_rails/api/data/limit_on_close_order'
       autoload :MarketOnCloseOrder,    'betfair_api_ng_rails/api/data/market_on_close_order'
       autoload :AccountDetailsResponse,'betfair_api_ng_rails/api/data/account_details_response'
+      autoload :AccountFundsResponse,  'betfair_api_ng_rails/api/data/account_funds_response'
 
       module Concerns
         autoload :Hashable,           'betfair_api_ng_rails/api/data/concerns/hashable'
@@ -127,6 +128,7 @@ module BetfairApiNgRails
       autoload :ListMarketBook,      'betfair_api_ng_rails/api/parsers/list_market_book'
       autoload :PlaceOrders,         'betfair_api_ng_rails/api/parsers/place_orders'
       autoload :GetAccountDetails,   'betfair_api_ng_rails/api/parsers/get_account_details'
+      autoload :GetAccountFunds,     'betfair_api_ng_rails/api/parsers/get_account_funds'
     end
 
     module ConnectionExt
