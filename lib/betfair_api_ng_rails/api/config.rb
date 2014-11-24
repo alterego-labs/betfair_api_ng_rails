@@ -5,7 +5,6 @@ module BetfairApiNgRails
         attr_accessor :application_key,
                       :ssl_key_filepath,
                       :ssl_crt_filepath,
-                      :api_url,
                       :username,
                       :password,
                       :locale,

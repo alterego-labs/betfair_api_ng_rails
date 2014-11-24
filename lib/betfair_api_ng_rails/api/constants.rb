@@ -12,21 +12,27 @@ module BetfairApiNgRails
         "Accept"       => "application/json"
       }
 
-      ALLOWED_RESOURCES = [
-        "listEventTypes",
-        "listCompetitions",
-        "listTimeRanges",
-        "listEvents",
-        "listMarketTypes",
-        "listCountries",
-        "listVenues",
-        "listMarketCatalogue",
-        "listMarketBook",
-        "listCurrentOrders",
-        "listClearedOrders",
-        "listMarketProfitAndLoss",
-        "placeOrders"
-      ]
+      ALLOWED_RESOURCES = {
+        betting:[
+          "listEventTypes",
+          "listCompetitions",
+          "listTimeRanges",
+          "listEvents",
+          "listMarketTypes",
+          "listCountries",
+          "listVenues",
+          "listMarketCatalogue",
+          "listMarketBook",
+          "listCurrentOrders",
+          "listClearedOrders",
+          "listMarketProfitAndLoss",
+          "placeOrders"
+        ],
+        account:[
+          "getAccountDetails",
+          "getAccountFunds"
+        ]
+      }
 
       ALLOWED_FORMATTING = [
         "listEventTypes",
@@ -46,7 +52,6 @@ module BetfairApiNgRails
 
       LOADABLE_CONFIG_OPTIONS = [
         :application_key,
-        :api_url,
         :username,
         :password,
         :go_localuser,
