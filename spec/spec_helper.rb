@@ -7,7 +7,7 @@ require 'betfair_api_ng_rails'
 Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |f| require f }
 
 module TestModule
-  extend BetfairApiNgRails::Api::RequestMethods
+  extend BetfairApiNgRails::Api::RequestMethods::All
 end
 
 RSpec.configure do |config|

@@ -1,6 +1,6 @@
 require "betfair_api_ng_rails/version"
 require "betfair_api_ng_rails/errors"
-require "betfair_api_ng_rails/api/request_methods"
+require "betfair_api_ng_rails/api/request_methods/all"
 require "betfair_api_ng_rails/railtie" if defined?(Rails)
 require 'redis'
 
@@ -136,7 +136,7 @@ module BetfairApiNgRails
   end
 
   include Api::Data
-  extend  Api::RequestMethods
+  extend  Api::RequestMethods::All
 
   class << self
     attr_accessor :log
