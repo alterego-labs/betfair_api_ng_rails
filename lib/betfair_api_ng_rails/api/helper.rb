@@ -18,7 +18,7 @@ module BetfairApiNgRails
       def prepare_api_req_json(method, params)
         {
           "jsonrpc" => "2.0",
-          "method" => "#{method.json_method}/v1.0/#{method.name}",
+          "method" => "SportsAPING/v1.0/#{method}",
           "params" => params
         }.to_json
       end
