@@ -70,7 +70,7 @@ module BetfairApiNgRails
       KEEP_ALIVE_URL = "https://identitysso.betfair.com/api/keepAlive"
 
       API_URL = {
-        betting: 'https://api-ng.betstores.com/betting/betfair/services/api.betfair.com/exchange/betting/json-rpc/v1',
+        betting: 'https://developer.betfair.com/api.betfair.com/exchange/betting/json-rpc/v1',
         account: 'https://developer.betfair.com/api.betfair.com/exchange/account/json-rpc/v1'
       }
     end

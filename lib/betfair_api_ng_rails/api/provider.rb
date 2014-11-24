@@ -14,19 +14,20 @@ module BetfairApiNgRails
       end
 
       def fetch(method: "", params: {})
-        #raise "Not allowed method #{method.name}" unless method.allowed?
+        raise "Not allowed method #{method.name}" unless method.allowed?
         run_request for_method: method, params: params
       end
 
       private
 
       def run_request(for_method: "", params: {})
-        http_requester.set_api_req_body for_method, params
-        http_requester.do_request
+        requester = http_requester(for_method.api_url)
+        requester.set_api_req_body for_method, params
+        requester.do_request
       end
 
-      def http_requester
-        @_http_requester ||= Api::Http::Factory.provider_requester ssoid
+      def http_requester(api_url)
+        @_http_requester ||= Api::Http::Factory.provider_requester api_url, ssoid
       end
     end
   end
