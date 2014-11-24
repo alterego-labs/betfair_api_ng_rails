@@ -1,10 +1,7 @@
 module BetfairApiNgRails
   module Api
     module Constants
-
       SUCCESS_LOGIN = "SUCCESS"
-
-      PROVIDER_NAME = "BF"
 
       SESSION_REQUEST_HEADERS = {
         "Content-Type" => "application/x-www-form-urlencoded"
@@ -49,15 +46,18 @@ module BetfairApiNgRails
 
       LOADABLE_CONFIG_OPTIONS = [
         :application_key,
-        :login_url,
         :api_url,
-        :keep_alive_url,
         :username,
         :password,
         :go_localuser,
         :go_filename
       ]
 
+      # URLs
+
+      LOGIN_URL = "https://identitysso.betfair.com/api/certlogin"
+
+      KEEP_ALIVE_URL = "https://identitysso.betfair.com/api/keepAlive"
     end
   end
 end

@@ -26,6 +26,8 @@ module BetfairApiNgRails
         run_request __method__, { market_id: market_id, instructions: instructions, customer_ref: customer_ref }
       end
 
+      # Account API requests
+
       private
 
       def run_request(method, params, data = {})

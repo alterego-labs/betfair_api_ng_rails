@@ -1,8 +1,6 @@
 development:
   application_key: YOUR_APP_KEY
-  login_url: https://identitysso.betfair.com/api/certlogin
   api_url: https://api-ng.betstores.com/betting/betfair/services/api.betfair.com/exchange/betting/json-rpc/v1
-  keep_alive_url: https://identitysso.betfair.com/api/keepAlive
   username: YOUR_ACCOUNT_USERNAME
   password: YOUR_ACCOUNT_PASSWORD
   go_localuser: YOURUSERNAME
@@ -10,9 +8,7 @@ development:
 
 production:
   application_key: YOUR_APP_KEY
-  login_url: https://identitysso.betfair.com/api/certlogin
   api_url: https://api-ng.betstores.com/betting/betfair/services/api.betfair.com/exchange/betting/json-rpc/v1
-  keep_alive_url: https://identitysso.betfair.com/api/keepAlive
   username: YOUR_ACCOUNT_USERNAME
   password: YOUR_ACCOUNT_PASSWORD
   go_localuser: YOURUSERNAME
