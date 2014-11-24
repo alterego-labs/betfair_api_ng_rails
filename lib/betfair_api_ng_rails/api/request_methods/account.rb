@@ -6,6 +6,7 @@ module BetfairApiNgRails
         # Returns the details relating your account, including your discount rate and Betfair point balance.
         #
         def get_account_details
+          run_request __method__, {}
         end
 
         #
@@ -13,6 +14,7 @@ module BetfairApiNgRails
         # from either the UK or AUS Accounts API endpoint if the wallet parameter is not specified.
         #
         def get_account_funds
+          run_request __method__, {}
         end
       end
     end
