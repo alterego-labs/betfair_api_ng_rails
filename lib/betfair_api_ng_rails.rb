@@ -6,6 +6,11 @@ require 'redis'
 require 'active_support/dependencies/autoload'
 
 module BetfairApiNgRails
+  extend ActiveSupport::Autoload
+
+  autoload :Account
+  autoload :AccountSession
+
   module Api
     extend ActiveSupport::Autoload
 
