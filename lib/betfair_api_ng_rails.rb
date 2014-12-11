@@ -11,6 +11,7 @@ module BetfairApiNgRails
   autoload :Account
   autoload :AccountSession
   autoload :AccountManager
+  autoload :AccountSessionManager
 
   module Api
     extend ActiveSupport::Autoload
