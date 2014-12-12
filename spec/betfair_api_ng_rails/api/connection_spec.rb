@@ -35,9 +35,14 @@ describe BetfairApiNgRails::Api::Connection do
   context "private method" do
     describe "#provider" do
       let(:ssoid) { double(:ssoid) }
+      let(:app_key) { 'af2f23f23' }
+
+      before do
+        allow(subject).to receive(:app_key).and_return app_key
+      end
 
       it "inits new provider" do
-        expect(BetfairApiNgRails::Api::Provider).to receive(:new).with ssoid
+        expect(BetfairApiNgRails::Api::Provider).to receive(:new).with ssoid, app_key
         expect(subject).to receive(:request_ssoid).and_return ssoid
         subject.send(:provider)
       end

@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe BetfairApiNgRails::Api::Provider do
   let(:ssoid) { double(:ssoid) }
+  let(:application_key) { '2ef8783ofno34fn' }
 
-  subject { described_class.new(ssoid) }
+  subject { described_class.new(ssoid, application_key) }
 
   its(:ssoid) { is_expected.to eq ssoid }
 

@@ -2,11 +2,13 @@ shared_examples 'simple list filtering request' do |method|
 
   let(:parameters)   { {filter: filter} }
   let(:logger)       { double(:logger) }
+  let(:account) { BetfairApiNgRails::Account.new('user001', 'password', '42f2f434f3g43') }
 
   before(:each) do
     BetfairApiNgRails.config.formatter = nil
     BetfairApiNgRails.log = logger
     allow(logger).to receive(:write)
+    allow(BetfairApiNgRails).to receive_message_chain(:account_manager, :get).and_return account
   end
 
   context 'when no error occured' do

@@ -1,9 +1,12 @@
+require 'active_support/core_ext/module/delegation'
 require "betfair_api_ng_rails/errors"
 
 module BetfairApiNgRails
   module Api
     class Connection
       attr_reader :account_name
+
+      delegate :app_key, to: :account
 
       def initialize(account_name)
         @account_name = account_name
@@ -27,7 +30,7 @@ module BetfairApiNgRails
       protected
 
       def provider
-        @_provider ||= BetfairApiNgRails::Api::Provider.new request_ssoid
+        BetfairApiNgRails::Api::Provider.new request_ssoid, app_key
       end
 
       def request_ssoid
