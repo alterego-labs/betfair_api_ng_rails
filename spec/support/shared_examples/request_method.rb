@@ -7,7 +7,7 @@ shared_examples 'request method' do
 
   before(:each) do
     allow(api_http_requester).to receive(:do_request).and_return result
-    expect(BetfairApiNgRails::Api::SessionManager).to receive(:new_ssoid).and_return ssoid
+    expect(BetfairApiNgRails::Api::SessionManager).to receive(:get_ssoid).and_return ssoid
     expect(BetfairApiNgRails::Api::Http::Factory).to receive(:provider_requester).and_return api_http_requester
   end
 
