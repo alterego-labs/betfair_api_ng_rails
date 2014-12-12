@@ -45,12 +45,10 @@ describe BetfairApiNgRails::Api::RequestMethods do
       let(:params) { {key1: 'value'} }
       let(:connection) { double(:connection) }
 
-      before(:each) { BetfairApiNgRails.connection = connection }
-
       after(:each) { TestModule.send(:run_request, 'some_method', params) }
 
       it "calls request method with proper params" do
-        expect(connection).to receive(:request).with('someMethod', params)
+        expect_any_instance_of(BetfairApiNgRails::Api::Connection).to receive(:request).with('someMethod', params)
       end
     end
   end

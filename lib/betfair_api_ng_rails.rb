@@ -182,13 +182,4 @@ module BetfairApiNgRails
     @_config ||= BetfairApiNgRails::Api::Config
     block_given? ? yield(@_config) : @_config
   end
-
-  def self.connection
-    raise BetfairApiNgRails::NoConnectionError unless @connection
-    @connection
-  end
-
-  def self.connection=(value)
-    @connection = value
-  end
 end
