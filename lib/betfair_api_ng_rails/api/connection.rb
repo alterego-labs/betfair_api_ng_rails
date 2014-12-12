@@ -37,6 +37,12 @@ module BetfairApiNgRails
       def hashing(params)
         BetfairApiNgRails::Api::Hashalator.new(params).to_hash
       end
+
+      def account
+        acc = BetfairApiNgRails.account_manager.get account_name
+        throw BetfairApiNgRails::NoAccountProvided unless acc
+        acc
+      end
     end
   end
 end

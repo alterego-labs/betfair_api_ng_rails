@@ -60,5 +60,22 @@ describe BetfairApiNgRails::Api::Connection do
         subject.send :hashing, params
       end
     end
+
+    describe '#account' do
+      context 'when it is found' do
+        it 'returns this one' do
+          expect(BetfairApiNgRails).to receive_message_chain(:account_manager, :get).and_return double
+          connection.send :account
+        end
+      end
+
+      context 'when it is not found' do
+        it 'raises error' do
+          expect{
+            connection.send :account
+          }.to raise_exception
+        end
+      end
+    end
   end
 end

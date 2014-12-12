@@ -8,4 +8,7 @@ module BetfairApiNgRails
       @info = info
     end
   end
+
+  class NoAccountProvided < ::StandardError
+  end
 end
