@@ -175,7 +175,7 @@ module BetfairApiNgRails
   extend  Api::RequestMethods::All
 
   class << self
-    attr_accessor :log
+    attr_accessor :log, :account_manager, :account_session_manager
   end
 
   def self.config(&block)
