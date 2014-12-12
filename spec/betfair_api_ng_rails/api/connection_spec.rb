@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe BetfairApiNgRails::Api::Connection do
-  subject(:connection) { described_class.new }
+  let(:acc_name) { 'user001' }
+  subject(:connection) { described_class.new(acc_name) }
 
   describe "#request" do
     let(:provider) { double(:provider) }

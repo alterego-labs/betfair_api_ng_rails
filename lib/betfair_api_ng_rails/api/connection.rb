@@ -3,6 +3,12 @@ require "betfair_api_ng_rails/errors"
 module BetfairApiNgRails
   module Api
     class Connection
+      attr_reader :account_name
+
+      def initialize(account_name)
+        @account_name = account_name
+      end
+
       def request(method, params = {})
         provider.fetch method: Api::RequestMethod.new(method), params: hashing(params)
       end
