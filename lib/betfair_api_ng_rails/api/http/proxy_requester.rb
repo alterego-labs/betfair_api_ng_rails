@@ -75,7 +75,7 @@ module BetfairApiNgRails
             app_key: app_key,
             session_token: session_key,
             body: body
-          })          
+          })
         end
       end
     end

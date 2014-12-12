@@ -1,5 +1,4 @@
 module BetfairApiNgRails
-  
   class NoConnectionError < ::StandardError
   end
 
@@ -9,5 +8,4 @@ module BetfairApiNgRails
       @info = info
     end
   end
-
 end

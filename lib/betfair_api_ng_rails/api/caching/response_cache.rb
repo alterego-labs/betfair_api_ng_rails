@@ -6,7 +6,6 @@ module BetfairApiNgRails
     module Caching
       class ResponseCache
         include Api::Caching::Helper
-        
         attr_reader :method, :sig_params
 
         def initialize(method, params)
@@ -31,7 +30,7 @@ module BetfairApiNgRails
           cache_adapter.expire cache_key, expire_time
         end
 
-      private
+        private
 
         def cache_result
           @_cache_result ||= cache_adapter.get cache_key
@@ -52,7 +51,6 @@ module BetfairApiNgRails
         def cache_key
           "betfair_api_ng_rails:#{method}:#{sig_params}"
         end
-
       end
     end
   end

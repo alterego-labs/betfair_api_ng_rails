@@ -28,7 +28,7 @@ module BetfairApiNgRails
             end
           end
 
-        private
+          private
 
           def create_http_requester(url = '', provider = true)
             if !Api::Config.proxy_enable

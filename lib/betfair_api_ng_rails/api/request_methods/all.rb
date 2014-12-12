@@ -14,7 +14,7 @@ module BetfairApiNgRails
         private
 
         def run_request(method, params, account_name = '')
-          BetfairApiNgRails::Api::Connection.new(account_name).request build_request_type(method), params#, account_name
+          BetfairApiNgRails::Api::Connection.new(account_name).request build_request_type(method), params
         end
 
         def build_request_type(name)
