@@ -13,8 +13,8 @@ module BetfairApiNgRails
 
         private
 
-        def run_request(method, params, data = {})
-          BetfairApiNgRails.connection.request build_request_type(method), params.merge(data)
+        def run_request(method, params, account_name = '')
+          BetfairApiNgRails.connection.request build_request_type(method), params#, account_name
         end
 
         def build_request_type(name)
