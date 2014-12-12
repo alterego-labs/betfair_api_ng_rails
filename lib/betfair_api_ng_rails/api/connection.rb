@@ -6,7 +6,7 @@ module BetfairApiNgRails
     class Connection
       attr_reader :account_name
 
-      delegate :app_key, to: :account
+      delegate :app_key, :username, to: :account
 
       def initialize(account_name)
         @account_name = account_name
@@ -24,7 +24,7 @@ module BetfairApiNgRails
       include Api::ConnectionExt::Formatting
 
       def expire_provider
-        @_provider = nil
+        BetfairApiNgRails::Api::SessionManager.expire_ssoid username
       end
 
       protected
@@ -34,7 +34,7 @@ module BetfairApiNgRails
       end
 
       def request_ssoid
-        BetfairApiNgRails::Api::SessionManager.new_ssoid
+        BetfairApiNgRails::Api::SessionManager.get_ssoid account
       end
 
       def hashing(params)

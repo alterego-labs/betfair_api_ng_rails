@@ -1,59 +1,44 @@
 require 'spec_helper'
 
 describe BetfairApiNgRails::Api::SessionManager do
-  
-  subject { described_class }
+  let(:username) { 'user001' }
+  let(:asm) { double(:account_session_manager) }
+  let(:account) { BetfairApiNgRails::Account.new(username, 'password', '3cnt4ngt8oh3co', 'crt', 'key') }
 
-  describe "#ssoid" do
-    
-    it "calls fetching ssoid" do
-      expect(subject).to receive(:fetch_ssoid)
-      subject.ssoid
-    end
+  subject(:session_manager) { described_class }
 
+  before do
+    allow(BetfairApiNgRails).to receive(:account_session_manager).and_return asm
   end
 
-  describe "#request_ssoid" do
-    
-    before(:each) { expect(subject).to receive(:ssoid) }
-
-    context 'when no error occured' do
-      
-      before(:each) { expect(subject).to receive(:has_errors?).and_return false }
-
-      its(:request_ssoid) { is_expected.to eq true }
-
+  describe '.get_ssoid' do
+    before do
+      allow(BetfairApiNgRails).to receive_message_chain(:account_session_manager, :get).and_return ssoid
     end
 
-    context 'when at least one error occured' do
-      
-      before(:each) { expect(subject).to receive(:has_errors?).and_return true }
+    context 'when ASM has ssoid for passed account' do
+      let(:ssoid) { '2mf348f3fm3f3' }
 
-      its(:request_ssoid) { is_expected.to eq false }
-
+      it 'returns this one' do
+        expect(session_manager.get_ssoid(account)).to eq ssoid
+      end
     end
 
+    context 'when ASM has not ssoid' do
+      let(:ssoid) { nil }
+
+      it 'requests new ssoid and returns it' do
+        expect_any_instance_of(BetfairApiNgRails::Api::SessionManager::SsoidRequester).to receive(:session_token).and_return ssoid
+        expect(asm).to receive(:store)
+        expect(session_manager.get_ssoid(account)).to eq ssoid
+      end
+    end
   end
 
-  describe "#expire_ssoid" do
-    
-    it "sets instance var ssoid to nil" do
-      subject.instance_variable_set :@ssoid, :value
-      expect(subject.ssoid).to eq :value
-      subject.expire_ssoid
-      expect(subject.instance_variable_get(:@ssoid)).to eq nil
+  describe '.expire_ssoid' do
+    it 'expires ssoid for passed account' do
+      expect(asm).to receive(:expire).with username
+      session_manager.expire_ssoid account
     end
-
   end
-
-  describe "#new_ssoid" do
-    
-    it "expires ssoid and calls fetching new one" do
-      expect(subject).to receive(:expire_ssoid)
-      expect(subject).to receive(:ssoid)
-      subject.new_ssoid
-    end
-
-  end
-
 end

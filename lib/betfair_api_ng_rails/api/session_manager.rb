@@ -1,4 +1,5 @@
 require 'betfair_api_ng_rails/api/concerns/errorable'
+require 'active_support/core_ext/module/delegation'
 
 module BetfairApiNgRails
   module Api
@@ -7,45 +8,47 @@ module BetfairApiNgRails
         include Api::Concerns::Errorable
         include Api::Constants
 
-        def ssoid
-          @ssoid ||= fetch_ssoid
+        def get_ssoid(account)
+          username = account.username
+          ssoid = BetfairApiNgRails.account_session_manager.get username
+          ssoid || SsoidRequester.new(account).get
         end
 
-        def request_ssoid
-          ssoid
-          !has_errors?
+        def expire_ssoid(account)
+          username = account.username
+          BetfairApiNgRails.account_session_manager.expire username
         end
+      end
 
-        def expire_ssoid
-          @ssoid = nil
-        end
+      class SsoidRequester < Struct.new(:account)
+        delegate :username, to: :account
 
-        def new_ssoid
-          expire_ssoid
-          ssoid
+        def get
+          session_token.tap do |token|
+            store_session token
+          end
         end
 
         private
 
-        def fetch_ssoid
-          get_login_response.session_token.tap { |sid| send_keep_alive(sid) }
+        def store_session(token)
+          BetfairApiNgRails.account_session_manager.store account_session(token)
+        end
+
+        def account_session(token)
+          BetfairApiNgRails::AccountSession.new(username, token)
+        end
+
+        def session_token
+          get_login_response.session_token
         end
 
         def get_login_response
           http_requester.do_request
         end
 
-        def send_keep_alive(sid)
-          return unless Api::Config.keep_alive_session
-          keep_alive_requester(sid).do_request
-        end
-
         def http_requester
           @_http_requester ||= Api::Http::Factory.session_requester
-        end
-
-        def keep_alive_requester(sid)
-          Api::Http::Factory.keep_alive_requester sid
         end
       end
     end
