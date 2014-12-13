@@ -175,11 +175,19 @@ module BetfairApiNgRails
   extend  Api::RequestMethods::All
 
   class << self
-    attr_accessor :log, :account_manager, :account_session_manager
+    attr_accessor :log
   end
 
   def self.config(&block)
     @_config ||= BetfairApiNgRails::Api::Config
     block_given? ? yield(@_config) : @_config
+  end
+
+  def self.account_manager
+    BetfairApiNgRails::AccountManager.instance
+  end
+
+  def self.account_session_manager
+    BetfairApiNgRails::AccountSessionManager.instance
   end
 end
