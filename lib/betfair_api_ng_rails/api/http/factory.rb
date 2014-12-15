@@ -5,10 +5,10 @@ module BetfairApiNgRails
         class << self
           include Api::Constants
 
-          def provider_requester(api_url, ssoid = nil)
+          def provider_requester(api_url, ssoid = nil, app_key)
             create_http_requester(api_url).tap do |req|
               req.set_request_headers API_REQUEST_HEADERS
-              req.set_auth_headers Api::Config.application_key, ssoid
+              req.set_auth_headers app_key, ssoid
             end
           end
 

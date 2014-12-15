@@ -28,7 +28,7 @@ module BetfairApiNgRails
       end
 
       def http_requester(api_url)
-        Api::Http::Factory.provider_requester api_url, ssoid
+        Api::Http::Factory.provider_requester api_url, ssoid, application_key
       end
     end
   end

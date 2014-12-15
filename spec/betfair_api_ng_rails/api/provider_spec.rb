@@ -45,7 +45,7 @@ describe BetfairApiNgRails::Api::Provider do
 
     describe "#http_requester" do
       it "initalizes provider http request" do
-        expect(BetfairApiNgRails::Api::Http::Factory).to receive(:provider_requester).with 'api_url', ssoid
+        expect(BetfairApiNgRails::Api::Http::Factory).to receive(:provider_requester).with 'api_url', ssoid, application_key
         subject.send :http_requester, 'api_url'
       end
     end
