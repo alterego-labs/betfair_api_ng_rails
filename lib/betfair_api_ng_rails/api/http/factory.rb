@@ -12,12 +12,12 @@ module BetfairApiNgRails
             end
           end
 
-          def session_requester
+          def session_requester(account)
             create_http_requester(LOGIN_URL, false).tap do |req|
-              req.set_ssl_files Api::Config.ssl_crt_filepath, Api::Config.ssl_key_filepath
+              req.set_ssl_files account.crt_filepath, account.key_filepath
               req.set_request_headers SESSION_REQUEST_HEADERS
-              req.set_auth_headers Api::Config.application_key
-              req.set_form_data "username" => Api::Config.username, "password" => Api::Config.password
+              req.set_auth_headers account.app_key
+              req.set_form_data "username" => account.username, "password" => account.password
             end
           end
 

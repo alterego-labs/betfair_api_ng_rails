@@ -41,4 +41,35 @@ describe BetfairApiNgRails::Api::SessionManager do
       session_manager.expire_ssoid account
     end
   end
+
+end
+
+describe BetfairApiNgRails::Api::SessionManager::SsoidRequester do
+  subject(:requester) { described_class.new(account) }
+
+  let(:username) { 'user001' }
+  let(:account) { BetfairApiNgRails::Account.new(username, 'password', '3cnt4ngt8oh3co', 'crt', 'key') }
+
+  let(:http_requester) { double(:http_requester, do_request: login_response) }
+  let(:login_response) do
+    double(:login_response, session_token: session_token)
+  end
+  let(:session_token) { 'some_session_token_str' }
+
+  before do
+    allow(BetfairApiNgRails::Api::Http::Factory).to receive(:session_requester)
+      .with(account)
+      .and_return http_requester
+  end
+
+  describe '#get' do
+    it 'returns fetched ssoid' do
+      expect(requester.get).to eq session_token
+    end
+
+    it 'stores fetched ssoid in registry' do
+      requester.get
+      expect(BetfairApiNgRails.account_session_manager.sessions.count).to eq 1
+    end
+  end
 end

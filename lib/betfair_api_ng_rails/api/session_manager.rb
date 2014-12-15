@@ -48,7 +48,7 @@ module BetfairApiNgRails
         end
 
         def http_requester
-          @_http_requester ||= Api::Http::Factory.session_requester
+          @_http_requester ||= Api::Http::Factory.session_requester account
         end
       end
     end
