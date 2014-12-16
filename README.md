@@ -39,7 +39,7 @@ Please check [wiki pages](https://github.com/alterego-labs/betfair_api_ng_rails/
 
 ## CHANGES IN 2.0.0
 
-One of the main features of this release was the
+One of the main features of this release was the multiaccounting.
 Since version 1.5.0 is now available opportunity to place bets using placeOrders method. But at the same time there was another problem - to place bets in various Betfair accounts, and that the current implementation does not allow. Starting with version 2.0.0 is such an opportunity. But just be careful: if you want to use version 2.0.0 in an existing project, you have to do a small step:
 
 ```ruby
