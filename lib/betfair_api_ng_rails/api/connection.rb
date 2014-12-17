@@ -24,7 +24,7 @@ module BetfairApiNgRails
       include Api::ConnectionExt::Formatting
 
       def expire_provider
-        BetfairApiNgRails::Api::SessionManager.expire_ssoid username
+        BetfairApiNgRails::Api::SessionManager.expire_ssoid account
       end
 
       protected

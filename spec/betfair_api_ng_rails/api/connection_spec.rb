@@ -33,8 +33,8 @@ describe BetfairApiNgRails::Api::Connection do
 
   describe "#expire_provider" do
     it "resets account's ssoid" do
-      allow(connection).to receive(:username).and_return acc_name
-      expect(BetfairApiNgRails::Api::SessionManager).to receive(:expire_ssoid).with(acc_name)
+      allow(connection).to receive(:account).and_return account
+      expect(BetfairApiNgRails::Api::SessionManager).to receive(:expire_ssoid).with(account)
       connection.expire_provider
     end
   end
