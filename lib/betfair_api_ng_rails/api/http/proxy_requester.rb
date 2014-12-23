@@ -53,6 +53,7 @@ module BetfairApiNgRails
 
         def create_http
           @uri = URI.parse prepare_url
+          BetfairApiNgRails.log.write("==> Using url #{prepare_url}")
           @http = Net::HTTP.new uri.host, uri.port
           @request = Net::HTTP::Post.new uri.request_uri
         end
