@@ -9,6 +9,7 @@ module BetfairApiNgRails
       delegate :app_key, :username, to: :account
 
       def initialize(account_name)
+        BetfairApiNgRails.log.write("==> Initializing new connection #{self}")
         @account_name = account_name
       end
 

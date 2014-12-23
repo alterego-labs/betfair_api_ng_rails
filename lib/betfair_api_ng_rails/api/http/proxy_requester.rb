@@ -72,6 +72,7 @@ module BetfairApiNgRails
 
         def prepare_form_data
           return unless is_provider
+          BetfairApiNgRails.log.write("==> Setting request body #{body}")
           request.set_form_data({
             app_key: app_key,
             session_token: session_key,

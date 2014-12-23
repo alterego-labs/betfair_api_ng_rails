@@ -58,6 +58,7 @@ module BetfairApiNgRails
         end
 
         def set_request_body(body)
+          BetfairApiNgRails.log.write("==> Setting request body #{body}")
           request.body = body
         end
 
