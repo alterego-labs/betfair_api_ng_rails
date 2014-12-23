@@ -38,7 +38,7 @@ module BetfairApiNgRails
       private
 
       def allow_data
-        @_allow_data ||= ALLOWED_RESOURCES.keep_if do |k, v|
+        @_allow_data ||= ALLOWED_RESOURCES.select do |k, v|
           v.include? name
         end
       end
