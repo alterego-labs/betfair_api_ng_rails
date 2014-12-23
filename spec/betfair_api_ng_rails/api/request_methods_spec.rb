@@ -29,8 +29,22 @@ describe BetfairApiNgRails::Api::RequestMethods do
 
   describe "#place_orders" do
     it "calls run_request with proper params" do
-      expect(TestModule).to receive(:run_request).with(:place_orders, {market_id: "", instructions: [], customer_ref: ""})
+      expect(TestModule).to receive(:run_request).with(:place_orders, {market_id: "", instructions: [], customer_ref: ""}, "")
       TestModule.place_orders
+    end
+  end
+
+  describe '#get_account_details' do
+    it 'calls run request with proper params' do
+      expect(TestModule).to receive(:run_request).with(:get_account_details, {}, "")
+      TestModule.get_account_details
+    end
+  end
+
+  describe '#get_account_funds' do
+    it 'calls run request with proper params' do
+      expect(TestModule).to receive(:run_request).with(:get_account_funds, {}, "")
+      TestModule.get_account_funds
     end
   end
 

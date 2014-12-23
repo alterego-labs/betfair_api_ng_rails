@@ -21,7 +21,7 @@ module BetfairApiNgRails
         end
 
         def place_orders(market_id: "", instructions: [], customer_ref: "", account_name: '')
-          run_request __method__, { market_id: market_id, instructions: instructions, customer_ref: customer_ref }
+          run_request __method__, { market_id: market_id, instructions: instructions, customer_ref: customer_ref }, account_name
         end
       end
     end
