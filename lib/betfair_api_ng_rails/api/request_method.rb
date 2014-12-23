@@ -7,6 +7,7 @@ module BetfairApiNgRails
 
       def initialize(name)
         @name = name
+        BetfairApiNgRails.log.write("==> Creating request method for #{name}")
       end
 
       def allowed?

@@ -44,7 +44,7 @@ module BetfairApiNgRails
       def account
         acc = BetfairApiNgRails.account_manager.get account_name
         throw BetfairApiNgRails::NoAccountProvided unless acc
-        BetfairApiNgRails.log.write("==> Using account #{account_name}")
+        BetfairApiNgRails.log.write("==> Using account #{acc.username}")
         acc
       end
     end
