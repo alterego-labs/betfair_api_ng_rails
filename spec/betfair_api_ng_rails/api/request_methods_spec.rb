@@ -2,7 +2,12 @@ require 'spec_helper'
 require 'betfair_api_ng_rails/api/constants'
 
 describe BetfairApiNgRails::Api::RequestMethods do
-  before { BetfairApiNgRails.config.locale = :en }
+  let(:logger)   { double(:logger) }
+  before do
+    BetfairApiNgRails.config.locale = :en
+    BetfairApiNgRails.log = logger
+    allow(logger).to receive(:write)
+  end
 
   BetfairApiNgRails::Api::Constants::SIMPLE_LISTING_FILTERED.each do |method|
     describe "##{method}" do

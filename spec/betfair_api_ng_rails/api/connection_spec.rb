@@ -4,22 +4,22 @@ describe BetfairApiNgRails::Api::Connection do
   let(:acc_name) { 'user001' }
   let(:asm) { double(:account_session_manager) }
   let(:account) { BetfairApiNgRails::Account.new(acc_name, 'pass', 'nfl43n7fg834', 'crt', 'key') }
+  let(:logger)   { double(:logger) }
   subject(:connection) { described_class.new(acc_name) }
 
   before do
     allow(BetfairApiNgRails).to receive(:account_session_manager).and_return asm
+    BetfairApiNgRails.log = logger
+    allow(logger).to receive(:write)
   end
 
   describe "#request" do
     let(:provider) { double(:provider) }
     let(:parser)   { double(:parser, process: true) }
     let(:response) { double(:response, result: "") }
-    let(:logger)   { double(:logger) }
 
     before(:each) do
       expect(subject).to receive(:init_parser).and_return parser
-      BetfairApiNgRails.log = logger
-      allow(logger).to receive(:write)
     end
 
     it "calls provider's fetch method" do
@@ -80,7 +80,7 @@ describe BetfairApiNgRails::Api::Connection do
     describe '#account' do
       context 'when it is found' do
         it 'returns this one' do
-          expect(BetfairApiNgRails).to receive_message_chain(:account_manager, :get).and_return double
+          expect(BetfairApiNgRails).to receive_message_chain(:account_manager, :get).and_return double(:acc, username: :user001)
           connection.send :account
         end
       end

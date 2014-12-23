@@ -2,8 +2,14 @@ require 'spec_helper'
 
 describe BetfairApiNgRails::Api::RequestMethod do
   let(:method_name) { 'someMethod' }
+  let(:logger)   { double(:logger) }
 
   subject(:method) { described_class.new(method_name) }
+
+  before do
+    BetfairApiNgRails.log = logger
+    allow(logger).to receive(:write)
+  end
 
   context 'has attributes' do
     its(:name) { is_expected.to eq(method_name) }
