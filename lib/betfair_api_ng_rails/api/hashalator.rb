@@ -17,7 +17,7 @@ module BetfairApiNgRails
         end
       end
 
-    private
+      private
 
       def hash_value(val)
         need_to_hash?(val) ? hashing_val(val) : val
@@ -34,7 +34,6 @@ module BetfairApiNgRails
       def hash_key(key)
         key.to_s.camelize(:lower)
       end
-
     end
   end
 end

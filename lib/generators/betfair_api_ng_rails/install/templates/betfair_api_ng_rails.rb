@@ -16,4 +16,12 @@ BetfairApiNgRails.config do |config|
   config.proxy_enable       = false
   # Uncomment next line if you will use go layer and go_enable is set to true
   # config.proxy_url          = "http://127.0.0.1/"
+
+  # Setting up account
+  BetfairApiNgRails.account_manager.store BetfairApiNgRails::Account.new(config.username,
+                                                                         config.password,
+                                                                         config.application_key,
+                                                                         config.ssl_crt_filepath,
+                                                                         config.ssl_key_filepath)
+  BetfairApiNgRails.account_manager.default config.username
 end

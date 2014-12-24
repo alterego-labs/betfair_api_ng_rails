@@ -1,5 +1,4 @@
 module BetfairApiNgRails
-  
   class NoConnectionError < ::StandardError
   end
 
@@ -10,4 +9,6 @@ module BetfairApiNgRails
     end
   end
 
+  class NoAccountProvided < ::StandardError
+  end
 end

@@ -11,10 +11,11 @@ module BetfairApiNgRails
 
         attr_reader :http, :request, :uri,
                     :app_key, :session_key, :username,
-                    :password, :body, :is_provider
+                    :password, :body, :is_provider, :api_url
 
         def initialize(url, provider = true, use_ssl = true)
           @is_provider = provider
+          @api_url = url
         end
 
         def do_request
@@ -53,6 +54,7 @@ module BetfairApiNgRails
 
         def create_http
           @uri = URI.parse prepare_url
+          BetfairApiNgRails.log.write("==> Using url #{prepare_url}")
           @http = Net::HTTP.new uri.host, uri.port
           @request = Net::HTTP::Post.new uri.request_uri
         end
@@ -71,11 +73,13 @@ module BetfairApiNgRails
 
         def prepare_form_data
           return unless is_provider
+          BetfairApiNgRails.log.write("==> Setting request body #{body}")
           request.set_form_data({
             app_key: app_key,
+            api_url: api_url,
             session_token: session_key,
             body: body
-          })          
+          })
         end
       end
     end

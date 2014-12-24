@@ -2,7 +2,6 @@ module BetfairApiNgRails
   module Api
     module Caching
       module Helper
-        
         def createsig(body)
           Digest::MD5.hexdigest sigflat(body)
         end
@@ -29,7 +28,6 @@ module BetfairApiNgRails
           end
           res || body
         end
-
       end
     end
   end

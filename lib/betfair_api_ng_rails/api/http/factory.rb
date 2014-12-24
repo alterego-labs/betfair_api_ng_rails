@@ -5,19 +5,19 @@ module BetfairApiNgRails
         class << self
           include Api::Constants
 
-          def provider_requester(api_url, ssoid = nil)
+          def provider_requester(api_url, ssoid = nil, app_key)
             create_http_requester(api_url).tap do |req|
               req.set_request_headers API_REQUEST_HEADERS
-              req.set_auth_headers Api::Config.application_key, ssoid
+              req.set_auth_headers app_key, ssoid
             end
           end
 
-          def session_requester
+          def session_requester(account)
             create_http_requester(LOGIN_URL, false).tap do |req|
-              req.set_ssl_files Api::Config.ssl_crt_filepath, Api::Config.ssl_key_filepath
+              req.set_ssl_files account.crt_filepath, account.key_filepath
               req.set_request_headers SESSION_REQUEST_HEADERS
-              req.set_auth_headers Api::Config.application_key
-              req.set_form_data "username" => Api::Config.username, "password" => Api::Config.password
+              req.set_auth_headers account.app_key
+              req.set_form_data "username" => account.username, "password" => account.password
             end
           end
 
@@ -28,7 +28,7 @@ module BetfairApiNgRails
             end
           end
 
-        private
+          private
 
           def create_http_requester(url = '', provider = true)
             if !Api::Config.proxy_enable

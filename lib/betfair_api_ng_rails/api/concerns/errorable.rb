@@ -4,7 +4,6 @@ module BetfairApiNgRails
   module Api
     module Concerns
       module Errorable
-
         def has_errors?
           !error_info.nil?
         end
@@ -12,7 +11,6 @@ module BetfairApiNgRails
         def error_info
           @http_responser.try(:error_info?)
         end
-
       end
     end
   end

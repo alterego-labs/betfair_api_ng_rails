@@ -4,6 +4,7 @@ require 'pry-nav'
 describe "placeOrders request method" do
   let(:method_name) { "place_orders" }
   let(:result_class) { BetfairApiNgRails::PlaceExecutionReport }
+  let(:account) { BetfairApiNgRails::Account.new('user001', 'password', '42f2f434f3g43') }
   let(:result_hash) do
     <<-JSON
     {"result":
@@ -28,6 +29,7 @@ describe "placeOrders request method" do
     BetfairApiNgRails.config.formatter = nil
     BetfairApiNgRails.log = logger
     allow(logger).to receive(:write)
+    allow(BetfairApiNgRails).to receive_message_chain(:account_manager, :get).and_return account
   end
 
   context 'when no error occured' do

@@ -4,7 +4,7 @@ module BetfairApiNgRails
       module Helpers
         module KeepAliveResponse
           include BetfairApiNgRails::Api::Constants
-          
+
           def self.included(base)
             base.send :class_eval,  <<-CODE
               def has_error_with_keep_alive_response?
@@ -15,7 +15,7 @@ module BetfairApiNgRails
             CODE
           end
 
-        protected
+          protected
 
           def keep_alive_res_error?
             set_error_info(:KEEP_ALIVE, result['status']) if check_keep_alive_status
@@ -24,7 +24,6 @@ module BetfairApiNgRails
           def check_keep_alive_status
             result.fetch('status', SUCCESS_LOGIN) != SUCCESS_LOGIN
           end
-
         end
       end
     end

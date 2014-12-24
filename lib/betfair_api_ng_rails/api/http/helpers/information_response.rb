@@ -3,7 +3,6 @@ module BetfairApiNgRails
     module Http
       module Helpers
         module InformationResponse
-          
           def self.included(base)
             base.send :class_eval,  <<-CODE
               def has_error_with_info_response?
@@ -18,7 +17,7 @@ module BetfairApiNgRails
             result['result']
           end
 
-        protected
+          protected
 
           def info_response_error?
             set_error_info(:API, result['error']) if check_info_response_status
@@ -27,7 +26,6 @@ module BetfairApiNgRails
           def check_info_response_status
             result.has_key?('error')
           end
-
         end
       end
     end

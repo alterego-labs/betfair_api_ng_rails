@@ -7,10 +7,11 @@ module BetfairApiNgRails
       include Api::Concerns::Errorable
       include Api::Constants
 
-      attr_reader :ssoid
+      attr_reader :ssoid, :application_key
 
-      def initialize(ssoid)
+      def initialize(ssoid, application_key)
         @ssoid = ssoid
+        @application_key = application_key
       end
 
       def fetch(method: "", params: {})
@@ -27,7 +28,7 @@ module BetfairApiNgRails
       end
 
       def http_requester(api_url)
-        Api::Http::Factory.provider_requester api_url, ssoid
+        Api::Http::Factory.provider_requester api_url, ssoid, application_key
       end
     end
   end

@@ -4,7 +4,7 @@ module BetfairApiNgRails
       module Helpers
         module SessionResponse
           include BetfairApiNgRails::Api::Constants
-          
+
           def self.included(base)
             base.send :class_eval,  <<-CODE
               def has_error_with_session_response?
@@ -19,7 +19,7 @@ module BetfairApiNgRails
             result['sessionToken']
           end
 
-        protected
+          protected
 
           def session_res_error?
             set_error_info(:SESSION, result['loginStatus']) if check_login_status
@@ -28,7 +28,6 @@ module BetfairApiNgRails
           def check_login_status
             result.fetch('loginStatus', SUCCESS_LOGIN) != SUCCESS_LOGIN
           end
-
         end
       end
     end

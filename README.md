@@ -6,7 +6,7 @@ API-NG is Betfair's next generation API for developers looking to create automat
 
 Add this line to your application's Gemfile:
 
-    gem 'betfair_api_ng_rails', '1.5.0'
+    gem 'betfair_api_ng_rails', '2.0.0'
 
 And then execute:
 
@@ -36,6 +36,27 @@ In this files you must specify credentials to API-NG. Also you should notice tha
 ## Usage
 
 Please check [wiki pages](https://github.com/alterego-labs/betfair_api_ng_rails/wiki).
+
+## CHANGES IN 2.0.0
+
+One of the main features of this release was the multiaccounting.
+Since version 1.5.0 is now available opportunity to place bets using placeOrders method. But at the same time there was another problem - to place bets in various Betfair accounts, and that the current implementation does not allow. Starting with version 2.0.0 is such an opportunity. But just be careful: if you want to use version 2.0.0 in an existing project, you have to do a small step:
+
+```ruby
+BetfairApiNgRails.config do |config|
+  # Rest of configuration same as for 1.5.0
+
+  # Setting up account
+  BetfairApiNgRails.account_manager.store BetfairApiNgRails::Account.new(config.username,
+                                                                         config.password,
+                                                                         config.application_key,
+                                                                         config.ssl_crt_filepath,
+                                                                         config.ssl_key_filepath)
+  BetfairApiNgRails.account_manager.default config.username
+end
+```
+
+For additional info please visit [specific wiki page](https://github.com/alterego-labs/betfair_api_ng_rails/wiki/Multiaccounting).
 
 ## CHANGES IN 1.5.0
 

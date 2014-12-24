@@ -27,7 +27,7 @@ module BetfairApiNgRails
         include Api::Http::Helpers::KeepAliveResponse
         include Api::Http::Helpers::SessionResponse
 
-      protected
+        protected
 
         def http_error?
           set_error_info(:HTTP, response.code) if check_response_code
@@ -40,7 +40,6 @@ module BetfairApiNgRails
         def set_error_info(type, info)
           @error_info = { type: type, info: info }
         end
-
       end
     end
   end
