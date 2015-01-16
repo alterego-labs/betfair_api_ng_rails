@@ -53,6 +53,27 @@ describe BetfairApiNgRails::Api::RequestMethods do
     end
   end
 
+  describe '#get_account_statement' do
+    context 'when valid params passed' do
+      let(:params) { {locale: :en} }
+
+      it 'runs success' do
+        expect(TestModule).to receive(:run_request).with(:get_account_statement, params, nil)
+        TestModule.get_account_statement params
+      end
+    end
+
+    context 'when invalid params passed' do
+      let(:params) { [1, 2] }
+
+      it 'raises exception' do
+        expect{
+          TestModule.get_account_statement params
+        }.to raise_error
+      end
+    end
+  end
+
   describe "private method" do
     describe "#build_request_type" do
       it "returns proper api method name" do
