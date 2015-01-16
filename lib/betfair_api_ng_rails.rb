@@ -87,6 +87,9 @@ module BetfairApiNgRails
       autoload :MarketOnCloseOrder
       autoload :AccountDetailsResponse
       autoload :AccountFundsResponse
+      autoload :StatementLegacyData
+      autoload :StatementItem
+      autoload :AccountStatementReport
 
       module Concerns
         extend ActiveSupport::Autoload
@@ -122,6 +125,9 @@ module BetfairApiNgRails
       autoload :RollupModel
       autoload :GroupBy
       autoload :BetStatus
+      autoload :IncludeItem
+      autoload :Wallet
+      autoload :ItemClass
 
       module Concerns
         extend ActiveSupport::Autoload
@@ -157,6 +163,7 @@ module BetfairApiNgRails
       autoload :PlaceOrders
       autoload :GetAccountDetails
       autoload :GetAccountFunds
+      autoload :GetAccountStatement
     end
 
     module ConnectionExt

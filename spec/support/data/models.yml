@@ -203,3 +203,38 @@ marketCatalogue:
     <<: *competition
   event:
     <<: *event
+
+statementLegacyData: &statementLegacyData
+  avgPrice: '1.63'
+  betSize: '20'
+  betType: 'E'
+  betCategoryType: 'A'
+  comissionRate: '2'
+  eventId: '1123123123'
+  eventTypeId: '1'
+  fullMarketName: 'Some/Another'
+  grossBetAmount: '3'
+  marketName: 'Some'
+  marketType: 'BB'
+  placedDate: '23-04-2015'
+  selectionId: '124243'
+  selectionName: 'Team 1 Win'
+  startDate: '20-01-2015'
+  transactionType: 'A'
+  transactionId: '8n474nro82yr37h'
+  winLose: 'BET_WIN'
+
+statementItem: &statementItem
+  refId: '2m3847mx3'
+  itemDate: '1-01-2014'
+  amount: '20'
+  balance: '300'
+  itemClass: 'UNKNOWN'
+  itemClassData: 'fnawiafx48 '
+  legacyData:
+    <<: *statementLegacyData
+
+accountStatementReport:
+  moreAvailable: 'false'
+  accountStatement:
+    - <<: *statementItem

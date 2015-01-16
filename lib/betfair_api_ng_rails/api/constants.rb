@@ -30,7 +30,8 @@ module BetfairApiNgRails
         ],
         account:[
           "getAccountDetails",
-          "getAccountFunds"
+          "getAccountFunds",
+          "getAccountStatement"
         ]
       }
 
