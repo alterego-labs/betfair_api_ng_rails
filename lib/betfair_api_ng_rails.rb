@@ -122,6 +122,9 @@ module BetfairApiNgRails
       autoload :RollupModel
       autoload :GroupBy
       autoload :BetStatus
+      autoload :IncludeItem
+      autoload :Wallet
+      autoload :ItemClass
 
       module Concerns
         extend ActiveSupport::Autoload
