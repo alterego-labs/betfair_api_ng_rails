@@ -163,6 +163,7 @@ module BetfairApiNgRails
       autoload :PlaceOrders
       autoload :GetAccountDetails
       autoload :GetAccountFunds
+      autoload :GetAccountStatement
     end
 
     module ConnectionExt
