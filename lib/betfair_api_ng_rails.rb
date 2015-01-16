@@ -87,6 +87,9 @@ module BetfairApiNgRails
       autoload :MarketOnCloseOrder
       autoload :AccountDetailsResponse
       autoload :AccountFundsResponse
+      autoload :StatementLegacyData
+      autoload :StatementItem
+      autoload :AccountStatementReport
 
       module Concerns
         extend ActiveSupport::Autoload

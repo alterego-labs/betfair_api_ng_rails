@@ -2,7 +2,6 @@ module BetfairApiNgRails
   module Api
     module Data
       class MarketBook < Api::Data::Base
-
         MARKET_BOOK_ATTRS = [
           :market_id,
           :is_market_data_delayed,
@@ -22,9 +21,8 @@ module BetfairApiNgRails
           :version,
           {runners: { type: BetfairApiNgRails::Runner, array: true }}
         ]
-        
-        attributes MARKET_BOOK_ATTRS
 
+        attributes MARKET_BOOK_ATTRS
       end
     end
   end
