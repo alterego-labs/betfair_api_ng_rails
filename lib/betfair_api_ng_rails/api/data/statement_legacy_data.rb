@@ -12,7 +12,7 @@ module BetfairApiNgRails
           :bet_category_type,
           :comission_rate,
           :event_id,
-          :evnt_type_id,
+          :event_type_id,
           :full_market_name,
           :gross_bet_amount,
           :market_name,
