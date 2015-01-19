@@ -6,10 +6,18 @@ module BetfairApiNgRails
           include BetfairApiNgRails::Api::Data::Constants
 
           def to_hash
-            BetfairApiNgRails::Api::Hashalator.new(attributes_hash).to_hash
+            call_hashalator
           end
 
-        private
+          def to_param
+            call_hashalator true
+          end
+
+          private
+
+          def call_hashalator(for_param = false)
+            BetfairApiNgRails::Api::Hashalator.new(attributes_hash, for_param).to_hash
+          end
 
           def attributes_hash
             self.class.to_hash_attrs.each_with_object({}) do |a, h|
@@ -26,7 +34,6 @@ module BetfairApiNgRails
           def get_attr_key(attrib)
             attrib.is_a?(Hash) ? attrib.keys.first : attrib
           end
-
         end
       end
     end

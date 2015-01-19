@@ -3,10 +3,11 @@ module BetfairApiNgRails
     class Hashalator
       include Api::Data::Constants
 
-      attr_reader :hashable
+      attr_reader :hashable, :for_param
 
-      def initialize(object)
+      def initialize(object, for_param = false)
         @hashable = object
+        @for_param = for_param
       end
 
       def to_hash
@@ -32,7 +33,7 @@ module BetfairApiNgRails
       end
 
       def hash_key(key)
-        key.to_s.camelize(:lower)
+        for_param ? key : key.to_s.camelize(:lower)
       end
     end
   end
