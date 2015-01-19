@@ -29,6 +29,10 @@ module BetfairApiNgRails
         ]
 
         attributes STATEMENT_LEGACY_DATA_ATTRS
+
+        def self.to_hash_attrs
+          STATEMENT_LEGACY_DATA_ATTRS
+        end
       end
     end
   end

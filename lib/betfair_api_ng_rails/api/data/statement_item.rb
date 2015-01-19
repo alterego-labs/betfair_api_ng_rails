@@ -18,6 +18,10 @@ module BetfairApiNgRails
         ]
 
         attributes STATEMENT_ITEM_ATTRS
+
+        def self.to_hash_attrs
+          STATEMENT_ITEM_ATTRS
+        end
       end
     end
   end
