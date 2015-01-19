@@ -5,6 +5,8 @@ module BetfairApiNgRails
       # Summary of a cleared order.
       #
       class StatementLegacyData < Api::Data::Base
+        include Api::Data::Concerns::Hashable
+
         STATEMENT_LEGACY_DATA_ATTRS = [
           :avg_price,
           :bet_size,

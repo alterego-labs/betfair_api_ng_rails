@@ -5,6 +5,8 @@ module BetfairApiNgRails
       # Summary of a cleared order.
       #
       class StatementItem < Api::Data::Base
+        include Api::Data::Concerns::Hashable
+
         STATEMENT_ITEM_ATTRS = [
           :ref_id,
           :item_date,
