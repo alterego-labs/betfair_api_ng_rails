@@ -12,6 +12,7 @@ module BetfairApiNgRails
   autoload :AccountSession
   autoload :AccountManager
   autoload :AccountSessionManager
+  autoload :BadResponseError
 
   module Api
     extend ActiveSupport::Autoload

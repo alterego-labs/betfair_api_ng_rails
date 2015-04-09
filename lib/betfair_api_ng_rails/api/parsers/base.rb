@@ -16,6 +16,8 @@ module BetfairApiNgRails
 
         def fetch_result_json
           responser.has_error? ? default_value : responser.api_result
+        rescue
+          raise BetfairApiNgRails::BadResponseError
         end
 
         def default_value

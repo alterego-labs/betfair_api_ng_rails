@@ -17,6 +17,8 @@ module BetfairApiNgRails
 
         def result
           JSON.parse response.body
+        rescue
+          raise BetfairApiNgRails::BadResponseError
         end
 
         def has_error?

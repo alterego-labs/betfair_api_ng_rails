@@ -111,10 +111,10 @@ describe BetfairApiNgRails::Api::Caching::ResponseCache do
 
     describe "#cache_adapter" do
       
-      it "returns redis connection" do
-        expect(cache).to receive_message_chain(:class, :redis_connection)
-        cache.send :cache_adapter
-      end
+      #it "returns redis connection" do
+        #expect(cache).to receive_message_chain(:class, :redis_connection)
+        #cache.send :cache_adapter
+      #end
 
     end
 
