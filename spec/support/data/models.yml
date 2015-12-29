@@ -133,6 +133,7 @@ marketFilter:
   marketTypeCodes: 'some'
   marketStartTime: 'some'
   withOrders: 'some'
+  marketIds: '1.123231'
 
 marketDescription: &marketDescription
   persistenceEnabled: 'dqwdqw'

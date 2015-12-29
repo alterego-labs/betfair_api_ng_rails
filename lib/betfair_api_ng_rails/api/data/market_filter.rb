@@ -18,7 +18,8 @@ module BetfairApiNgRails
           :market_countries,
           :market_type_codes,
           :market_start_time,
-          :with_orders
+          :with_orders,
+          :market_ids
         ]
 
         attributes MARKET_FILTER_ATTRS
