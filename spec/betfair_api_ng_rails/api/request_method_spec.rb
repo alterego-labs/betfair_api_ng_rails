@@ -3,8 +3,9 @@ require 'spec_helper'
 describe BetfairApiNgRails::Api::RequestMethod do
   let(:method_name) { 'someMethod' }
   let(:logger)   { double(:logger) }
+  let(:endpoint) { BetfairApiNgRails.config.endpoint }
 
-  subject(:method) { described_class.new(method_name) }
+  subject(:method) { described_class.new(method_name, endpoint) }
 
   before do
     BetfairApiNgRails.log = logger

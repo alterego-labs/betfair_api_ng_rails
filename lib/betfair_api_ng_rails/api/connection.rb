@@ -15,7 +15,7 @@ module BetfairApiNgRails
       end
 
       def request(method, params = {})
-        provider.fetch method: Api::RequestMethod.new(method), params: hashing(params)
+        provider.fetch method: Api::RequestMethod.new(method, endpoint), params: hashing(params)
       end
 
       include Api::ConnectionExt::Caching

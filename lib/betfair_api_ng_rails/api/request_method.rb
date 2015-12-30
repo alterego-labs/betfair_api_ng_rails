@@ -5,7 +5,7 @@ module BetfairApiNgRails
 
       attr_reader :name, :endpoint
 
-      def initialize(name, endpoint = BetfairApiNgRails.config.endpoint)
+      def initialize(name, endpoint)
         @name = name
         @endpoint = endpoint
         BetfairApiNgRails.log.write("==> Creating request method for #{name}")
