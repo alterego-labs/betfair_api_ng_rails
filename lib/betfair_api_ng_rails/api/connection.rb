@@ -25,21 +25,21 @@ module BetfairApiNgRails
       include Api::ConnectionExt::Formatting
 
       def expire_provider
-        BetfairApiNgRails::Api::SessionManager.expire_ssoid account
+        Api::SessionManager.expire_ssoid account
       end
 
       protected
 
       def provider
-        BetfairApiNgRails::Api::Provider.new request_ssoid, app_key
+        Api::Provider.new request_ssoid, app_key
       end
 
       def request_ssoid
-        BetfairApiNgRails::Api::SessionManager.get_ssoid account
+        Api::SessionManager.get_ssoid account
       end
 
       def hashing(params)
-        BetfairApiNgRails::Api::Hashalator.new(params).to_hash
+        Api::Hashalator.new(params).to_hash
       end
 
       def account
