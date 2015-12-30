@@ -18,3 +18,7 @@ RSpec.configure do |config|
 
   config.order = "random"
 end
+
+BetfairApiNgRails.config do |config|
+  config.endpoint = :uk
+end

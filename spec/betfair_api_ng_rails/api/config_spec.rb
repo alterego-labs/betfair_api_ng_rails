@@ -3,31 +3,21 @@ require 'spec_helper'
 describe BetfairApiNgRails::Api::Config do
   subject(:config) { described_class }
 
-  describe "#formatter=" do
-    let(:formatter) { double(:formatter) }
-    let(:value) { double(:value) }
-
-    it "inits formatter by passed value" do
-      expect(BetfairApiNgRails::Api::FormatterFactory).to receive(:initialize_formatter)
-        .with(value)
-        .and_return formatter
-      config.formatter = value
-      expect(config.instance_variable_get(:@formatter)).to eq formatter
-    end
-  end
-
-  describe "#endpoint=" do
-    let(:endpoint) { double(:endpoint) }
-    let(:value) { double(:value) }
-
-    it "inits endpoint by passed value" do
-      expect(BetfairApiNgRails::Api::EndpointFactory).to receive(:call)
-        .with(value)
-        .and_return endpoint
-      config.endpoint = value
-      expect(config.endpoint).to eq endpoint
-    end
-  end
+  it { is_expected.to have_attr_accessor :application_key }
+  it { is_expected.to have_attr_accessor :ssl_key_filepath }
+  it { is_expected.to have_attr_accessor :ssl_crt_filepath }
+  it { is_expected.to have_attr_accessor :username }
+  it { is_expected.to have_attr_accessor :password }
+  it { is_expected.to have_attr_accessor :locale }
+  it { is_expected.to have_attr_accessor :formatter }
+  it { is_expected.to have_attr_accessor :keep_alive_session }
+  it { is_expected.to have_attr_accessor :use_cache }
+  it { is_expected.to have_attr_accessor :cache_expire }
+  it { is_expected.to have_attr_accessor :proxy_url }
+  it { is_expected.to have_attr_accessor :proxy_enable }
+  it { is_expected.to have_attr_accessor :go_localuser }
+  it { is_expected.to have_attr_accessor :go_filename }
+  it { is_expected.to have_attr_accessor :endpoint }
 
   describe ".load_for_environment" do
     let(:path)   { "path" }

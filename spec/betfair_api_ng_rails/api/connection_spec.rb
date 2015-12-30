@@ -88,8 +88,9 @@ describe BetfairApiNgRails::Api::Connection do
       context 'when it is not found' do
         it 'raises error' do
           expect{
+            expect(BetfairApiNgRails).to receive_message_chain(:account_manager, :get).and_return(nil)
             connection.send :account
-          }.to raise_exception
+          }.to raise_error(BetfairApiNgRails::NoAccountProvided)
         end
       end
     end

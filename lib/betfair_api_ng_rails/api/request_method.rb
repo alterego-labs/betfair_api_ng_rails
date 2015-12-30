@@ -3,10 +3,11 @@ module BetfairApiNgRails
     class RequestMethod
       include Api::Constants
 
-      attr_reader :name
+      attr_reader :name, :endpoint
 
-      def initialize(name)
+      def initialize(name, endpoint = BetfairApiNgRails.config.endpoint)
         @name = name
+        @endpoint = endpoint
         BetfairApiNgRails.log.write("==> Creating request method for #{name}")
       end
 
@@ -23,9 +24,7 @@ module BetfairApiNgRails
 
       def api_url
         return :no_api_url unless allowed?
-        API_URL[type].tap do |u|
-          BetfairApiNgRails.log.write("==> Api url of #{name} is #{u}")
-        end
+        endpoint.api_url(type)
       end
 
       def json_method

@@ -4,13 +4,14 @@ require "betfair_api_ng_rails/errors"
 module BetfairApiNgRails
   module Api
     class Connection
-      attr_reader :account_name
+      attr_reader :account_name, :endpoint
 
       delegate :app_key, :username, to: :account
 
       def initialize(account_name)
         BetfairApiNgRails.log.write("==> Initializing new connection #{self}")
         @account_name = account_name
+        @endpoint = BetfairApiNgRails.config.endpoint
       end
 
       def request(method, params = {})
@@ -44,7 +45,7 @@ module BetfairApiNgRails
 
       def account
         acc = BetfairApiNgRails.account_manager.get account_name
-        throw BetfairApiNgRails::NoAccountProvided unless acc
+        raise BetfairApiNgRails::NoAccountProvided unless acc
         BetfairApiNgRails.log.write("==> Using account #{acc.username}")
         acc
       end
