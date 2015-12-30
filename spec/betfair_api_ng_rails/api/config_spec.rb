@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe BetfairApiNgRails::Api::Config do
-  subject(:object) { described_class }
+  subject(:config) { described_class }
 
-  describe ".formatter=" do
+  describe "#formatter=" do
     let(:formatter) { double(:formatter) }
     let(:value) { double(:value) }
 
@@ -11,24 +11,37 @@ describe BetfairApiNgRails::Api::Config do
       expect(BetfairApiNgRails::Api::FormatterFactory).to receive(:initialize_formatter)
         .with(value)
         .and_return formatter
-      object.formatter = value
-      expect(object.instance_variable_get(:@formatter)).to eq formatter
+      config.formatter = value
+      expect(config.instance_variable_get(:@formatter)).to eq formatter
+    end
+  end
+
+  describe "#endpoint=" do
+    let(:endpoint) { double(:endpoint) }
+    let(:value) { double(:value) }
+
+    it "inits endpoint by passed value" do
+      expect(BetfairApiNgRails::Api::EndpointFactory).to receive(:call)
+        .with(value)
+        .and_return endpoint
+      config.endpoint = value
+      expect(config.endpoint).to eq endpoint
     end
   end
 
   describe ".load_for_environment" do
     let(:path)   { "path" }
     let(:opts)   { [:opt1] }
-    let(:config) { {'env' => { 'opt1' => :val1 }} }
+    let(:config_hash) { {'env' => { 'opt1' => :val1 }} }
 
     before do
       stub_const("BetfairApiNgRails::Api::Constants::LOADABLE_CONFIG_OPTIONS", opts)
-      allow(YAML).to receive(:load_file).with(path).and_return config
+      allow(YAML).to receive(:load_file).with(path).and_return config_hash
     end
 
     it "loads config from file and apply it" do
-      expect(object).to receive('opt1=').with(:val1)
-      object.load_for_environment path, 'env'
+      expect(config).to receive('opt1=').with(:val1)
+      config.load_for_environment path, 'env'
     end
   end
 end

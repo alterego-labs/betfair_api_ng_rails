@@ -15,10 +15,15 @@ module BetfairApiNgRails
                       :proxy_url,
                       :proxy_enable,
                       :go_localuser,
-                      :go_filename
+                      :go_filename,
+                      :endpoint
 
         def formatter=(value)
           @formatter = Api::FormatterFactory.initialize_formatter value
+        end
+
+        def endpoint=(value)
+          @endpoint = Api::EndpointFactory.call value
         end
 
         def load_for_environment(file_path, env)

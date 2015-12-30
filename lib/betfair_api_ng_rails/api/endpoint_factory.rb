@@ -12,6 +12,8 @@ module BetfairApiNgRails
 
         def init_by_name(name)
           "BetfairApiNgRails::Api::Endpoints::#{name.to_s.camelize}".constantize.new
+        rescue NameError
+          raise Api::InvalidEndpointError, "Could not found endpoint `#{name}`!"
         end
       end
     end
