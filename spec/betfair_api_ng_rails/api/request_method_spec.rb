@@ -32,9 +32,6 @@ describe BetfairApiNgRails::Api::RequestMethod do
       stub_const('BetfairApiNgRails::Api::Constants::ALLOWED_RESOURCES', {betting: ['someMethod1']})
     end
 
-    its(:type) { is_expected.to eq(:no_type) }
     its(:allowed?) { is_expected.to be_falsey }
-    its(:api_url) { is_expected.to eq(:no_api_url) }
-    its(:json_method) { is_expected.to eq(:no_method) }
   end
 end
