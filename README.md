@@ -37,6 +37,13 @@ In this files you must specify credentials to API-NG. Also you should notice tha
 
 Please check [wiki pages](https://github.com/alterego-labs/betfair_api_ng_rails/wiki).
 
+## CHANGES IN 2.1.0
+
+1. Extracted endpoints for easy using Australian, Italian, Spanish and
+   UK exchanges.
+2. Added `market_ids` to MarketFilter data class
+3. Tiny refactorings
+
 ## CHANGES IN 2.0.0
 
 One of the main features of this release was the multiaccounting.
