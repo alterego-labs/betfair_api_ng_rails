@@ -12,8 +12,8 @@ module BetfairApiNgRails
             end
           end
 
-          def session_requester(account)
-            create_http_requester(LOGIN_URL, false).tap do |req|
+          def session_requester(login_url, account)
+            create_http_requester(login_url, false).tap do |req|
               req.set_ssl_files account.crt_filepath, account.key_filepath
               req.set_request_headers SESSION_REQUEST_HEADERS
               req.set_auth_headers account.app_key
@@ -21,6 +21,8 @@ module BetfairApiNgRails
             end
           end
 
+          # TODO: Looks like this method does not used anywhere.
+          # So this means that keep alive feature does not implemented.
           def keep_alive_requester(ssoid)
             create_http_requester(KEEP_ALIVE_URL, false).tap do |req|
               req.set_accept_header 'application/json'

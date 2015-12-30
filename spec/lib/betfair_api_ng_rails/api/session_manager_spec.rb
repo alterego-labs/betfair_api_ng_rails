@@ -46,8 +46,9 @@ describe BetfairApiNgRails::Api::SessionManager do
 end
 
 describe BetfairApiNgRails::Api::SessionManager::SsoidRequester do
-  subject(:requester) { described_class.new(account) }
+  subject(:requester) { described_class.new(account, endpoint) }
 
+  let(:endpoint) { BetfairApiNgRails.config.endpoint }
   let(:username) { 'user001' }
   let(:account) { BetfairApiNgRails::Account.new(username, 'password', '3cnt4ngt8oh3co', 'crt', 'key') }
 
@@ -59,7 +60,7 @@ describe BetfairApiNgRails::Api::SessionManager::SsoidRequester do
 
   before do
     allow(BetfairApiNgRails::Api::Http::Factory).to receive(:session_requester)
-      .with(account)
+      .with(instance_of(String), account)
       .and_return http_requester
   end
 

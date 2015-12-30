@@ -66,8 +66,6 @@ module BetfairApiNgRails
 
       # URLs
 
-      LOGIN_URL = "https://identitysso.betfair.com/api/certlogin"
-
       KEEP_ALIVE_URL = "https://identitysso.betfair.com/api/keepAlive"
     end
   end

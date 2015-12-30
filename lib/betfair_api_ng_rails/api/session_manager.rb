@@ -10,7 +10,7 @@ module BetfairApiNgRails
       def get_ssoid(account)
         username = account.username
         ssoid = BetfairApiNgRails.account_session_manager.get username
-        ssoid || SsoidRequester.new(account).get
+        ssoid || SsoidRequester.new(account, endpoint).get
       end
 
       def expire_ssoid(account)
@@ -20,8 +20,9 @@ module BetfairApiNgRails
 
       private
 
-      class SsoidRequester < Struct.new(:account)
+      class SsoidRequester < Struct.new(:account, :endpoint)
         delegate :username, to: :account
+        delegate :login_url, to: :endpoint
 
         def get
           session_token.tap do |token|
@@ -48,7 +49,7 @@ module BetfairApiNgRails
         end
 
         def http_requester
-          @_http_requester ||= Api::Http::Factory.session_requester account
+          @_http_requester ||= Api::Http::Factory.session_requester(login_url, account)
         end
       end
     end

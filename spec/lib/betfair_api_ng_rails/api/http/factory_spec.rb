@@ -26,7 +26,7 @@ describe BetfairApiNgRails::Api::Http::Factory do
       expect(requester).to receive(:set_auth_headers).with 'app_key'
       expect(requester).to receive(:set_form_data)
         .with('username' => 'user001', 'password' => 'password')
-      factory.session_requester account
+      factory.session_requester "https://login.url.com", account
     end
   end
 
