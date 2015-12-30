@@ -25,11 +25,11 @@ module BetfairApiNgRails
       include Api::ConnectionExt::Parsing
       include Api::ConnectionExt::Formatting
 
+      protected
+
       def expire_provider
         Api::SessionManager.expire_ssoid account
       end
-
-      protected
 
       def provider
         Api::Provider.new request_ssoid, app_key

@@ -24,7 +24,7 @@ module BetfairApiNgRails
           CODE
         end
 
-      private
+        private
 
         def is_ssoid_problem?(e)
           e.info[:info]["code"].to_i == -32099
@@ -34,7 +34,6 @@ module BetfairApiNgRails
           expire_provider
           request_without_ssoid_refreshing(method, params)
         end
-
       end
     end
   end

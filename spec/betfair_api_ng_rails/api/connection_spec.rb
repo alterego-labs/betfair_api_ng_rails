@@ -31,15 +31,15 @@ describe BetfairApiNgRails::Api::Connection do
     end
   end
 
-  describe "#expire_provider" do
-    it "resets account's ssoid" do
-      allow(connection).to receive(:account).and_return account
-      expect(BetfairApiNgRails::Api::SessionManager).to receive(:expire_ssoid).with(account)
-      connection.expire_provider
-    end
-  end
-
   context "private method" do
+    describe "#expire_provider" do
+      it "resets account's ssoid" do
+        allow(connection).to receive(:account).and_return account
+        expect(BetfairApiNgRails::Api::SessionManager).to receive(:expire_ssoid).with(account)
+        connection.send :expire_provider
+      end
+    end
+
     describe "#provider" do
       let(:ssoid) { double(:ssoid) }
       let(:app_key) { 'af2f23f23' }
