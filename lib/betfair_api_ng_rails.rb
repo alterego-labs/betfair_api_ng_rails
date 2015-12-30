@@ -30,6 +30,7 @@ module BetfairApiNgRails
     autoload :Hashalator
 
     autoload :RequestMethod
+    autoload :EndpointFactory
 
     module Caching
       extend ActiveSupport::Autoload
