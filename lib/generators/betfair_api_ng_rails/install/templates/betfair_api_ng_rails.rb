@@ -1,6 +1,8 @@
 BetfairApiNgRails.config do |config|
   config.load_for_environment "#{Rails.root}/config/betfair_api_ng_rails.yml", Rails.env
 
+  config.endpoint           = :uk
+
   config.ssl_key_filepath   = "#{Rails.root}/public/client-2048.key"
   config.ssl_crt_filepath   = "#{Rails.root}/public/client-2048.crt"
 

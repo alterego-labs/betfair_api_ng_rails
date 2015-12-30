@@ -44,6 +44,17 @@ Please check [wiki pages](https://github.com/alterego-labs/betfair_api_ng_rails/
 2. Added `market_ids` to MarketFilter data class
 3. Tiny refactorings
 
+After upgrading from previous versions you must to add the following
+lines into `config/initializers/betfair_api_ng_rails.rb`:
+
+```
+BetfairApiNgRails.config do |config|
+  # ...
+  config.endpoint = :uk
+  # ...
+end
+```
+
 ## CHANGES IN 2.0.0
 
 One of the main features of this release was the multiaccounting.
