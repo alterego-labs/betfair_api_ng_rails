@@ -1,11 +1,12 @@
 require 'spec_helper'
 
 describe BetfairApiNgRails::Api::Connection do
+  subject(:connection) { described_class.new(acc_name) }
+
   let(:acc_name) { 'user001' }
   let(:asm) { double(:account_session_manager) }
   let(:account) { BetfairApiNgRails::Account.new(acc_name, 'pass', 'nfl43n7fg834', 'crt', 'key') }
   let(:logger)   { double(:logger) }
-  subject(:connection) { described_class.new(acc_name) }
 
   before do
     allow(BetfairApiNgRails).to receive(:account_session_manager).and_return asm
@@ -31,11 +32,11 @@ describe BetfairApiNgRails::Api::Connection do
     end
   end
 
-  context "private method" do
+  context "protected methods" do
     describe "#expire_provider" do
       it "resets account's ssoid" do
         allow(connection).to receive(:account).and_return account
-        expect(BetfairApiNgRails::Api::SessionManager).to receive(:expire_ssoid).with(account)
+        expect(connection.session_manager).to receive(:expire_ssoid).with(account)
         connection.send :expire_provider
       end
     end
@@ -61,7 +62,7 @@ describe BetfairApiNgRails::Api::Connection do
       end
 
       it "requests new ssoid for new connection" do
-        expect(BetfairApiNgRails::Api::SessionManager).to receive(:get_ssoid).with(account)
+        expect(connection.session_manager).to receive(:get_ssoid).with(account)
         subject.send(:request_ssoid)
       end
     end

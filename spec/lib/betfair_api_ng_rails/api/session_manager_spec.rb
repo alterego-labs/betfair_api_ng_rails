@@ -1,11 +1,12 @@
 require 'spec_helper'
 
 describe BetfairApiNgRails::Api::SessionManager do
+  subject(:session_manager) { described_class.new(endpoint) }
+
+  let(:endpoint) { BetfairApiNgRails.config.endpoint }
   let(:username) { 'user001' }
   let(:asm) { double(:account_session_manager) }
   let(:account) { BetfairApiNgRails::Account.new(username, 'password', '3cnt4ngt8oh3co', 'crt', 'key') }
-
-  subject(:session_manager) { described_class }
 
   before do
     allow(BetfairApiNgRails).to receive(:account_session_manager).and_return asm

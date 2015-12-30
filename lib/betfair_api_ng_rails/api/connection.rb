@@ -4,7 +4,7 @@ require "betfair_api_ng_rails/errors"
 module BetfairApiNgRails
   module Api
     class Connection
-      attr_reader :account_name, :endpoint
+      attr_reader :account_name, :endpoint, :session_manager
 
       delegate :app_key, :username, to: :account
 
@@ -12,6 +12,7 @@ module BetfairApiNgRails
         BetfairApiNgRails.log.write("==> Initializing new connection #{self}")
         @account_name = account_name
         @endpoint = BetfairApiNgRails.config.endpoint
+        @session_manager = Api::SessionManager.new(endpoint)
       end
 
       def request(method, params = {})
@@ -28,7 +29,7 @@ module BetfairApiNgRails
       protected
 
       def expire_provider
-        Api::SessionManager.expire_ssoid account
+        session_manager.expire_ssoid account
       end
 
       def provider
@@ -36,7 +37,7 @@ module BetfairApiNgRails
       end
 
       def request_ssoid
-        Api::SessionManager.get_ssoid account
+        session_manager.get_ssoid account
       end
 
       def hashing(params)

@@ -3,22 +3,22 @@ require 'active_support/core_ext/module/delegation'
 
 module BetfairApiNgRails
   module Api
-    class SessionManager
-      class << self
-        include Api::Concerns::Errorable
-        include Api::Constants
+    class SessionManager < Struct.new(:endpoint)
+      include Api::Concerns::Errorable
+      include Api::Constants
 
-        def get_ssoid(account)
-          username = account.username
-          ssoid = BetfairApiNgRails.account_session_manager.get username
-          ssoid || SsoidRequester.new(account).get
-        end
-
-        def expire_ssoid(account)
-          username = account.username
-          BetfairApiNgRails.account_session_manager.expire username
-        end
+      def get_ssoid(account)
+        username = account.username
+        ssoid = BetfairApiNgRails.account_session_manager.get username
+        ssoid || SsoidRequester.new(account).get
       end
+
+      def expire_ssoid(account)
+        username = account.username
+        BetfairApiNgRails.account_session_manager.expire username
+      end
+
+      private
 
       class SsoidRequester < Struct.new(:account)
         delegate :username, to: :account
