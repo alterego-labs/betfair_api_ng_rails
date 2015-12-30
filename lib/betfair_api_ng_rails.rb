@@ -177,6 +177,16 @@ module BetfairApiNgRails
       autoload :Logging
       autoload :Caching
     end
+
+    module Endpoints
+      extend ActiveSupport::Autoload
+
+      autoload :Base
+      autoload :Uk
+      autoload :Australian
+      autoload :Italian
+      autoload :Spanish
+    end
   end
 
   include Api::Data
